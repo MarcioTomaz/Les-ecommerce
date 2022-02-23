@@ -1,0 +1,15 @@
+package com.marcio.fatec.les_ecommerce.domain.Enums;
+
+public enum Logradouro {
+
+    AEROPORTO, ALAMEDA, AREA,
+    AVENIDA, CAMPO, CHACARA,
+    CONDOMINIO, CONJUNTO, DISTRITO,
+    ESPLANADA, ESTACAO, ESTRADA,
+    FAVELA, FAZENDA, FEIRA,
+    JARDIM, LAGO, LARGO, MORRO,
+    NUCLEO, PARQUE, PRACA, RECANTO,
+    RESIDENCIAL, RODOVIA, RUA, SITIO,
+    TREVO, VALE, VIA, VIADUTO,
+    VIELA, VILA;
+}
