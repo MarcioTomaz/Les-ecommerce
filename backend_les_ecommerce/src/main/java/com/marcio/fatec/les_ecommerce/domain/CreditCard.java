@@ -31,7 +31,7 @@ public class CreditCard extends DomainEntity{
     private String cardSecurity; // 3 digitos la
 
     @Column(name = "CardPreferencial" )
-    private Boolean CardPreferencial;
+    private Boolean cardPreferencial;
 
     @Column(name = "cardFlag" )
     private String cardFlag;// bandeira
