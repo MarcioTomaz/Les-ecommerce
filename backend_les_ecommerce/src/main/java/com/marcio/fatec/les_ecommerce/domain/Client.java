@@ -1,5 +1,6 @@
 package com.marcio.fatec.les_ecommerce.domain;
 
+import com.marcio.fatec.les_ecommerce.DTO.ClientDTO;
 import com.marcio.fatec.les_ecommerce.domain.Enums.Gender;
 import com.marcio.fatec.les_ecommerce.domain.Enums.PhoneType;
 import lombok.AllArgsConstructor;
@@ -19,9 +20,6 @@ import java.util.List;
 @Table( name= "_client")
 @Entity
 public class Client extends DomainEntity{
-
-//    Para todo cliente cadastrado é obrigatório o cadastro dos seguintes dados: Gênero, Nome, Data de Nascimento, CPF,
-//    Telefone (deve ser composto pelo tipo, DDD e número), e-mail, senha, endereço residencial.
 
     @Column(name = "name")
     private String name;
@@ -49,16 +47,29 @@ public class Client extends DomainEntity{
     private String phoneNumber;
 
     @Column( name = "gender")
+    @Enumerated( EnumType.STRING)
     private Gender gender;
 
-//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    public Client(ClientDTO clientDTO) {
+        this.name = clientDTO.getName();
+        this.cpf = clientDTO.getCpf();
+        this.email = clientDTO.getEmail();
+        this.password = clientDTO.getPassword();
+        this.birthDate = clientDTO.getBirthDate();
+        this.type = clientDTO.getType();
+        this.areaCode = clientDTO.getAreaCode();
+        this.phoneNumber = clientDTO.getPhoneNumber();
+        this.gender = clientDTO.getGender();
+    }
+
+    //    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    private Usuario usuario;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Address> addressList;
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CreditCard> creditCard;
+//    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Address> addressList;
+//
+//    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<CreditCard> creditCard;
 
 
 
