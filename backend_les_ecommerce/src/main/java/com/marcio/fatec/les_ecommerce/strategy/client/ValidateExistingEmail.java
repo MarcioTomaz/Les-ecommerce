@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TestValidation implements IStrategy {
+public class ValidateExistingEmail implements IStrategy {
 
     @Autowired
     ClientRepository clientRepository;
@@ -21,7 +21,7 @@ public class TestValidation implements IStrategy {
 
         if(client.getEmail() != null){
             if(clientRepository.existsByEmail(client.getEmail())){
-                msg.append("Email já cadastrado.");
+                msg.append(" Email já cadastrado. ");
             }
         }
         return msg.toString();

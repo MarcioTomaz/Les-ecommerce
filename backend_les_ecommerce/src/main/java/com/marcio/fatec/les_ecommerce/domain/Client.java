@@ -33,6 +33,9 @@ public class Client extends DomainEntity{
     @Column(name = "password")
     private String password;
 
+    @Transient
+    private String confirmPassword;
+
     @Column(name = "birthDate")
     private LocalDate birthDate;
 

@@ -4,7 +4,7 @@ import com.marcio.fatec.les_ecommerce.DAO.ClientDAO;
 import com.marcio.fatec.les_ecommerce.DAO.IDAO;
 import com.marcio.fatec.les_ecommerce.domain.Client;
 import com.marcio.fatec.les_ecommerce.strategy.IStrategy;
-import com.marcio.fatec.les_ecommerce.strategy.client.TestValidation;
+import com.marcio.fatec.les_ecommerce.strategy.client.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,14 +24,30 @@ public abstract class AbstractFacade {
     ClientDAO clientDAO;
 
     @Autowired
-    TestValidation testValidation;
+    ValidateExistingEmail validateExistingEmail;
+
+    @Autowired
+    ValidateCPF validateCPF;
+
+    @Autowired
+    ClientConstraints clientConstraints;
+
+    @Autowired
+    ValidatePasswordNull validatePasswordNull;
+
+    @Autowired
+    ValidatePasswordNumberCaracter validatePasswordNumberCaracter;
 
     protected void initializeMaps(){
         daos.put(Client.class.getName(), clientDAO);
 
         List<IStrategy> clientSave = new ArrayList<>();
 
-        clientSave.add(testValidation);
+        clientSave.add(validateExistingEmail);
+        clientSave.add(validatePasswordNull);
+        clientSave.add(validateCPF);
+        clientSave.add(clientConstraints);
+        clientSave.add(validatePasswordNumberCaracter);
 
         Map<String, List<IStrategy>> readerMap = new HashMap<>();
         readerMap.put("SALVAR", clientSave);
