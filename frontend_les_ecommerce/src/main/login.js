@@ -2,33 +2,89 @@
 
 import React from "react";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
+import { errorMessage } from "../components/toastr";
+import ClientService from "../service/clientService";
+import LocalStorageService from "../service/localStorageService";
 
 class Login extends React.Component {
+
+    state = {
+        email: '',
+        password: ''
+    }
+
+    constructor(){
+        super();
+        this.service = new ClientService();
+    }
+
+    handleChange = (event) => {
+        const value = event.target.value;
+        const name = event.target.name;
+
+        this.setState({ [name]: value })
+    }
+
+
+    login = async () => {
+        this.service.authenticate({
+            email: this.state.email,
+            password: this.state.password
+
+        }).then(response => {            
+
+            LocalStorageService.addItem('_usuario_logado', response.data)
+            this.props.history.push('/meusDados')
+
+        }).catch(erro => {
+            console.log(this.state)
+            errorMessage("Erro ao tentar logar")
+        })
+    }
+
+    prepareCadastrar = () =>{
+        this.props.history.push('/register');
+    }
+
     render() {
         return (
             <>
-
                 <div className="container  text-white">
                     <div className="row">
                         <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
                             <div className="card border-0 shadow rounded-3 my-5">
                                 <div className="card-body bg-secondary p-4 p-sm-5">
                                     <h5 className="card-title text-center mb-5 fw-light fs-5">Login</h5>
-                                    <form action="@{/login}" method="POST">
                                         <div className="form-floating mb-3">
-                                            <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com" />
-                                                <label htmlFor="floatingInput">E-mail</label>
+                                            <input
+                                                type="email"
+                                                className="form-control"
+                                                id="floatingInput"
+                                                placeholder="name@example.com"
+                                                value={this.state.email}
+                                                name="email"
+                                                onChange={this.handleChange}
+                                            />
+                                            <label htmlFor="floatingInput">E-mail</label>
                                         </div>
                                         <div className="form-floating mb-3">
-                                            <input type="password" className="form-control" id="floatingPassword" placeholder="Senha" />
-                                                <label htmlFor="floatingPassword">Senha</label>
+                                            <input
+                                                type="password"
+                                                className="form-control"
+                                                id="floatingPassword"
+                                                placeholder="Senha"
+                                                value={this.state.password}
+                                                name="password"
+                                                onChange={this.handleChange}
+                                            />
+                                            <label htmlFor="floatingPassword">Senha</label>
                                         </div>
                                         <div className="d-grid">
-                                            <button className="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Entrar</button>
-                                            <small className="form-text font-weight-bold text-white">Esqueceu sua senha? <a href="#/meusDados" className=" bg-white text-primary">Clique aqui</a></small>
+                                            <button onClick={this.login} className="btn btn-success mt-3">Entrar</button>
+                                            <button onClick={this.prepareCadastrar} className="btn btn-danger mt-3">Cadastrar</button>
+
                                         </div>
 
-                                    </form>
                                 </div>
                             </div>
                         </div>
