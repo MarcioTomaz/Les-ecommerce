@@ -5,21 +5,24 @@ import com.marcio.fatec.les_ecommerce.domain.DomainEntity;
 import com.marcio.fatec.les_ecommerce.domain.Result;
 import com.marcio.fatec.les_ecommerce.strategy.IStrategy;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Service
 public class Facade extends AbstractFacade implements IFacade{
 
-    private StringBuilder stringBuilder = new StringBuilder();
+//    private StringBuilder stringBuilder = new StringBuilder();
+    private List<String> errorMessagesList = new ArrayList<>();
     private Result result;
 
     private void executeRules(DomainEntity domainEntity, List<IStrategy> rules){
         for (IStrategy rule: rules){
             String msg = rule.process(domainEntity);
-            if(msg != null){
-                stringBuilder.append(msg);
+            if(!StringUtils.isEmpty(msg)){
+                errorMessagesList.add(msg);
             }
         }
     }
@@ -28,20 +31,21 @@ public class Facade extends AbstractFacade implements IFacade{
     public Result save(DomainEntity entity) {
         super.initializeMaps();
         result = new Result();
-        stringBuilder.setLength(0);
+//        stringBuilder.setLength(0);
+        errorMessagesList.clear();
         String className = entity.getClass().getName();
         Map<String, List<IStrategy>> entityMap = rules.get(className);
-        List<IStrategy> entityRules = entityMap.get("SALVAR");
+        List<IStrategy> entityRules = entityMap.get(SALVAR);
 
         executeRules(entity, entityRules);
 
-        if(stringBuilder.length() ==0){
+        if(errorMessagesList.isEmpty()){
             IDAO dao = daos.get(className);
             dao.create(entity);
             result.addEntities(entity);
         }else{
             result.addEntities(entity);
-            result.setMsg(stringBuilder.toString());
+            result.setMsg(errorMessagesList);
         }
 
         return result;

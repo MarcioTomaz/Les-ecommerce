@@ -20,6 +20,14 @@ public abstract class AbstractFacade {
 
     protected Map<String, Map<String, List<IStrategy>>> rules = new HashMap<>();
 
+    public static final String SALVAR = "SALVAR";
+
+    public static final String EDITAR = "EDITAR";
+
+    public static final String EXCLUIR = "EXCLUIR";
+
+    public static final String PESQUISAR = "PESQUISAR";
+
     @Autowired
     ClientDAO clientDAO;
 
@@ -49,10 +57,10 @@ public abstract class AbstractFacade {
         clientSave.add(clientConstraints);
         clientSave.add(validatePasswordNumberCaracter);
 
-        Map<String, List<IStrategy>> readerMap = new HashMap<>();
-        readerMap.put("SALVAR", clientSave);
+        Map<String, List<IStrategy>> clientRules = new HashMap<>();
+        clientRules.put(SALVAR, clientSave);
 
-        this.rules.put(Client.class.getName(), readerMap);
+        this.rules.put(Client.class.getName(), clientRules);
     }
 
 

@@ -1,6 +1,3 @@
-
-
-
 export default class LocalStorageService{
 
     static addItem(chave, valor){

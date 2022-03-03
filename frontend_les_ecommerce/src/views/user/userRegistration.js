@@ -35,13 +35,16 @@ class UserRegistration extends React.Component {
         this.service.save(client)
             .then(response => { 
                 
-           //     if(response.msg.length === 0){                    
+               if(response.data.msg.length === 0){     
+                   
+                    console.log("salvou");
+                    console.log(response.data);
+                    successMessage('Usuário cadastrado com sucesso! Faça o login para continuar. ');
 
-             //   }
+               }else{
 
-                console.log("salvou");
-                console.log(response.data)
-                successMessage('Usuário cadastrado com sucesso! Faça o login para continuar. ');
+                   errorMessage(response.data.msg);
+               }
 
             }).catch(error => {
 

@@ -33,7 +33,7 @@ class Login extends React.Component {
 
         }).then(response => {            
 
-            LocalStorageService.addItem('_usuario_logado', response.data)
+            LocalStorageService.addItem('_usuario_logado_', response.data)
             this.props.history.push('/meusDados')
 
         }).catch(erro => {

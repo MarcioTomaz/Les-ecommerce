@@ -1,8 +1,6 @@
 package com.marcio.fatec.les_ecommerce.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,19 +9,13 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Component
 public class Result {
 
-    private String msg;
+    private List<String> msg;
     private List<DomainEntity> entities;
-
-    public String getMsg(){
-        return msg;
-    }
-
-    public void setMsg(String msg){
-        this.msg = msg;
-    }
 
     public List<DomainEntity> getEntities(){
         return entities;
