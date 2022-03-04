@@ -26,6 +26,7 @@ class UserRegistration extends React.Component {
         this.service = new ClientService();
     }
 
+
     saveClient = () => {
 
         const { email, password, confirmPassword, name, gender, birthDate, type, areaCode, phoneNumber, cpf } = this.state;
@@ -33,24 +34,36 @@ class UserRegistration extends React.Component {
         const client = { email, password, confirmPassword,  name, gender, birthDate, type, areaCode, phoneNumber, cpf };
 
         this.service.save(client)
-            .then(response => { 
+            .then(response => {               
                 
-               if(response.data.msg.length === 0){     
+             //   let qtdMsg  = response.data.msg.length;
+
+             console.log(response)
+
+                
+               if(response.data.msg.length === 0 || response.data.msg.length == null){  
                    
-                    console.log("salvou");
-                    console.log(response.data);
+               //     console.log(response.data.msg.length)
+                   
+                 //   console.log("salvou");
+                  
+
                     successMessage('Usuário cadastrado com sucesso! Faça o login para continuar. ');
 
                }else{
+                   errorMessage(response.data.msg)
 
-                   errorMessage(response.data.msg);
+                 //   for(let i=0; i< qtdMsg; i++){
+                   //     errorMessage(response.data.msg[i]);
+                 //   }//                   
                }
 
             }).catch(error => {
 
-                console.log("ERRO AAAAAAAAAAAAAAAAAA");
-                console.log(error)
-                errorMessage(error.response.data);
+                console.log("error: ", error)
+
+
+                console.log("ERRO TESTE");                
             })
     }
 
@@ -71,7 +84,7 @@ class UserRegistration extends React.Component {
         const type = this.service.getType();
 
         return (
-            <section fragment="cadastro" className="container bg-secondary px-5 py-5 mb-5 my-5 font-weight-bold text-white">
+            <section className="container bg-secondary px-5 py-5 mb-5 my-5 font-weight-bold text-white">
                 <div className="my-5 text-center">
                     <h1 className="display-4 font-weight-bold text-white">Cadastre-se Agora</h1>
                 </div>
@@ -167,6 +180,7 @@ class UserRegistration extends React.Component {
                                 type="text"
                                 className="form-control col-md-4"
                                 id="areaCode"
+                                maxLength="3"
                                 placeholder="Insira o DDD"
                                 name="areaCode"
                                 value={this.state.areaCode}
@@ -194,6 +208,7 @@ class UserRegistration extends React.Component {
                                 className="form-control "
                                 id="inputCPF"
                                 placeholder="Insira o seu CPF"
+                                maxLength="11"
                                 name="cpf"
                                 value={this.state.cpf}
                                 onChange={this.handleChange}

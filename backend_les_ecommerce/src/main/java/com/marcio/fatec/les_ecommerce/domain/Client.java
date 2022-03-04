@@ -58,6 +58,7 @@ public class Client extends DomainEntity{
         this.cpf = clientDTO.getCpf();
         this.email = clientDTO.getEmail();
         this.password = clientDTO.getPassword();
+        this.confirmPassword = clientDTO.getConfirmPassword();
         this.birthDate = clientDTO.getBirthDate();
         this.type = clientDTO.getType();
         this.areaCode = clientDTO.getAreaCode();

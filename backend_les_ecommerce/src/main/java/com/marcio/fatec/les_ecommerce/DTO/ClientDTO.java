@@ -23,6 +23,8 @@ public class ClientDTO {
 
     private String password;
 
+    private String confirmPassword;
+
     private LocalDate birthDate;
 
     private PhoneType type;

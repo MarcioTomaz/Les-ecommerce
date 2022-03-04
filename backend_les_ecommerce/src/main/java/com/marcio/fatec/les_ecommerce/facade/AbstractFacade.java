@@ -38,13 +38,13 @@ public abstract class AbstractFacade {
     ValidateCPF validateCPF;
 
     @Autowired
-    ClientConstraints clientConstraints;
-
-    @Autowired
     ValidatePasswordNull validatePasswordNull;
 
     @Autowired
     ValidatePasswordNumberCaracter validatePasswordNumberCaracter;
+
+    @Autowired
+    ValidatePasswordEquals validatePasswordEquals;
 
     protected void initializeMaps(){
         daos.put(Client.class.getName(), clientDAO);
@@ -52,10 +52,10 @@ public abstract class AbstractFacade {
         List<IStrategy> clientSave = new ArrayList<>();
 
         clientSave.add(validateExistingEmail);
-        clientSave.add(validatePasswordNull);
         clientSave.add(validateCPF);
-        clientSave.add(clientConstraints);
+        clientSave.add(validatePasswordNull);
         clientSave.add(validatePasswordNumberCaracter);
+        clientSave.add(validatePasswordEquals);
 
         Map<String, List<IStrategy>> clientRules = new HashMap<>();
         clientRules.put(SALVAR, clientSave);
