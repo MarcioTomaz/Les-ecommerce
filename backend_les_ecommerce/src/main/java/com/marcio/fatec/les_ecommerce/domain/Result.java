@@ -14,16 +14,8 @@ import java.util.List;
 @Component
 public class Result {
 
-    private List<String> msg;
+    private List<String> msg = new ArrayList<>();
     private List<DomainEntity> entities;
-
-    public List<DomainEntity> getEntities(){
-        return entities;
-    }
-
-    public void setEntities(List<DomainEntity> entities){
-        this.entities = entities;
-    }
 
     public void addEntities(DomainEntity entity){
         if(entities == null){

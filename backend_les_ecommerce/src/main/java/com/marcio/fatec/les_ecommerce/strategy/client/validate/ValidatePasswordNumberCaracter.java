@@ -1,4 +1,4 @@
-package com.marcio.fatec.les_ecommerce.strategy.client;
+package com.marcio.fatec.les_ecommerce.strategy.client.validate;
 
 import com.marcio.fatec.les_ecommerce.domain.Client;
 import com.marcio.fatec.les_ecommerce.domain.DomainEntity;

@@ -9,15 +9,15 @@ function Footer() {
                     <div className="col-md-3 col-6 ">
                         <h4 className="h6 ">Categorias</h4>
                         <ul className="list-unstyled">
-                            <li><a href="#">Cartas</a></li>
-                            <li><a href="#">Deck box</a></li>
-                            <li><a href="#">Sleeve</a></li>
+                            <li><a href="#/">Cartas</a></li>
+                            <li><a href="#/">Deck box</a></li>
+                            <li><a href="#/">Sleeve</a></li>
                         </ul>
                     </div>
                     <div className="col-md-3 col-6">
                         <h4 className="h6">Informação</h4>
                         <ul className="list-unstyled">
-                            <li><a href="#">Sobre</a></li>
+                            <li><a href="#/">Sobre</a></li>
                         </ul>
                     </div>
                     <div className="col-md-4">
@@ -32,11 +32,11 @@ function Footer() {
                     <div className="col-md-2">
                         <h4 className="h6">REDES SOCIAIS</h4>
                         <ul className="list-unstyled">
-                            <li><a className="btn btn-outline-secondary btn-sm btn-block mb-2" href="#" >TikTok</a>
+                            <li><a className="btn btn-outline-secondary btn-sm btn-block mb-2" href="#/" >TikTok</a>
                             </li>
-                            <li><a className="btn btn-outline-secondary btn-sm btn-block mb-2" href="#">Orkut</a>
+                            <li><a className="btn btn-outline-secondary btn-sm btn-block mb-2" href="#/">Orkut</a>
                             </li>
-                            <li><a className="btn btn-outline-secondary btn-sm btn-block mb-2" href="#" >Kwai</a>
+                            <li><a className="btn btn-outline-secondary btn-sm btn-block mb-2" href="#/" >Kwai</a>
                             </li>
                         </ul>
                     </div>

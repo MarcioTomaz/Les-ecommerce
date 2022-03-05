@@ -13,10 +13,10 @@ import ClientManagement from '../views/user/clientManagement';
 import ClientDetails from '../views/user/clientDetails';
 import EditClientData from '../views/user/editClientData';
 import ChangePassword from '../views/user/changePassword';
-import NewAddress from '../views/user/newAddress';
+import NewAddress from '../views/address/newAddress';
 import CreditCardList from '../views/user/creditCardList';
 import CreditCardRegister from '../views/user/creditCardRegister';
-import AddressList from '../views/user/addressList';
+import AddressList from '../views/address/addressList';
 import CouponList from '../views/user/couponList';
 
 function Routes(){

@@ -1,6 +1,7 @@
 package com.marcio.fatec.les_ecommerce.facade;
 
 import com.marcio.fatec.les_ecommerce.DAO.IDAO;
+import com.marcio.fatec.les_ecommerce.domain.Client;
 import com.marcio.fatec.les_ecommerce.domain.DomainEntity;
 import com.marcio.fatec.les_ecommerce.domain.Result;
 import com.marcio.fatec.les_ecommerce.strategy.IStrategy;
@@ -65,4 +66,5 @@ public class Facade extends AbstractFacade implements IFacade{
     public Result list(DomainEntity domainEntity) {
         return null;
     }
+
 }

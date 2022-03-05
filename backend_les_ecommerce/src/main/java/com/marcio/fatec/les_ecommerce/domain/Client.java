@@ -3,6 +3,7 @@ package com.marcio.fatec.les_ecommerce.domain;
 import com.marcio.fatec.les_ecommerce.DTO.ClientDTO;
 import com.marcio.fatec.les_ecommerce.domain.Enums.Gender;
 import com.marcio.fatec.les_ecommerce.domain.Enums.PhoneType;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Getter
 @Setter
-//@NoArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
 @Table( name= "_client")
 @Entity
@@ -69,8 +70,8 @@ public class Client extends DomainEntity{
     //    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    private Usuario usuario;
 
-//    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Address> addressList;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Address> addressList;
 //
 //    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 //    private List<CreditCard> creditCard;

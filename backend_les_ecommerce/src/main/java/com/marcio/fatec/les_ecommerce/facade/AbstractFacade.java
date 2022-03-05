@@ -2,9 +2,11 @@ package com.marcio.fatec.les_ecommerce.facade;
 
 import com.marcio.fatec.les_ecommerce.DAO.ClientDAO;
 import com.marcio.fatec.les_ecommerce.DAO.IDAO;
+import com.marcio.fatec.les_ecommerce.domain.Address;
 import com.marcio.fatec.les_ecommerce.domain.Client;
 import com.marcio.fatec.les_ecommerce.strategy.IStrategy;
-import com.marcio.fatec.les_ecommerce.strategy.client.*;
+import com.marcio.fatec.les_ecommerce.strategy.client.EncryptPassword;
+import com.marcio.fatec.les_ecommerce.strategy.client.validate.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,21 +48,48 @@ public abstract class AbstractFacade {
     @Autowired
     ValidatePasswordEquals validatePasswordEquals;
 
+    @Autowired
+    ValidateTypePhone validateTypePhone;
+
+    @Autowired
+    ValidateBirthDate validateBirthDate;
+
+    @Autowired
+    Validate validate;
+
+    @Autowired
+    EncryptPassword passowrd;
+
     protected void initializeMaps(){
         daos.put(Client.class.getName(), clientDAO);
 
-        List<IStrategy> clientSave = new ArrayList<>();
+        List<IStrategy> saveClient = new ArrayList<>();
 
-        clientSave.add(validateExistingEmail);
-        clientSave.add(validateCPF);
-        clientSave.add(validatePasswordNull);
-        clientSave.add(validatePasswordNumberCaracter);
-        clientSave.add(validatePasswordEquals);
+//        saveClient.add(validate);
+        saveClient.add(validateExistingEmail);
+        saveClient.add(validateCPF);
+        saveClient.add(validatePasswordNull);
+        saveClient.add(validatePasswordNumberCaracter);
+        saveClient.add(validatePasswordEquals);
+        saveClient.add(validateBirthDate);
+        saveClient.add(validateTypePhone);
+        saveClient.add(passowrd);
 
         Map<String, List<IStrategy>> clientRules = new HashMap<>();
-        clientRules.put(SALVAR, clientSave);
+        clientRules.put(SALVAR, saveClient);
 
         this.rules.put(Client.class.getName(), clientRules);
+
+
+        // Address
+
+        List<IStrategy> saveAddress = new ArrayList<>();
+//        saveAddress.add()
+
+        Map<String, List<IStrategy>> addressRules = new HashMap<>();
+        addressRules.put(SALVAR, saveAddress);
+
+        this.rules.put(Address.class.getName(), addressRules);
     }
 
 

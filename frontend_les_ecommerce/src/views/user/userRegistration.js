@@ -4,8 +4,9 @@ import React from "react";
 import { withRouter } from 'react-router-dom';
 
 import ClientService from "../../service/clientService";
-import { alertMessage, errorMessage, successMessage } from "../../components/toastr";
+import { errorMessage, successMessage } from "../../components/toastr";
 import SelectMenu from "../../components/selectMenu";
+
 class UserRegistration extends React.Component {
 
     state = {
@@ -26,44 +27,42 @@ class UserRegistration extends React.Component {
         this.service = new ClientService();
     }
 
-
-    saveClient = () => {
+    saveClient = () => {     
 
         const { email, password, confirmPassword, name, gender, birthDate, type, areaCode, phoneNumber, cpf } = this.state;
 
-        const client = { email, password, confirmPassword,  name, gender, birthDate, type, areaCode, phoneNumber, cpf };
+        const client = { email, password, confirmPassword, name, gender, birthDate, type, areaCode, phoneNumber, cpf };
 
         this.service.save(client)
-            .then(response => {               
-                
-             //   let qtdMsg  = response.data.msg.length;
+            .then(response => {  
 
-             console.log(response)
+                let qtdMsg = response.data.msg.length;
 
-                
-               if(response.data.msg.length === 0 || response.data.msg.length == null){  
-                   
-               //     console.log(response.data.msg.length)
-                   
-                 //   console.log("salvou");
-                  
+                console.log("QUANTIDADES STRATEGY", qtdMsg);
 
-                    successMessage('Usuário cadastrado com sucesso! Faça o login para continuar. ');
+                if( qtdMsg === 0 ){
+                    
+                    console.log(qtdMsg);
 
-               }else{
-                   errorMessage(response.data.msg)
+                    console.log("Salvou");
 
-                 //   for(let i=0; i< qtdMsg; i++){
-                   //     errorMessage(response.data.msg[i]);
-                 //   }//                   
-               }
+                    successMessage("Usuário cadastrado com sucesso! Faça o login para continuar. ");
+                    this.props.history.push('/login');
 
+                }else{
+
+                    for( let i = 0; i < qtdMsg; i++){
+                        errorMessage(response.data.msg[i])
+                    }
+                }
+            
             }).catch(error => {
 
-                console.log("error: ", error)
+                console.log("catch");
+                console.log(error)
 
-
-                console.log("ERRO TESTE");                
+                errorMessage("Erro ao fazer a requisição.");
+             
             })
     }
 
@@ -119,6 +118,7 @@ class UserRegistration extends React.Component {
                                 <label htmlFor="inputConfirmSenha">Confirmar senha</label>
                                 <input
                                     type="password"
+                                    autoComplete="off"
                                     className="form-control"
                                     id="inputConfirmSenha"
                                     name="confirmPassword"
@@ -167,11 +167,11 @@ class UserRegistration extends React.Component {
                         <div className="form-group">
                             <label htmlFor="inputTipoTelefone">Tipo Telefone</label>
                             <SelectMenu id="inputType"
-                                    lista={type}
-                                    className="form-control"
-                                    name="type"
-                                    value={this.state.type}
-                                    onChange={this.handleChange} />
+                                lista={type}
+                                className="form-control"
+                                name="type"
+                                value={this.state.type}
+                                onChange={this.handleChange} />
                         </div>
 
                         <div className="form-group">
@@ -188,7 +188,7 @@ class UserRegistration extends React.Component {
                             />
                         </div>
 
-                        <div className="form-group">
+                        <div className="form-group ">
                             <label htmlFor="inputTelefone">Telefone</label>
                             <input
                                 type="text"
@@ -209,7 +209,7 @@ class UserRegistration extends React.Component {
                                 id="inputCPF"
                                 placeholder="Insira o seu CPF"
                                 maxLength="11"
-                                name="cpf"
+                                name="cpf"                                
                                 value={this.state.cpf}
                                 onChange={this.handleChange}
                             />

@@ -33,12 +33,13 @@ class Login extends React.Component {
 
         }).then(response => {            
 
-            LocalStorageService.addItem('_usuario_logado_', response.data)
+            LocalStorageService.addItem('_usuario_logado', response.data)
             this.props.history.push('/meusDados')
 
-        }).catch(erro => {
-            console.log(this.state)
-            errorMessage("Erro ao tentar logar")
+        }).catch(error => {
+            console.log(this.state);
+            console.log(error.response.data);
+            errorMessage(error.response.data);
         })
     }
 
@@ -82,9 +83,7 @@ class Login extends React.Component {
                                         <div className="d-grid">
                                             <button onClick={this.login} className="btn btn-success mt-3">Entrar</button>
                                             <button onClick={this.prepareCadastrar} className="btn btn-danger mt-3">Cadastrar</button>
-
                                         </div>
-
                                 </div>
                             </div>
                         </div>

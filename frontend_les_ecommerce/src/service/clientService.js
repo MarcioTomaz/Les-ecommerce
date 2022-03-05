@@ -1,7 +1,5 @@
 
-
 import ApiService from "./apiService";
-
 class ClientService extends ApiService {
 
     constructor() {
@@ -11,14 +9,18 @@ class ClientService extends ApiService {
     authenticate(credentials){
 
         const item = this.post('/autenticar', credentials)
-        console.log('CREDENCIAIS', credentials)
 
         return item;
     }
 
-    save(client) {
+    save(client) {      
 
         return this.post('/', client);
+    }
+
+    getClientDetails(id){
+        
+        return this.get(`/detalhesUsuario?id=${id}`);
     }
 
     getGender() {
@@ -32,7 +34,7 @@ class ClientService extends ApiService {
 
     getType() {
         return [
-            { label:'Selecione..', value: '' },
+            { label:'Selecione...', value: '' },
             { label:'FIXO', value: 'FIXO' },
             { label:'MOVEL', value: 'MOVEL'}
         ]

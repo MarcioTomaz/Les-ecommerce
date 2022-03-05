@@ -3,7 +3,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-import AddresComponent from "./userComponent/addressComponent";
+import AddresComponent from "../user/userComponent/addressComponent";
 
 class AddressList extends React.Component {
 
@@ -14,7 +14,7 @@ class AddressList extends React.Component {
 
                 <h1 className="mt-4 mb-3">Lista - Endereços </h1>
                 <hr />
-                <a href="#/adicionarEndereco" className="btn btn-secondary col-md-3" >Adicionar novo endereco</a>
+                <a href="#/novoEndereco" className="btn btn-secondary col-md-3" >Adicionar novo endereco</a>
 
                 <hr />
 
