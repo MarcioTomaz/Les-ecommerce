@@ -5,6 +5,9 @@ import React from "react";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import SelectMenu from "../../components/selectMenu";
 import ClientService from "../../service/clientService";
+import EditClientDataService from "../../service/editClientDataService";
+import { errorMessage, successMessage } from "../../components/toastr";
+import LocalStorageService from "../../service/localStorageService";
 
 class EditClientData extends React.Component {    
 
@@ -17,16 +20,58 @@ class EditClientData extends React.Component {
         phoneNumber: '',
         cpf: '',
         areaCode: '',
-        type:''
+        type:'',
+        client: null
     }
 
     constructor(){
         super();
         this.ClientService = new ClientService();
+        this.editClientData = new EditClientDataService();
     }
 
     updateClient = () => {
+
+        const loggedUser = LocalStorageService.obterItem('_usuario_logado');
+
+        console.log("USUARIO LOGADO ", loggedUser.id)
+
         const { email, name, gender, birthDate, phoneNumber, cpf, areaCode, type } = this.state;
+
+        const updateClient = { email, name, gender, birthDate, phoneNumber, cpf, areaCode, type, client: loggedUser.id }
+                   
+        console.log(updateClient)
+
+        this.editClientData.update(updateClient)
+            .then( response => {
+
+                let qtdMsg = response.data.msg.length;
+
+                console.log("QUANTIDADES STRATEGY", qtdMsg);
+
+                if( qtdMsg === 0 ){
+
+                    console.log(qtdMsg);
+
+                    console.log("Salvou");
+
+                    successMessage("Usuário atualizado com sucesso! ");
+                    this.props.history.push('/meusDados');
+                }else {
+
+                    for( let i = 0; i < qtdMsg; i++){
+                        errorMessage(response.data.msg[i])
+                    }
+                }
+            }).catch( error => {
+
+                console.log(updateClient)
+
+                console.log("catch");
+                console.log(error);
+
+                errorMessage("Erro ao fazer a requisição.");
+            })
     }
 
 

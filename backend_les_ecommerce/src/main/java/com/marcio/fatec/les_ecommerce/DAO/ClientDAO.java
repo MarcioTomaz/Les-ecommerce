@@ -33,20 +33,18 @@ public class ClientDAO implements IDAO{
     @Override
     public void update(DomainEntity domainEntity) {
 
-//        Pessoa  pessoa = (Pessoa) entidade;
-//        Usuario usuario = usuarioRepository.findUsuarioById(pessoa.getUsuario().getId());
-//        pessoa.getUsuario().setPassword(usuario.getPassword());
-//        pessoa.getUsuario().setTipoUsuario(usuario.getTipoUsuario());
-//        pessoa.getUsuario().setStatus(usuario.getStatus());
-//        for (Telefone telefone : pessoa.getTelefones()) {
-//            telefone.setPessoa(pessoa);
-//        }
-//        pessoa = pessoaRepository.save(pessoa);
-//        pessoa.getUsuario().setPassword(null);
         Client client = ( Client ) domainEntity;
+        Client editClient = clientRepository.getById(client.getId());
 
-        client = clientRepository.save(client);
+        editClient.setName(client.getName());
+        editClient.setEmail(client.getEmail());
+        editClient.setGender(client.getGender());
+        editClient.setBirthDate(client.getBirthDate());
+        editClient.setCpf(client.getCpf());
+        editClient.setAreaCode(client.getAreaCode());
+        editClient.setType(client.getType());
 
+        clientRepository.save(editClient);
     }
 
     @Override

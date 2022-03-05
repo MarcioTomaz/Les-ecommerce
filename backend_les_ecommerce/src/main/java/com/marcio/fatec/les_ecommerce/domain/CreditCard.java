@@ -53,7 +53,6 @@ public class CreditCard extends DomainEntity{
         client.setId(creditCardDTO.getClient());
 
         this.client = client;
-
         this.creditCardNumber = creditCardDTO.getCreditCardNumber();
         this.cardHolder = creditCardDTO.getCardHolder();
         this.expirationDateMonth = creditCardDTO.getExpirationDateMonth();

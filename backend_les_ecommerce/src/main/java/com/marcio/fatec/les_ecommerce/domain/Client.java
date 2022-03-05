@@ -1,5 +1,6 @@
 package com.marcio.fatec.les_ecommerce.domain;
 
+import com.marcio.fatec.les_ecommerce.DTO.ClienEditDTO;
 import com.marcio.fatec.les_ecommerce.DTO.ClientDTO;
 import com.marcio.fatec.les_ecommerce.domain.Enums.Gender;
 import com.marcio.fatec.les_ecommerce.domain.Enums.PhoneType;
@@ -65,6 +66,22 @@ public class Client extends DomainEntity{
         this.areaCode = clientDTO.getAreaCode();
         this.phoneNumber = clientDTO.getPhoneNumber();
         this.gender = clientDTO.getGender();
+    }
+
+    public Client(ClienEditDTO clienEditDTO) {
+
+        Client client = new Client();
+        client.setId(clienEditDTO.getClient());
+
+        this.setId(client.getId());
+        this.name = clienEditDTO.getName();
+        this.cpf = clienEditDTO.getCpf();
+        this.email = clienEditDTO.getEmail();
+        this.birthDate = clienEditDTO.getBirthDate();
+        this.type = clienEditDTO.getType();
+        this.areaCode = clienEditDTO.getAreaCode();
+        this.phoneNumber = clienEditDTO.getPhoneNumber();
+        this.gender = clienEditDTO.getGender();
     }
 
     //    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

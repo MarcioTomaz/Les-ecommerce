@@ -18,7 +18,7 @@ public class ValidateBirthDate implements IStrategy {
         StringBuilder msg = new StringBuilder();
 
         if(client.getBirthDate().isAfter(LocalDate.now())){
-            msg.append(" Insira uma data válida");
+            msg.append(" A data deve ser menor ou igual a data atual. ");
         }
 
         return msg.toString();

@@ -1,5 +1,6 @@
 package com.marcio.fatec.les_ecommerce.controller;
 
+import com.marcio.fatec.les_ecommerce.DTO.ClienEditDTO;
 import com.marcio.fatec.les_ecommerce.DTO.ClientAuthenticateDTO;
 import com.marcio.fatec.les_ecommerce.DTO.ClientDTO;
 import com.marcio.fatec.les_ecommerce.DTO.ClientDetailsDTO;
@@ -80,9 +81,9 @@ public class ClientController {
     }
 
     @PutMapping()
-    public ResponseEntity update( @RequestBody ClientDTO clientDTO ){// @Param("id") Long id,
+    public ResponseEntity<Result> update(@RequestBody ClienEditDTO clienEditDTO  ){// @Param("id") Long id,
 
-        Client client = new Client(clientDTO);
+        Client client = new Client(clienEditDTO);
 
         result = facade.update(client);
 

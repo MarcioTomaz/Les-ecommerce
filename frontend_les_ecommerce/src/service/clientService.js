@@ -18,6 +18,7 @@ class ClientService extends ApiService {
         return this.post('/', client);
     }
 
+
     getClientDetails(id){
         
         return this.get(`/detalhesUsuario?id=${id}`);

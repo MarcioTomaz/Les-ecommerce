@@ -92,6 +92,9 @@ public abstract class AbstractFacade {
 
         List<IStrategy> editClient = new ArrayList<>();
 
+        editClient.add(validateCPF);
+        editClient.add(validateBirthDate);
+
         Map<String, List<IStrategy>> clientRules = new HashMap<>();
         clientRules.put(SALVAR, saveClient);
         clientRules.put(EDITAR, editClient);
@@ -108,8 +111,6 @@ public abstract class AbstractFacade {
         addressRules.put(SALVAR, saveAddress);
 
         this.rules.put(Address.class.getName(), addressRules);
-
-
 
         //***************************** CREDIT CARD *****************************
         List<IStrategy> saveCreditCards = new ArrayList<>();

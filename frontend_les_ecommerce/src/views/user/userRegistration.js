@@ -7,6 +7,7 @@ import ClientService from "../../service/clientService";
 import { errorMessage, successMessage } from "../../components/toastr";
 import SelectMenu from "../../components/selectMenu";
 
+import { ClientClass } from "./class/clientClass";
 class UserRegistration extends React.Component {
 
     state = {
@@ -31,14 +32,20 @@ class UserRegistration extends React.Component {
 
         const { email, password, confirmPassword, name, gender, birthDate, type, areaCode, phoneNumber, cpf } = this.state;
 
-        const client = { email, password, confirmPassword, name, gender, birthDate, type, areaCode, phoneNumber, cpf };
+        const preencher = { email, password, confirmPassword, name, gender, birthDate, type, areaCode, phoneNumber, cpf };
 
-        this.service.save(client)
+        let clientClass = new ClientClass(email, password, confirmPassword, name, gender, birthDate, type, areaCode, phoneNumber, cpf);        
+
+        console.log(clientClass)
+
+        this.service.save(clientClass)
             .then(response => {  
 
                 let qtdMsg = response.data.msg.length;
 
                 console.log("QUANTIDADES STRATEGY", qtdMsg);
+
+                console.log(ClientClass)
 
                 if( qtdMsg === 0 ){
                     
@@ -61,8 +68,7 @@ class UserRegistration extends React.Component {
                 console.log("catch");
                 console.log(error)
 
-                errorMessage("Erro ao fazer a requisição.");
-             
+                errorMessage("Erro ao fazer a requisição.");             
             })
     }
 
