@@ -30,13 +30,13 @@ public class Address extends DomainEntity{
     @Column(name = "observation", nullable = true, length = 50)
     private String observation;
 
-    @Column(name = "number", nullable = false,length = 5)
+    @Column(name = "number", nullable = false)
     private String number;
 
     @Column(name = "district", nullable = false, length = 50)
     private String district; //bairro
 
-    @Column(name = "zipCode",nullable = false, length = 8)
+    @Column(name = "zipCode",nullable = false)
     private String zipCode; //cep
 
     @Column(name = "logradouro", nullable = false, length = 20)
@@ -60,7 +60,6 @@ public class Address extends DomainEntity{
         client.setId(addressDTO.getClient());
 
         this.client = client;
-
         this.street = addressDTO.getStreet();
         this.residencyType = addressDTO.getResidencyType();
         this.observation = addressDTO.getObservation();

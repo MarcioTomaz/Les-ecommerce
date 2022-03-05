@@ -9,6 +9,10 @@ const logOut = () => {
     AuthService.removeAuthenticateClient();
 }
 
+const isAuthenticateClient = () => {
+    return AuthService.isAuthenticateClient();
+}
+
 function NavBar() {
     return (
         <div className="navbar navbar-expand-lg navbar-dark bg-info " >

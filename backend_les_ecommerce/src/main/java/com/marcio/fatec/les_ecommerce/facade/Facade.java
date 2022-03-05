@@ -32,7 +32,6 @@ public class Facade extends AbstractFacade implements IFacade{
     public Result save(DomainEntity entity) {
         super.initializeMaps();
         result = new Result();
-//        stringBuilder.setLength(0);
         errorMessagesList.clear();
         String className = entity.getClass().getName();
         Map<String, List<IStrategy>> entityMap = rules.get(className);
@@ -53,8 +52,26 @@ public class Facade extends AbstractFacade implements IFacade{
     }
 
     @Override
-    public Result update(DomainEntity domainEntity) {
-        return null;
+    public Result update(DomainEntity entity) {
+        super.initializeMaps();
+        result = new Result();
+        errorMessagesList.clear();
+        String className = entity.getClass().getName();
+        Map<String, List<IStrategy>> entityMap = rules.get(className);
+        List<IStrategy> entityRules = entityMap.get(EDITAR);
+
+        executeRules(entity, entityRules);
+
+        if(errorMessagesList.isEmpty()){
+            IDAO dao = daos.get(className);
+            dao.update(entity);
+            result.addEntities(entity);
+        }else{
+            result.addEntities(entity);
+            result.setMsg(errorMessagesList);
+        }
+
+        return result;
     }
 
     @Override

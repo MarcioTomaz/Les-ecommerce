@@ -22,8 +22,8 @@ class NewAddress extends React.Component {
         city: '',
         country: '',
         state: '',
-        addressType: '',
-        client: 1
+        addressType: '',        
+        client: null
     }
 
     constructor(){
@@ -35,6 +35,8 @@ class NewAddress extends React.Component {
 
         const loggedUser = LocalStorageService.obterItem('_usuario_logado');
         console.log("USUARIO LOGADO", loggedUser.id)
+
+        console.log('User LOGADO ID',loggedUser.id)
 
         const {street, residencyType, observation, number, district, zipCode, logradouro, city,
                 country, state, addressType} = this.state;
@@ -55,6 +57,8 @@ class NewAddress extends React.Component {
                     console.log("Salvou");
 
                     successMessage("Endereço cadastrado com sucesso!");
+                    this.props.history.push('/meusDados');
+
                 }else{
 
                     for( let i = 0; i < qtdMsg; i++){
@@ -240,7 +244,7 @@ class NewAddress extends React.Component {
                     </form>
                 </div>
 
-                <a href="#/suaConta" className="btn btn-outline-secondary mb-2" style={{maxWidth: '140px'}}>Voltar</a>
+                <a href="#/listaEndereco" className="btn btn-outline-secondary mb-2" style={{maxWidth: '140px'}}>Voltar</a>
 
             </section>
         )

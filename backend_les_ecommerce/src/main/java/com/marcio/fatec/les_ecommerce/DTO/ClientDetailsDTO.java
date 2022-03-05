@@ -26,6 +26,10 @@ public class ClientDetailsDTO {
 
     private String gender;
 
+    private String type;
+
+    private String areaCode;
+
     private String phoneNumber;
 
     public ClientDetailsDTO(Client client) {
@@ -34,6 +38,8 @@ public class ClientDetailsDTO {
         this.cpf = client.getCpf();
         this.birthDate = client.getBirthDate().toString();
         this.gender = client.getGender().name();
+        this.type = client.getType().toString();
+        this.areaCode = client.getAreaCode();
         this.phoneNumber = client.getPhoneNumber();
     }
 }

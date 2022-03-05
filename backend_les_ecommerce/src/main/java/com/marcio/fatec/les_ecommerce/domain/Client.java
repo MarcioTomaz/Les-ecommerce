@@ -70,11 +70,12 @@ public class Client extends DomainEntity{
     //    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    private Usuario usuario;
 
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addressList;
 //
-//    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<CreditCard> creditCard;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CreditCard> creditCard;
 
 
 

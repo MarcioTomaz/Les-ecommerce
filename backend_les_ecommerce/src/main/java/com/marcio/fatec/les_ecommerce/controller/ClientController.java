@@ -42,7 +42,7 @@ public class ClientController {
             return ResponseEntity.ok(clientAuthenticate);
 
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).body("Email ou senha não invalidos");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email ou senha não invalidos");
         }
     }
 
@@ -78,5 +78,16 @@ public class ClientController {
 
        return ResponseEntity.ok().body(clientDetailsDTO);
     }
+
+    @PutMapping()
+    public ResponseEntity update( @RequestBody ClientDTO clientDTO ){// @Param("id") Long id,
+
+        Client client = new Client(clientDTO);
+
+        result = facade.update(client);
+
+        return ResponseEntity.ok().body(result);
+    }
+
 
 }

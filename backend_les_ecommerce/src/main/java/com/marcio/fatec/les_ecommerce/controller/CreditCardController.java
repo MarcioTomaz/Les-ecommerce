@@ -1,21 +1,19 @@
 package com.marcio.fatec.les_ecommerce.controller;
 
-
 import com.marcio.fatec.les_ecommerce.DTO.AddressDTO;
+import com.marcio.fatec.les_ecommerce.DTO.CreditCardDTO;
 import com.marcio.fatec.les_ecommerce.domain.Address;
-import com.marcio.fatec.les_ecommerce.domain.Client;
+import com.marcio.fatec.les_ecommerce.domain.CreditCard;
 import com.marcio.fatec.les_ecommerce.domain.Result;
 import com.marcio.fatec.les_ecommerce.facade.Facade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/adresses")
-public class AddressController {
+@RequestMapping("/api/creditCards")
+public class CreditCardController {
+
 
     @Autowired
     private Facade facade;
@@ -24,12 +22,14 @@ public class AddressController {
     private Result result;
 
     @PostMapping
-    public ResponseEntity save(@RequestBody AddressDTO addressDTO){
+    public ResponseEntity save(@RequestBody CreditCardDTO creditCardDTO){
 
-        Address address1 = new Address(addressDTO);
+        CreditCard creditCard = new CreditCard(creditCardDTO);
 
-        result = facade.save(address1);
+        result = facade.save(creditCard);
 
         return ResponseEntity.ok().body(result);
     }
+
+
 }

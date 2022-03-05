@@ -36,6 +36,8 @@ class ClientDetails extends React.Component {
                     cpf: reponseData.cpf,
                     gender: reponseData.gender,
                     birthDate: reponseData.birthDate,
+                    type: reponseData.type,
+                    areCode: reponseData.areaCode,
                     phoneNumber: reponseData.phoneNumber
                 })
             })
@@ -91,6 +93,14 @@ class ClientDetails extends React.Component {
 
                             <div className="form-group">
                                 <label ><strong>Gênero: </strong> {this.state.gender}</label>
+                            </div>
+
+                            <div className="form-group">
+                                <label ><strong>Tipo:</strong> {this.state.type}</label>
+                            </div>
+
+                            <div className="form-group">
+                                <label ><strong>DDD:</strong> {this.state.areCode}</label>
                             </div>
 
                             <div className="form-group">
