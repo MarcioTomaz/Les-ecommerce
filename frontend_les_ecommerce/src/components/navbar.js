@@ -2,6 +2,12 @@
 
 import React from "react";
 import NavBarItem from "./navbarItem";
+import AuthService from "../service/authService";
+
+const logOut = () => {
+
+    AuthService.removeAuthenticateClient();
+}
 
 function NavBar() {
     return (
@@ -21,7 +27,7 @@ function NavBar() {
                 <div className="collapse navbar-collapse justify-content-end" id="navbarResponsive">
                     <ul className="navbar-nav ">
                         <NavBarItem href="#/home" label="Inicio" />
-                        <NavBarItem href="#/" label="Produtos" />
+                        <NavBarItem href="#/produtos" label="Produtos" />
 
                         <form className="d-flex">
                             <input className="form-control me-sm-2" type="text" placeholder="Pesquisar" />
@@ -29,7 +35,7 @@ function NavBar() {
                         </form>
 
                         <NavBarItem href="#/register" label="Cadastrar" />
-                        <NavBarItem href="#/login" label="Login" />
+                        <NavBarItem onClick={logOut}  href="#/login" label="Sair" />
 
                       
                     </ul>

@@ -14,6 +14,14 @@ class NewAddressService extends ApiService {
 
     }
 
+    getAddresType(){
+        return [
+            { label: 'Selecione...', value:'' },
+            { label:'COBRANCA', value:'COBRANCA' },
+            { label:'ENTREGA', value:'ENTREGA' },
+        ]
+    }
+
 }
 
 export default NewAddressService;

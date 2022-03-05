@@ -5,6 +5,8 @@ import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import { errorMessage, successMessage } from "../../components/toastr";
 
 import NewAddressService from "../../service/newAddress";
+import SelectMenu from "../../components/selectMenu";
+import LocalStorageService from "../../service/localStorageService";
 class NewAddress extends React.Component {
 
 
@@ -20,7 +22,8 @@ class NewAddress extends React.Component {
         city: '',
         country: '',
         state: '',
-        addressType: ''
+        addressType: '',
+        client: 1
     }
 
     constructor(){
@@ -30,15 +33,19 @@ class NewAddress extends React.Component {
 
     saveAddress = () =>{
 
+        const loggedUser = LocalStorageService.obterItem('_usuario_logado');
+        console.log("USUARIO LOGADO", loggedUser.id)
+
         const {street, residencyType, observation, number, district, zipCode, logradouro, city,
                 country, state, addressType} = this.state;
 
         const address = {street, residencyType, observation, number, district, zipCode, logradouro, city,
-            country, state, addressType};
+            country, state, addressType, client: loggedUser.id};
 
             this.service.save(address)
             .then( response => {
-                let qtdMsg = response.data.msg.length;
+                //let qtdMsg = response.data.msg.length;
+                let qtdMsg = 0;
 
                 console.log("QUANTIDADES STRATEGY",qtdMsg);
 
@@ -57,7 +64,8 @@ class NewAddress extends React.Component {
             }).catch( error => {
 
                 console.log("catch");
-                console.log(error)
+                console.log(error.response)
+                console.log(this.state)
 
                 errorMessage("Erro ao fazer a requisição.");
             })        
@@ -72,6 +80,9 @@ class NewAddress extends React.Component {
     }
 
     render() {
+
+        const addressType = this.service.getAddresType();
+
         return (
 
             <section className=" card px-5 py-5 mx-5 my-5">
@@ -200,6 +211,17 @@ class NewAddress extends React.Component {
                                      />  
                             </div>
                         </div>
+
+                        <div className="form-group">
+                            <label htmlFor="inputTipoTelefone">Tipo Endereço</label>
+                            <SelectMenu id="inputType"
+                                lista={addressType}
+                                className="form-control"
+                                name="addressType"
+                                value={this.state.addressType}
+                                onChange={this.handleChange} />
+                        </div>
+
                         <div className="form-group">
                             <label htmlFor="inputComplemento">Observações</label>
                             <input 
@@ -213,7 +235,8 @@ class NewAddress extends React.Component {
                                 onChange={this.handleChange}
                                 />
                         </div>
-                        <button onClick={this.saveAddress} className="btn btn-primary">Cadastrar</button>
+                        <button onClick={this.saveAddress} type="button" className="btn btn-primary">Cadastrar</button>
+
                     </form>
                 </div>
 
