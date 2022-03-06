@@ -7,6 +7,7 @@ import ClientService from "../../service/clientService";
 import React from "react";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import LocalStorageService from "../../service/localStorageService";
+import { successMessage } from "../../components/toastr";
 
 class ClientDetails extends React.Component {
 
@@ -26,9 +27,12 @@ class ClientDetails extends React.Component {
         this.service.getClientDetails(usuarioLogado.id)
             .then(response => {
 
-                const reponseData = response.data;
+                console.log("to no then")
+
+                const reponseData = response.data.entities[0];
 
                 console.log(reponseData)
+                console.log(response.data.entities[0])
 
                 this.setState({
                     email: reponseData.email,

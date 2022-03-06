@@ -6,6 +6,7 @@ import com.marcio.fatec.les_ecommerce.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,6 +50,33 @@ public class ClientDAO implements IDAO{
 
     @Override
     public List<DomainEntity> list(DomainEntity domainEntity) {
-        return null;
+
+        List<DomainEntity> clients = new ArrayList<>();
+
+        Client client = (Client) domainEntity;
+
+//        if(client.getId() != null){
+//             return clientRepository.findById(client.getId());
+//        }
+
+//        if(client.getId() == null){
+//            clientRepository.findAll().forEach( client1 -> {
+//                clients.add(client1);
+//            });
+//        }
+
+        return clients;
+    }
+
+    @Override
+    public DomainEntity get(Long id) {
+
+        Client client = null;
+
+        client = clientRepository.findById(id).get();
+
+        System.out.println(client);
+
+        return client;
     }
 }

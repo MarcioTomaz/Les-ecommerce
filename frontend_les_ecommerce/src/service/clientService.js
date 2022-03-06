@@ -22,6 +22,8 @@ class ClientService extends ApiService {
     getClientDetails(id){
         
         return this.get(`/detalhesUsuario?id=${id}`);
+        //return this.get(`/consultarCliente?id=${id}`);
+        //return this.post(`/consultarCliente`, client)
     }
 
     getGender() {

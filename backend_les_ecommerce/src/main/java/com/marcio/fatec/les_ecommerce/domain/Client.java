@@ -24,6 +24,7 @@ import java.util.List;
 public class Client extends DomainEntity{
 
     @Column(name = "name")
+    @NotNull
     private String name;
 
     @Column(name = "cpf")

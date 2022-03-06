@@ -51,7 +51,7 @@ function AddresComponent() {
                     </div>
                     <hr />
 
-                    <a href="#/novoEndereco" className="btn btn-warning float-right" style={{ maxWidth: '140px' }}>Editar</a>
+                    <a href="#/editarEndereco" className="btn btn-warning float-right" style={{ maxWidth: '140px' }}>Editar</a>
 
                     <a href="#/" className="btn btn-danger mb-2" style={{ maxWidth: '140px' }}>Excluir</a>
 

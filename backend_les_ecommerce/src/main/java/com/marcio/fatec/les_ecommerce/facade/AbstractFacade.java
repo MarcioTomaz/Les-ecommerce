@@ -33,6 +33,7 @@ public abstract class AbstractFacade {
 
     public static final String PESQUISAR = "PESQUISAR";
 
+    public static final String PESQUISARESPECIFICO = "PESQUISARESPECIFICO";
 
     //DAOS
     @Autowired
@@ -90,14 +91,23 @@ public abstract class AbstractFacade {
         saveClient.add(validateTypePhone);
         saveClient.add(passowrd);
 
+        /// ************ EDITAR ***************
         List<IStrategy> editClient = new ArrayList<>();
 
         editClient.add(validateCPF);
         editClient.add(validateBirthDate);
 
+        // ********** pesquisar *********
+        List<IStrategy> consultClient = new ArrayList<>();
+
+        //strategys
+        //consultClient.add()
+
         Map<String, List<IStrategy>> clientRules = new HashMap<>();
         clientRules.put(SALVAR, saveClient);
         clientRules.put(EDITAR, editClient);
+        clientRules.put(PESQUISAR, consultClient);
+//        clientRules.put(PESQUISARESPECIFICO, )
 
         this.rules.put(Client.class.getName(), clientRules);
 

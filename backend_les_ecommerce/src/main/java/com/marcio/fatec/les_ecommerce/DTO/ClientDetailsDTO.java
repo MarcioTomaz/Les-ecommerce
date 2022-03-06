@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -42,4 +43,5 @@ public class ClientDetailsDTO {
         this.areaCode = client.getAreaCode();
         this.phoneNumber = client.getPhoneNumber();
     }
+
 }

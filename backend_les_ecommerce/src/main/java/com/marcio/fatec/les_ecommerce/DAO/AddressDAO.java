@@ -1,12 +1,14 @@
 package com.marcio.fatec.les_ecommerce.DAO;
 
 import com.marcio.fatec.les_ecommerce.domain.Address;
+import com.marcio.fatec.les_ecommerce.domain.Client;
 import com.marcio.fatec.les_ecommerce.domain.DomainEntity;
 import com.marcio.fatec.les_ecommerce.repository.AddresRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AddressDAO implements IDAO{
@@ -37,6 +39,11 @@ public class AddressDAO implements IDAO{
 
     @Override
     public List<DomainEntity> list(DomainEntity domainEntity) {
+        return null;
+    }
+
+    @Override
+    public DomainEntity get(Long id) {
         return null;
     }
 }

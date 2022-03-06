@@ -30,6 +30,36 @@ class EditClientData extends React.Component {
         this.editClientData = new EditClientDataService();
     }
 
+    componentDidMount() {
+        const usuarioLogado = LocalStorageService.obterItem('_usuario_logado');
+
+        console.log("to antes do getclientdetails", usuarioLogado.id)
+        
+        
+        this.ClientService.getClientDetails(usuarioLogado.id)
+            .then(response => {
+
+                const reponseData = response.data.entities[0];
+
+                console.log(response.data)
+
+                console.log(reponseData)
+
+                this.setState({
+                    
+                    email: reponseData.email,
+                    name: reponseData.name,
+                    cpf: reponseData.cpf,
+                    gender: reponseData.gender,
+                    birthDate: reponseData.birthDate,
+                    type: reponseData.type,
+                    areaCode: reponseData.areaCode,
+                    phoneNumber: reponseData.phoneNumber
+                })
+            })
+
+    }
+
     updateClient = () => {
 
         const loggedUser = LocalStorageService.obterItem('_usuario_logado');
@@ -40,7 +70,7 @@ class EditClientData extends React.Component {
 
         const updateClient = { email, name, gender, birthDate, phoneNumber, cpf, areaCode, type, client: loggedUser.id }
                    
-        console.log(updateClient)
+        console.log(updateClient);
 
         this.editClientData.update(updateClient)
             .then( response => {

@@ -4,7 +4,9 @@ import com.marcio.fatec.les_ecommerce.DAO.IDAO;
 import com.marcio.fatec.les_ecommerce.domain.Client;
 import com.marcio.fatec.les_ecommerce.domain.DomainEntity;
 import com.marcio.fatec.les_ecommerce.domain.Result;
+import com.marcio.fatec.les_ecommerce.repository.ClientRepository;
 import com.marcio.fatec.les_ecommerce.strategy.IStrategy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -14,6 +16,11 @@ import java.util.Map;
 
 @Service
 public class Facade extends AbstractFacade implements IFacade{
+
+
+    @Autowired
+    ClientRepository clientRepository;
+
 
 //    private StringBuilder stringBuilder = new StringBuilder();
     private List<String> errorMessagesList = new ArrayList<>();
@@ -81,7 +88,48 @@ public class Facade extends AbstractFacade implements IFacade{
 
     @Override
     public Result list(DomainEntity domainEntity) {
-        return null;
+        super.initializeMaps();
+        result = new Result();
+        errorMessagesList.clear();
+        String className = domainEntity.getClass().getName();
+        Map<String, List<IStrategy>> entityMap = rules.get(className);
+        List<IStrategy> entityRules = entityMap.get(PESQUISAR);
+
+        executeRules(domainEntity, entityRules);
+
+        if(errorMessagesList.isEmpty()){
+            IDAO dao = daos.get(className);
+            dao.list(domainEntity);
+            result.addEntities(domainEntity);
+        }else{
+            result.addEntities(domainEntity);
+            result.setMsg(errorMessagesList);
+        }
+
+        return result;
     }
 
+    public Result get(DomainEntity domainEntity) {
+
+        super.initializeMaps();
+        result = new Result();
+        Client client = new Client();
+        errorMessagesList.clear();
+        String className = domainEntity.getClass().getName();
+        Map<String, List<IStrategy>> entityMap = rules.get(className);
+        List<IStrategy> entityRules = entityMap.get(PESQUISAR);
+
+        executeRules(domainEntity, entityRules);
+
+        if(errorMessagesList.isEmpty()){
+            IDAO dao = daos.get(className);
+            client = (Client) dao.get(domainEntity.getId());
+            result.addEntities(client);
+        }else{
+            result.addEntities(domainEntity);
+            result.setMsg(errorMessagesList);
+        }
+
+        return result;
+    }
 }

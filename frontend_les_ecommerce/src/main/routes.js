@@ -19,6 +19,7 @@ import CreditCardRegister from '../views/user/creditCardRegister';
 import AddressList from '../views/address/addressList';
 import CouponList from '../views/user/couponList';
 import AuthService from '../service/authService';
+import EditAddress from '../views/address/editAddress';
 
 function AuthenticateRoute( {component: Component, ...props} ){//qbrando a props e pegando os componentes
     return(
@@ -53,6 +54,7 @@ function Routes(){
                 <AuthenticateRoute path="/editarCliente" component={EditClientData} />
                 <AuthenticateRoute path="/alterarSenha" component={ChangePassword} />
                 <AuthenticateRoute path="/novoEndereco" component={NewAddress} />
+                <AuthenticateRoute path="/editarEndereco" component={EditAddress} />
                 <AuthenticateRoute path="/cartoes" component={CreditCardList} />
                 <AuthenticateRoute path="/cadastrarCartao" component={CreditCardRegister} />
                 <AuthenticateRoute path="/listaEndereco" component={AddressList}/>

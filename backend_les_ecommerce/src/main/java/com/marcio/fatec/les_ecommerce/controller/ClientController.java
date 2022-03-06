@@ -71,13 +71,14 @@ public class ClientController {
     }
 
     @GetMapping("/detalhesUsuario")
-    public ResponseEntity getClientDetails(@Param("id") Long id){
+    public ResponseEntity getClientDetails(@Param("id") Long id) {
 
-       Optional<Client> client = clientRepository.findById(id);
+        Client client = new Client();
+        client.setId(id);
 
-        ClientDetailsDTO clientDetailsDTO = new ClientDetailsDTO(client.get());
+        result = facade.get(client);
 
-       return ResponseEntity.ok().body(clientDetailsDTO);
+        return ResponseEntity.ok().body(result);
     }
 
     @PutMapping()
