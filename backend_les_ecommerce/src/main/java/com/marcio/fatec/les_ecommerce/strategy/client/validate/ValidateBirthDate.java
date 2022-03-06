@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @Component
 public class ValidateBirthDate implements IStrategy {
 
-
     @Override
     public String process(DomainEntity domainEntity) {
 

@@ -1,9 +1,6 @@
 package com.marcio.fatec.les_ecommerce.controller;
 
-import com.marcio.fatec.les_ecommerce.DTO.ClienEditDTO;
-import com.marcio.fatec.les_ecommerce.DTO.ClientAuthenticateDTO;
-import com.marcio.fatec.les_ecommerce.DTO.ClientDTO;
-import com.marcio.fatec.les_ecommerce.DTO.ClientDetailsDTO;
+import com.marcio.fatec.les_ecommerce.DTO.*;
 import com.marcio.fatec.les_ecommerce.domain.Admin;
 import com.marcio.fatec.les_ecommerce.domain.Client;
 import com.marcio.fatec.les_ecommerce.domain.Result;
@@ -77,6 +74,17 @@ public class ClientController {
         client.setId(id);
 
         result = facade.get(client);
+
+        return ResponseEntity.ok().body(result);
+    }
+
+    @DeleteMapping
+    public ResponseEntity delete(@RequestBody ClientdDeleteDTO clientdDeleteDTO) {
+
+        Client client = new Client(clientdDeleteDTO);
+        client.setId(clientdDeleteDTO.getClient());
+
+        result = facade.delete(client);
 
         return ResponseEntity.ok().body(result);
     }

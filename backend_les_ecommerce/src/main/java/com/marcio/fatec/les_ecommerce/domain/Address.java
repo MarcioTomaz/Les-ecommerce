@@ -5,13 +5,14 @@ import com.marcio.fatec.les_ecommerce.DTO.AddressDTO;
 import com.marcio.fatec.les_ecommerce.domain.Enums.AddressType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
-//@NoArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
 @Table( name= "_address")
 @Entity
@@ -21,28 +22,28 @@ public class Address extends DomainEntity{
     @JsonIgnore
     private Client client;
 
-    @Column(name = "street", nullable = false, length = 50)
+    @Column(name = "street", nullable = false)
     private String street;
 
-    @Column(name = "residencyType", nullable = false, length = 50)
+    @Column(name = "residencyType", nullable = false)
     private String residencyType;
 
-    @Column(name = "observation", nullable = true, length = 50)
+    @Column(name = "observation", nullable = true)
     private String observation;
 
     @Column(name = "number", nullable = false)
     private String number;
 
-    @Column(name = "district", nullable = false, length = 50)
+    @Column(name = "district", nullable = false)
     private String district; //bairro
 
     @Column(name = "zipCode",nullable = false)
     private String zipCode; //cep
 
-    @Column(name = "logradouro", nullable = false, length = 20)
+    @Column(name = "logradouro", nullable = false)
     private String logradouro;
 
-    @Column(name = "city",length = 50)
+    @Column(name = "city")
     private String city;
 
     @Column(name = "country",length = 50)
@@ -51,7 +52,8 @@ public class Address extends DomainEntity{
     @Column(name = "state")
     private String state;
 
-    @Column(name = "addressType", nullable = false, length = 30)
+    @Column(name = "addressType", nullable = false)
+    @Enumerated(EnumType.STRING)
     private AddressType addressType;
 
     public Address(AddressDTO addressDTO) {

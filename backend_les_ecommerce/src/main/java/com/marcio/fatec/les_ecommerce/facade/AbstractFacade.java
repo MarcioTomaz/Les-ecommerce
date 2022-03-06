@@ -118,7 +118,13 @@ public abstract class AbstractFacade {
 
         Map<String, List<IStrategy>> addressRules = new HashMap<>();
 
+        List<IStrategy> consultAddress = new ArrayList<>();
+
+        List<IStrategy> editAddress = new ArrayList<>();
+
         addressRules.put(SALVAR, saveAddress);
+        addressRules.put(EDITAR, editAddress);
+        addressRules.put(PESQUISAR,consultAddress);
 
         this.rules.put(Address.class.getName(), addressRules);
 

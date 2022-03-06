@@ -83,7 +83,26 @@ public class Facade extends AbstractFacade implements IFacade{
 
     @Override
     public Result delete(DomainEntity domainEntity) {
-        return null;
+
+        super.initializeMaps();
+        result = new Result();
+        errorMessagesList.clear();
+        String className = domainEntity.getClass().getName();
+        Map<String, List<IStrategy>> entityMap = rules.get(className);
+        List<IStrategy> entityRules = entityMap.get(EDITAR);
+
+        executeRules(domainEntity, entityRules);
+
+        if(errorMessagesList.isEmpty()){
+            IDAO dao = daos.get(className);
+            dao.delete(domainEntity.getId());
+            result.addEntities(domainEntity);
+        }else{
+            result.addEntities(domainEntity);
+            result.setMsg(errorMessagesList);
+        }
+
+        return result;
     }
 
     @Override
@@ -93,9 +112,13 @@ public class Facade extends AbstractFacade implements IFacade{
         errorMessagesList.clear();
         String className = domainEntity.getClass().getName();
         Map<String, List<IStrategy>> entityMap = rules.get(className);
-        List<IStrategy> entityRules = entityMap.get(PESQUISAR);
 
-        executeRules(domainEntity, entityRules);
+        if( entityMap !=null ) {
+            List<IStrategy> entityRules = entityMap.get(PESQUISAR);
+            if(entityRules != null){
+                executeRules(domainEntity, entityRules);
+            }
+        }
 
         if(errorMessagesList.isEmpty()){
             IDAO dao = daos.get(className);
@@ -113,7 +136,6 @@ public class Facade extends AbstractFacade implements IFacade{
 
         super.initializeMaps();
         result = new Result();
-        Client client = new Client();
         errorMessagesList.clear();
         String className = domainEntity.getClass().getName();
         Map<String, List<IStrategy>> entityMap = rules.get(className);
@@ -123,8 +145,9 @@ public class Facade extends AbstractFacade implements IFacade{
 
         if(errorMessagesList.isEmpty()){
             IDAO dao = daos.get(className);
-            client = (Client) dao.get(domainEntity.getId());
-            result.addEntities(client);
+
+            result = dao.get(domainEntity.getId());
+            result.addEntities(domainEntity);
         }else{
             result.addEntities(domainEntity);
             result.setMsg(errorMessagesList);

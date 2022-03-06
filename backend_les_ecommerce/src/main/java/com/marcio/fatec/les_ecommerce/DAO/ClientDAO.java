@@ -29,6 +29,9 @@ public class ClientDAO implements IDAO{
     @Override
     public void delete(Long id) {
 
+//        Client deleteClient = clientRepository.getById(id);
+//
+//        deleteClient.
     }
 
     @Override

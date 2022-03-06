@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @ToString
 @EqualsAndHashCode
 @MappedSuperclass
-public abstract class DomainEntity implements Serializable {
+public abstract class DomainEntity extends Result implements Serializable {
 
     @Id
     @GeneratedValue ( strategy = GenerationType.IDENTITY)
