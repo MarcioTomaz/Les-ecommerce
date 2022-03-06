@@ -2,6 +2,8 @@
 
 import ApiService from "./apiService";
 
+import { errorMessage } from "../components/toastr";
+
 class NewAddressService extends ApiService {
 
     constructor(){
@@ -11,17 +13,27 @@ class NewAddressService extends ApiService {
     save(address){
 
         return this.post('/', address);
-
     }
 
-    getAddresType(){
-        return [
-            { label: 'Selecione...', value:'' },
-            { label:'COBRANCA', value:'COBRANCA' },
-            { label:'ENTREGA', value:'ENTREGA' },
-        ]
+    
+    update(address){
+        return this.put('/', address)
     }
 
-}
+    getAddressDetails(id){
+
+        return this.get(`/detalhesEndereco?id=${id}`);
+    }   
+
+        getAddresType(){
+            return [
+                { label: 'Selecione...', value:'' },
+                { label:'COBRANCA', value:'COBRANCA' },
+                { label:'ENTREGA', value:'ENTREGA' }
+            ]
+        }
+    }
+
+  
 
 export default NewAddressService;

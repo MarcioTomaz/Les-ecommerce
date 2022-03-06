@@ -1,5 +1,6 @@
 
 import ApiService from "./apiService";
+import ValidateError from "./client/errovalidacao";
 class ClientService extends ApiService {
 
     constructor() {
@@ -42,6 +43,8 @@ class ClientService extends ApiService {
             { label:'MOVEL', value: 'MOVEL'}
         ]
     }
+
+    
 
 }
 

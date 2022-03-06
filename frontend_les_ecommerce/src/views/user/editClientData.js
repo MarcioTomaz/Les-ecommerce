@@ -39,7 +39,7 @@ class EditClientData extends React.Component {
         this.ClientService.getClientDetails(usuarioLogado.id)
             .then(response => {
 
-                const reponseData = response.data.entities[0];
+                const reponseData = response.data;
 
                 console.log(response.data)
 
@@ -217,7 +217,7 @@ class EditClientData extends React.Component {
                             </div>
 
                             <div className="form-group col-md-6">
-                                <a href="#/meusDados" className="btn btn-danger mb-2 mr-4" style={{maxWidth: '140px'}}>Cancelar</a>
+                                <a href="#/perfilDetalhes" className="btn btn-danger mb-2 mr-4" style={{maxWidth: '140px'}}>Cancelar</a>
                                 <button onClick={this.updateClient} type="button" className="btn btn-primary mb-2 mr-4">Alterar</button>
                             </div>
                         </div>

@@ -42,6 +42,8 @@ class CreditCardRegister extends React.Component {
                 .then( response => {
                     let qtdMsg = 0;
 
+                    console.log( creditCard)
+
                     console.log("QUANTIDADES STRATEGY", qtdMsg);
 
                     if ( qtdMsg === 0 ){
@@ -81,7 +83,7 @@ class CreditCardRegister extends React.Component {
 
         const month = this.service.getAddressMonth();
         const year = this.service.getAddressYear();
-        const cardFlag = this.service.getCardFlag();
+        const cardFlags = this.service.getCardFlag();
 
         return (
             <>
@@ -192,7 +194,7 @@ class CreditCardRegister extends React.Component {
                                             <SelectMenu
                                                 className="form-control"
                                                 id="inputMonth"
-                                                lista={cardFlag}
+                                                lista={cardFlags}
                                                 name="cardFlag"
                                                 value={this.state.cardFlag}
                                                 onChange={this.handleChange}

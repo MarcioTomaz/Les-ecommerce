@@ -27,12 +27,14 @@ class ClientDetails extends React.Component {
         this.service.getClientDetails(usuarioLogado.id)
             .then(response => {
 
+                console.log(response.data)
+
                 console.log("to no then")
 
-                const reponseData = response.data.entities[0];
+                const reponseData = response.data;
 
                 console.log(reponseData)
-                console.log(response.data.entities[0])
+                console.log(response.data)
 
                 this.setState({
                     email: reponseData.email,
@@ -113,7 +115,7 @@ class ClientDetails extends React.Component {
 
                             <div className="form-group">
 
-                                <a href="#/suaConta" className="btn btn-outline-secondary mb-2" style={{ maxWidth: '140px' }}>Voltar</a>
+                                <a href="#/meusDados" className="btn btn-outline-secondary mb-2" style={{ maxWidth: '140px' }}>Voltar</a>
 
                                 <a href="#/editarCliente" className="btn btn-primary mb-2" style={{ maxWidth: '140px' }}>Alterar Dados</a>
 

@@ -25,7 +25,7 @@ class EditAddress extends React.Component {
         country: '',
         state: '',
         addressType: '',        
-        client: null
+        client: 1
     }
 
     constructor(){
@@ -34,21 +34,116 @@ class EditAddress extends React.Component {
         this.editAddress = new EditAddressService();
     }
 
-    updateAddress = () =>{
+    // validate(){
+    //     const msgs = [];
 
+    //     if (!this.state.logradouro) {
+    //         msgs.push('O preenchimento do campo Logradouro é obrigatório.')
+           
+    //     }
+
+    //     if (!this.state.street) {
+    //         msgs.push('O preenchimento do campo Rua é obrigatório.')
+           
+    //     }
+
+    //     if (!this.state.number) {
+    //         msgs.push('O preenchimento do campo Número é obrigatório.')
+           
+    //     }
+
+    //     if (!this.state.zipCode) {
+    //         msgs.push('O preenchimento do campo CEP é obrigatório.')
+           
+    //     }
+
+    //     if (!this.state.district) {
+    //         msgs.push('O preenchimento do campo Bairro é obrigatório.')
+           
+    //     }
+
+    //     if (!this.state.residencyType) {
+    //         msgs.push('O preenchimento do campo Tipo de residencia é obrigatório.')
+           
+    //     }         
+
+    //     if (!this.state.city) {
+    //         msgs.push('O preenchimento do campo Cidade é obrigatório.')
+           
+    //     }
+
+    //     if (!this.state.country) {
+    //         msgs.push('O preenchimento do campo País é obrigatório.')
+           
+    //     }
+
+    //     if (!this.state.state) {
+    //         msgs.push('O preenchimento do campo Estado é obrigatório.')
+           
+    //     }
+
+    //     if (!this.state.addressType) {
+    //         msgs.push('O preenchimento do campo Tipo endereço é obrigatório.')
+           
+    //     }
+
+    //     return msgs;
+    // }
+
+    componentDidMount() {
+
+        const usuarioLogado = LocalStorageService.obterItem('_usuario_logado');       
+       
+        console.log(usuarioLogado.id)
+
+        this.addresService.getAddressDetails(usuarioLogado.id)
+            .then( response =>{
+                const responseData = response.data;
+
+                console.log(responseData);
+
+                this.setState({
+
+                    street: responseData.street,
+                    residencyType: responseData.residencyType,
+                    observation: responseData.observation,
+                    number: responseData.number,
+                    district: responseData.district,
+                    zipCode: responseData.zipCode,
+                    logradouro: responseData.logradouro,
+                    city: responseData.city,
+                    country: responseData.country,
+                    state: responseData.state,
+                    addressType: responseData.addressType  
+
+                })
+
+            })
+    }
+
+    updateAddress = () =>{    
+    
         const loggedUser = LocalStorageService.obterItem('_usuario_logado');
-        console.log("USUARIO LOGADO", loggedUser.id)
+
+        console.log("USUARIO LOGADO", loggedUser.id);
+        console.log("USUARIO LOGADO", loggedUser);      
+        
 
         const {street, residencyType, observation, number, district, zipCode, logradouro, city,
                 country, state, addressType} = this.state;
 
         const updateAddress = {street, residencyType, observation, number, district, zipCode, logradouro, city,
             country, state, addressType, client: loggedUser.id};
+           
 
-            this.editAddress.update(updateAddress)
+            this.addresService.update(updateAddress)
             .then( response => {
-                //let qtdMsg = response.data.msg.length;
+
                 let qtdMsg = 0;
+
+                console.log(response.data);
+                
+                console.log(updateAddress);
 
                 console.log("QUANTIDADES STRATEGY",qtdMsg);
 
@@ -63,7 +158,7 @@ class EditAddress extends React.Component {
                 }else{
 
                     for( let i = 0; i < qtdMsg; i++){
-                        errorMessage(response.data.msg[i])
+                        successMessage(response.data.msg[i])
                     }
                 }
             }).catch( error => {
@@ -94,7 +189,7 @@ class EditAddress extends React.Component {
                 <div fragment="novoEndereco">
 
                     <div className="my-2 text-center">
-                        <h1 className="display-5 text-primary">Novo Endereço</h1>
+                        <h1 className="display-5 text-primary">Editar Endereço</h1>
                     </div>
                     <form action="/meusDados">
                         <div className="form-group">
@@ -240,7 +335,7 @@ class EditAddress extends React.Component {
                                 onChange={this.handleChange}
                                 />
                         </div>
-                        <button onClick={this.updateAddress} type="button" className="btn btn-primary">Cadastrar</button>
+                        <button onClick={this.updateAddress} type="button" className="btn btn-primary">Salvar</button>
 
                     </form>
                 </div>

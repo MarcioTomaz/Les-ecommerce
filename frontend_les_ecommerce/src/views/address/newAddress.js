@@ -9,7 +9,6 @@ import SelectMenu from "../../components/selectMenu";
 import LocalStorageService from "../../service/localStorageService";
 class NewAddress extends React.Component {
 
-
     state = {
 
         street: '',
