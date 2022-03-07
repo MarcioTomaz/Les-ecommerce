@@ -89,7 +89,7 @@ public class Facade extends AbstractFacade implements IFacade{
         errorMessagesList.clear();
         String className = domainEntity.getClass().getName();
         Map<String, List<IStrategy>> entityMap = rules.get(className);
-        List<IStrategy> entityRules = entityMap.get(EDITAR);
+        List<IStrategy> entityRules = entityMap.get(EXCLUIR);
 
         executeRules(domainEntity, entityRules);
 

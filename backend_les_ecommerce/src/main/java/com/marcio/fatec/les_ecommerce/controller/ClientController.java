@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
+//@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/clients")
 public class ClientController {
 
@@ -35,6 +37,7 @@ public class ClientController {
     @PostMapping("/autenticar")
     public ResponseEntity authenticate( @RequestBody ClientAuthenticateDTO dto){
         try {
+
             Client clientAuthenticate = clientService.authenticate(dto.getEmail(), dto.getPassword());
 
             return ResponseEntity.ok(clientAuthenticate);
@@ -75,6 +78,19 @@ public class ClientController {
 
         result = facade.get(client);
 
+        System.out.println(result);
+
+        return ResponseEntity.ok().body(result);
+    }
+
+    @DeleteMapping("/deletar")
+    public ResponseEntity delete(@Param("id") Long id){
+
+        Client client = new Client();
+        client.setId(id);
+
+        result = facade.delete(client);
+
         return ResponseEntity.ok().body(result);
     }
 
@@ -95,17 +111,6 @@ public class ClientController {
         Client client = new Client(clienEditDTO);
 
         result = facade.update(client);
-
-        return ResponseEntity.ok().body(result);
-    }
-
-    @DeleteMapping
-    public ResponseEntity delete(@Param("id") Long id){
-
-        Client client = new Client();
-        client.setId(id);
-
-        result = facade.delete(client);
 
         return ResponseEntity.ok().body(result);
     }

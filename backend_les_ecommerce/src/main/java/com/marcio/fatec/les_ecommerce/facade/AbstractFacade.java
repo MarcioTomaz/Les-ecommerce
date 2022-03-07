@@ -136,7 +136,7 @@ public abstract class AbstractFacade {
         //***************************** CREDIT CARD *****************************
         List<IStrategy> saveCreditCards = new ArrayList<>();
 
-        saveCreditCards.add(validateCreditCardLength);
+//        saveCreditCards.add(validateCreditCardLength);
 
         List<IStrategy> consultCreditCards = new ArrayList<>();
 

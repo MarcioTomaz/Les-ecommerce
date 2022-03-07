@@ -25,7 +25,7 @@ class CreditCardList extends React.Component {
         console.log('USuario ID', usuarioLogado.id);
         
         this.service.getCreditCardDetails(usuarioLogado.id)
-            .then( response => {
+            .then( response => {                
 
                 console.log('RESPONSE', response.data)
 

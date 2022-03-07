@@ -7,7 +7,7 @@ import ClientService from "../../service/clientService";
 import React from "react";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import LocalStorageService from "../../service/localStorageService";
-import { successMessage } from "../../components/toastr";
+import { errorMessage, successMessage } from "../../components/toastr";
 
 class ClientDetails extends React.Component {
 
@@ -19,6 +19,35 @@ class ClientDetails extends React.Component {
     constructor() {
         super();
         this.service = new ClientService();
+    }
+
+    deleteClient = () => {
+
+        const usuarioLogado = LocalStorageService.obterItem('_usuario_logado');
+
+        this.service.delete(usuarioLogado.id)
+            .then( response => {
+                console.log(response.data);
+
+                let qtdMsg = response.data.msg.length;
+
+                if( qtdMsg === 0 ){
+                    
+                    console.log(qtdMsg);
+
+                    console.log("Salvou");
+
+                    successMessage("Usuário cadastrado com sucesso! Faça o login para continuar. ");
+                    this.props.history.push('/login');
+
+                }else{
+
+                    for( let i = 0; i < qtdMsg; i++){
+                        errorMessage(response.data.msg[i])
+                    }
+                }
+            })
+
     }
 
     componentDidMount() {
@@ -57,16 +86,6 @@ class ClientDetails extends React.Component {
         this.setState({ [name]: value })
     }
 
-    getClientData = () => {
-        this.service.getClient()
-            .then(response => {
-
-                console.log(response.data)
-
-            }).catch(error => {
-                console.log('error', error.data)
-            })
-    }
 
     render() {
         return (
@@ -119,8 +138,8 @@ class ClientDetails extends React.Component {
 
                                 <a href="#/editarCliente" className="btn btn-primary mb-2" style={{ maxWidth: '140px' }}>Alterar Dados</a>
 
-                                <a className="btn btn-danger mb-2" data-toggle="modal" data-target="#modalInativar" href="#/"
-                                    style={{ maxWidth: '140px' }}>Inativar Conta</a>
+                                <button onClick={this.deleteClient} type="button" className="btn btn-danger mt-3">Inativar Conta</button>
+
 
                                 {/* <a href="#/alterarSenha" className="btn btn-dark mb-2 text-white" style={{ maxWidth: '140px' }}>Alterar Senha</a> */}
 
