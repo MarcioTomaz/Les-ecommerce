@@ -7,6 +7,7 @@ import com.marcio.fatec.les_ecommerce.repository.CreditCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +29,11 @@ public class CreditCardDAO implements IDAO{
 
     @Override
     public void delete(Long id) {
+        CreditCard creditCard = (CreditCard) get(id);
+        creditCard.setDeletedDate(LocalDateTime.now());
+        creditCard.setDeleted(true);
 
+        creditCardRepository.save(creditCard);
     }
 
     @Override
@@ -46,6 +51,11 @@ public class CreditCardDAO implements IDAO{
         CreditCard creditCard = null;
 
         creditCard = creditCardRepository.findById(id).get();
+
+        if( creditCard.isDeleted() ){
+            throw new IllegalArgumentException(" Email inválida. ");
+        }
+
 
         return creditCard;
     }

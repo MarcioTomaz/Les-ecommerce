@@ -6,11 +6,9 @@ import com.marcio.fatec.les_ecommerce.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ClientDAO implements IDAO{
@@ -61,16 +59,6 @@ public class ClientDAO implements IDAO{
         List<DomainEntity> clients = new ArrayList<>();
 
         Client client = (Client) domainEntity;
-
-//        if(client.getId() != null){
-//             return clientRepository.findById(client.getId());
-//        }
-
-//        if(client.getId() == null){
-//            clientRepository.findAll().forEach( client1 -> {
-//                clients.add(client1);
-//            });
-//        }
 
         return clients;
     }

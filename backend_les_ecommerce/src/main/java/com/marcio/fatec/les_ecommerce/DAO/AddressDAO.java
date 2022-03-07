@@ -8,6 +8,7 @@ import com.marcio.fatec.les_ecommerce.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -36,6 +37,11 @@ public class AddressDAO implements IDAO{
     @Override
     public void delete(Long id) {
 
+        Address address = ( Address ) get(id);
+        address.setDeletedDate(LocalDateTime.now());
+        address.setDeleted(true);
+
+        addresRepository.save(address);
     }
 
     @Override
@@ -77,6 +83,10 @@ public class AddressDAO implements IDAO{
         Address address = null;
 
         address = addresRepository.findById(id).get();
+
+        if( address.isDeleted()){
+            throw new IllegalArgumentException("Endereço deletado");
+        }
 
         return address;
     }

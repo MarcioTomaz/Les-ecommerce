@@ -127,9 +127,12 @@ public abstract class AbstractFacade {
 
         List<IStrategy> editAddress = new ArrayList<>();
 
+        List<IStrategy> deleteAddress = new ArrayList<>();
+
         addressRules.put(SALVAR, saveAddress);
         addressRules.put(EDITAR, editAddress);
         addressRules.put(PESQUISAR,consultAddress);
+        addressRules.put(EXCLUIR, deleteAddress);
 
         this.rules.put(Address.class.getName(), addressRules);
 
@@ -140,10 +143,14 @@ public abstract class AbstractFacade {
 
         List<IStrategy> consultCreditCards = new ArrayList<>();
 
+        List<IStrategy> deleteCreditCards = new ArrayList<>();
+
 //        saveCreditCards.add()
         Map<String, List<IStrategy>> creditCardRules = new HashMap<>();
         creditCardRules.put(SALVAR, saveCreditCards);
         creditCardRules.put(PESQUISAR, consultCreditCards);
+        creditCardRules.put(EXCLUIR, deleteCreditCards);
+
 
         this.rules.put(CreditCard.class.getName(), creditCardRules );
     }

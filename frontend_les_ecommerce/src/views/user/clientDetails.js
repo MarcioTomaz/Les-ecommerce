@@ -44,7 +44,7 @@ class ClientDetails extends React.Component {
                     
                     console.log(qtdMsg);
 
-                    console.log("Salvou");
+                    console.log("Deletou");
 
                     successMessage("Usuário desativado com sucesso! ");
 

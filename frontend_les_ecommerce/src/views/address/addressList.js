@@ -9,6 +9,9 @@ import AddresComponent from "../user/userComponent/addressComponent";
 import NewAddressService from "../../service/newAddress";
 import EditAddressService from "../../service/client/editAddressService";
 
+import { errorMessage, successMessage } from "../../components/toastr";
+
+
 class AddressList extends React.Component {
 
     
@@ -32,6 +35,37 @@ class AddressList extends React.Component {
         super();
         this.addresService = new NewAddressService();
         this.editAddress = new EditAddressService();
+    }
+
+    deleteAddress = () => {
+        const usuarioLogado = LocalStorageService.obterItem('_usuario_logado');
+        console.log("to no delete address")
+
+        this.addresService.deleteId(usuarioLogado.id)
+            .then( response => {
+
+                console.log(response.data);
+
+                let qtdMsg = response.data.msg.length;
+
+                if( qtdMsg === 0 ){
+                    
+                    console.log(qtdMsg);
+
+                    console.log("Deletou");
+
+                    successMessage("Endereço deletado com sucesso! ");
+
+                    this.props.history.push('/meusDados');
+
+                }else{
+
+                    for( let i = 0; i < qtdMsg; i++){
+                        errorMessage(response.data.msg[i])
+                    }
+                }
+
+            }).catch( error =>{})
     }
 
     componentDidMount() {
@@ -97,7 +131,7 @@ class AddressList extends React.Component {
                     <hr />
                     <a href="#/editarEndereco" className="btn btn-warning float-right" style={{ maxWidth: '140px' }}>Editar</a>
 
-                    <a href="#/" className="btn btn-danger mb-2" style={{ maxWidth: '140px' }}>Excluir</a>
+                    <button onClick={this.deleteAddress} type="button" className="btn btn-danger mt-3">Excluir</button>
 
                 </div>
 

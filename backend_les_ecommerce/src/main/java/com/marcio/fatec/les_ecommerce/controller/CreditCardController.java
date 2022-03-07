@@ -41,7 +41,17 @@ public class CreditCardController {
         result = facade.get(creditCard);
 
         return ResponseEntity.ok().body(result);
+    }
 
+    @DeleteMapping("/deletar")
+    public ResponseEntity delete(@Param("id") Long id){
+
+        CreditCard creditCard = new CreditCard();
+        creditCard.setId(id);
+
+        result = facade.delete(creditCard);
+
+        return ResponseEntity.ok().body(result);
     }
 
 }

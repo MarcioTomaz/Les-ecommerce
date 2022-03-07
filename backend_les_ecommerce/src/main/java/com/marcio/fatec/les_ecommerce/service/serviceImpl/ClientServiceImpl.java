@@ -4,7 +4,6 @@ import com.marcio.fatec.les_ecommerce.domain.Client;
 import com.marcio.fatec.les_ecommerce.repository.ClientRepository;
 import com.marcio.fatec.les_ecommerce.service.IClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,6 +27,22 @@ public class ClientServiceImpl implements IClientService {
         if(!client.get().getPassword().equals(senha)){
             throw new IllegalArgumentException(" Senha inválida. ");
         }
+
+        if( client.get().isDeleted()){
+            throw new IllegalArgumentException(" Usuário desativado. ");
+        }
+
+//        if(!client.isPresent()){
+//            return " Email inválida. ";
+//        }
+//
+//        if(!client.get().getPassword().equals(senha)){
+//            throw new IllegalArgumentException(" Senha inválida. ");
+//        }
+//
+//        if( client.get().isDeleted()){
+//            throw new IllegalArgumentException(" Usuário desativado. ");
+//        }
 
         return client.get();
     }

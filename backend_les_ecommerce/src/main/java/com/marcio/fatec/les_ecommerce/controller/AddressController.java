@@ -4,6 +4,7 @@ package com.marcio.fatec.les_ecommerce.controller;
 import com.marcio.fatec.les_ecommerce.DTO.AddressDTO;
 import com.marcio.fatec.les_ecommerce.domain.Address;
 import com.marcio.fatec.les_ecommerce.domain.Client;
+import com.marcio.fatec.les_ecommerce.domain.CreditCard;
 import com.marcio.fatec.les_ecommerce.domain.Result;
 import com.marcio.fatec.les_ecommerce.facade.Facade;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,17 +42,12 @@ public class AddressController {
         result = facade.update(address);
 
         return ResponseEntity.ok().body(result);
-
     }
 
     @GetMapping("/detalhesEndereco")
     public ResponseEntity getAddressDetails(@Param("id") Long id){
 
         Address address = new Address();
-
-//        Client client = new Client();
-//        client.setId(id);
-        //        address.setClient(client);
 
         address.setId(id);
 
@@ -65,6 +61,17 @@ public class AddressController {
         Address address1;
 
         result = facade.list(new Address());
+
+        return ResponseEntity.ok().body(result);
+    }
+
+    @DeleteMapping("/deletar")
+    public ResponseEntity delete(@Param("id") Long id){
+
+        Address address = new Address();
+        address.setId(id);
+
+        result = facade.delete(address);
 
         return ResponseEntity.ok().body(result);
     }

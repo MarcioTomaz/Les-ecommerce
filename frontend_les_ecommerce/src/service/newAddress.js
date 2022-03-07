@@ -15,6 +15,9 @@ class NewAddressService extends ApiService {
         return this.post('/', address);
     }
 
+    deleteId(id){
+        return this.delete(`/deletar?id=${id}`);
+    }
     
     update(address){
         return this.put('/', address)
