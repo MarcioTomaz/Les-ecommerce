@@ -8,6 +8,12 @@ import React from "react";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import LocalStorageService from "../../service/localStorageService";
 import { errorMessage, successMessage } from "../../components/toastr";
+import AuthService from "../../service/authService";
+
+const logOut = () => {
+
+    AuthService.removeAuthenticateClient();
+}
 
 class ClientDetails extends React.Component {
 
@@ -21,11 +27,14 @@ class ClientDetails extends React.Component {
         this.service = new ClientService();
     }
 
+ 
+
     deleteClient = () => {
 
         const usuarioLogado = LocalStorageService.obterItem('_usuario_logado');
+        console.log("to no delete client")
 
-        this.service.delete(usuarioLogado.id)
+        this.service.deleteId(usuarioLogado.id)
             .then( response => {
                 console.log(response.data);
 
@@ -37,8 +46,10 @@ class ClientDetails extends React.Component {
 
                     console.log("Salvou");
 
-                    successMessage("Usuário cadastrado com sucesso! Faça o login para continuar. ");
+                    successMessage("Usuário desativado com sucesso! ");
+
                     this.props.history.push('/login');
+                    logOut();
 
                 }else{
 

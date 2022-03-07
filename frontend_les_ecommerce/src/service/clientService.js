@@ -19,9 +19,9 @@ class ClientService extends ApiService {
         return this.post('/', client);
     }
 
-    deleteClient(id) {      
+    deleteId(id) {      
 
-        return this.post(`/deletar?id=${id}`);
+        return this.delete(`/deletar?id=${id}`);
 
     }
 
