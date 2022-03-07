@@ -105,6 +105,7 @@ class CreditCardRegister extends React.Component {
                                                 type="text"
                                                 id="inputNumber"
                                                 name="creditCardNumber"
+                                                maxLength={16}
                                                 value={this.state.creditCardNumber}
                                                 onChange={this.handleChange}
                                             />

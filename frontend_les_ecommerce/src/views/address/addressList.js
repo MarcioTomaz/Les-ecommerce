@@ -61,9 +61,7 @@ class AddressList extends React.Component {
                     addressType: responseData.addressType  
 
                 })
-
             })
-
     }
 
     render() {
@@ -77,8 +75,35 @@ class AddressList extends React.Component {
 
                 <hr />
 
-                <AddresComponent />          
+                <div className="container  mx-5 my-5">
+            <div className="row">
+                <div className="col-lg-12">
+                    <div className="row bg-light col-md-12">
+                        <div className="col-lg-1">
+                            <ion-icon name="cart-outline" size="large"></ion-icon>
+                        </div>
+                        <div className="col-lg-8">
+                            <p className="card-text">
+                                <strong>
+                                    {this.state.logradouro} , 
+                                    {this.state.number} , 
+                                    {this.state.zipCode} ,
+                                    {this.state.district} ,                               
+                                    {this.state.city} 
+                                </strong>
+                            </p>
+                        </div>                        
+                    </div>
+                    <hr />
+                    <a href="#/editarEndereco" className="btn btn-warning float-right" style={{ maxWidth: '140px' }}>Editar</a>
 
+                    <a href="#/" className="btn btn-danger mb-2" style={{ maxWidth: '140px' }}>Excluir</a>
+
+                </div>
+
+
+            </div>
+        </div>
                 <a href="#/meusDados" className="btn btn-outline-secondary mb-2" style={{maxWidth: '140px'}}>Voltar</a>
 
             </section>

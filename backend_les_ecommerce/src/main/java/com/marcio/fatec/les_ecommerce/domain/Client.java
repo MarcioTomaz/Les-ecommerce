@@ -93,10 +93,6 @@ public class Client extends DomainEntity{
         this.setId(client.getId());
     }
 
-    //    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private Usuario usuario;
-
-
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Address> addressList;
 //

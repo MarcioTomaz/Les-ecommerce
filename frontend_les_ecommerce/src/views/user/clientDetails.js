@@ -122,7 +122,7 @@ class ClientDetails extends React.Component {
                                 <a className="btn btn-danger mb-2" data-toggle="modal" data-target="#modalInativar" href="#/"
                                     style={{ maxWidth: '140px' }}>Inativar Conta</a>
 
-                                <a href="#/alterarSenha" className="btn btn-dark mb-2 text-white" style={{ maxWidth: '140px' }}>Alterar Senha</a>
+                                {/* <a href="#/alterarSenha" className="btn btn-dark mb-2 text-white" style={{ maxWidth: '140px' }}>Alterar Senha</a> */}
 
                             </div>
                         </div>

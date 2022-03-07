@@ -6,6 +6,8 @@ import com.marcio.fatec.les_ecommerce.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,9 +31,11 @@ public class ClientDAO implements IDAO{
     @Override
     public void delete(Long id) {
 
-//        Client deleteClient = clientRepository.getById(id);
-//
-//        deleteClient.
+        Client client = ( Client ) get(id);
+        client.setDeletedDate(LocalDateTime.now());
+        client.setDeleted(true);
+
+        clientRepository.save(client);
     }
 
     @Override

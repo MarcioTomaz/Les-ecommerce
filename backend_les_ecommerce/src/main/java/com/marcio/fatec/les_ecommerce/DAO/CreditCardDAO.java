@@ -42,6 +42,11 @@ public class CreditCardDAO implements IDAO{
 
     @Override
     public DomainEntity get(Long id) {
-        return null;
+
+        CreditCard creditCard = null;
+
+        creditCard = creditCardRepository.findById(id).get();
+
+        return creditCard;
     }
 }

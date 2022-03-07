@@ -73,6 +73,9 @@ public abstract class AbstractFacade {
     @Autowired
     EncryptPassword passowrd;
 
+    @Autowired
+    ValidateCreditCardLength validateCreditCardLength;
+
     protected void initializeMaps(){
         daos.put(Client.class.getName(), clientDAO);
         daos.put(Address.class.getName(), addressDAO);
@@ -102,11 +105,13 @@ public abstract class AbstractFacade {
 
         //strategys
         //consultClient.add()
+        List<IStrategy> deleteClient = new ArrayList<>();
 
         Map<String, List<IStrategy>> clientRules = new HashMap<>();
         clientRules.put(SALVAR, saveClient);
         clientRules.put(EDITAR, editClient);
         clientRules.put(PESQUISAR, consultClient);
+        clientRules.put(EXCLUIR, deleteClient);
 //        clientRules.put(PESQUISARESPECIFICO, )
 
         this.rules.put(Client.class.getName(), clientRules);
@@ -131,9 +136,14 @@ public abstract class AbstractFacade {
         //***************************** CREDIT CARD *****************************
         List<IStrategy> saveCreditCards = new ArrayList<>();
 
+        saveCreditCards.add(validateCreditCardLength);
+
+        List<IStrategy> consultCreditCards = new ArrayList<>();
+
 //        saveCreditCards.add()
         Map<String, List<IStrategy>> creditCardRules = new HashMap<>();
         creditCardRules.put(SALVAR, saveCreditCards);
+        creditCardRules.put(PESQUISAR, consultCreditCards);
 
         this.rules.put(CreditCard.class.getName(), creditCardRules );
     }

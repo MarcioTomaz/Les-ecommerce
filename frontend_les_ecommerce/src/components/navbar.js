@@ -40,8 +40,7 @@ function NavBar() {
 
                         <NavBarItem href="#/register" label="Cadastrar" />
                         <NavBarItem onClick={logOut}  href="#/login" label="Sair" />
-
-                      
+                                              
                     </ul>
                 </div>
             </div>

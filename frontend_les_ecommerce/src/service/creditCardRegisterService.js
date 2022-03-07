@@ -6,12 +6,18 @@ import ApiService from "./apiService";
 class CreditCardRegisterService extends ApiService{
 
     constructor(){
-        super('/api/creditCards')
+        super('/api/cards')
     }
 
     save(creditCard){
         
         return this.post('/', creditCard)
+    }
+
+    getCreditCardDetails(id){
+
+        console.log(id)
+        return this.get(`/detalhesCartao?id=${id}`)
     }
 
     getAddressMonth(){

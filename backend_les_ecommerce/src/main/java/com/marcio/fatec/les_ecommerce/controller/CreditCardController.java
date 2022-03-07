@@ -7,11 +7,12 @@ import com.marcio.fatec.les_ecommerce.domain.CreditCard;
 import com.marcio.fatec.les_ecommerce.domain.Result;
 import com.marcio.fatec.les_ecommerce.facade.Facade;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/creditCards")
+@RequestMapping("/api/cards")
 public class CreditCardController {
 
 
@@ -31,5 +32,16 @@ public class CreditCardController {
         return ResponseEntity.ok().body(result);
     }
 
+    @GetMapping("/detalhesCartao")
+    public ResponseEntity getCreditCard(@Param("id") Long id){
+
+        CreditCard creditCard = new CreditCard();
+        creditCard.setId(id);
+
+        result = facade.get(creditCard);
+
+        return ResponseEntity.ok().body(result);
+
+    }
 
 }

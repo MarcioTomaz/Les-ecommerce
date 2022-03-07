@@ -4,6 +4,7 @@ package com.marcio.fatec.les_ecommerce.domain;
 import com.marcio.fatec.les_ecommerce.DTO.CreditCardDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-//@NoArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
 @Table( name= "_creditCard")
 @Entity

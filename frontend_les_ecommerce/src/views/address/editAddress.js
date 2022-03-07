@@ -25,7 +25,7 @@ class EditAddress extends React.Component {
         country: '',
         state: '',
         addressType: '',        
-        client: 1
+        client: null
     }
 
     constructor(){
@@ -114,7 +114,7 @@ class EditAddress extends React.Component {
                     city: responseData.city,
                     country: responseData.country,
                     state: responseData.state,
-                    addressType: responseData.addressType  
+                    addressType: responseData.addressType 
 
                 })
 
