@@ -25,7 +25,7 @@ class NewAddressService extends ApiService {
 
     getAddressDetails(id){
 
-        return this.get(`/detalhesEndereco?id=${id}`);
+        return this.get(`/listaEndereco?id=${id}`);
     }   
 
         getAddresType(){

@@ -1,6 +1,5 @@
 package com.marcio.fatec.les_ecommerce.DAO;
 
-import com.marcio.fatec.les_ecommerce.domain.Client;
 import com.marcio.fatec.les_ecommerce.domain.CreditCard;
 import com.marcio.fatec.les_ecommerce.domain.DomainEntity;
 import com.marcio.fatec.les_ecommerce.repository.CreditCardRepository;
@@ -8,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CreditCardDAO implements IDAO{
@@ -29,7 +28,9 @@ public class CreditCardDAO implements IDAO{
 
     @Override
     public void delete(Long id) {
+
         CreditCard creditCard = (CreditCard) get(id);
+
         creditCard.setDeletedDate(LocalDateTime.now());
         creditCard.setDeleted(true);
 
@@ -42,7 +43,14 @@ public class CreditCardDAO implements IDAO{
 
     @Override
     public List<DomainEntity> list(DomainEntity domainEntity) {
-        return null;
+
+        List<DomainEntity> domains = new ArrayList<>();
+
+        CreditCard creditCard = (CreditCard) domainEntity;
+
+//        creditCardRepository.findAllCreditCardByClientIdAndDeletedFalse(creditCard.getClient().getId()).forEach( e -> domains.add(e));
+
+        return domains;
     }
 
     @Override

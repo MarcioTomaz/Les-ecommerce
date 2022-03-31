@@ -21,7 +21,7 @@ class CreditCardRegisterService extends ApiService{
     getCreditCardDetails(id){
 
         console.log(id)
-        return this.get(`/detalhesCartao?id=${id}`)
+        return this.get(`/cartoes?id=${id}`)
     }
 
     getAddressMonth(){

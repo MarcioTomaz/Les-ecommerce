@@ -20,6 +20,7 @@ import AddressList from '../views/address/addressList';
 import CouponList from '../views/user/couponList';
 import AuthService from '../service/authService';
 import EditAddress from '../views/address/editAddress';
+import adminManagement from '../views/admin/adminManagement';
 
 function AuthenticateRoute( {component: Component, ...props} ){//qbrando a props e pegando os componentes
     return(
@@ -59,6 +60,11 @@ function Routes(){
                 <AuthenticateRoute path="/cadastrarCartao" component={CreditCardRegister} />
                 <AuthenticateRoute path="/listaEndereco" component={AddressList}/>
                 <AuthenticateRoute path="/listaCupom" component={CouponList}/>
+
+
+                {/* Admin Routes */}
+
+                <AuthenticateRoute path="/administracao" component={adminManagement}/>
                 
     
             </Switch>

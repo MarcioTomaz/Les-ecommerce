@@ -7,10 +7,13 @@ import com.marcio.fatec.les_ecommerce.domain.Client;
 import com.marcio.fatec.les_ecommerce.domain.CreditCard;
 import com.marcio.fatec.les_ecommerce.domain.Result;
 import com.marcio.fatec.les_ecommerce.facade.Facade;
+import com.marcio.fatec.les_ecommerce.repository.AddresRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/adresses")
@@ -21,6 +24,9 @@ public class AddressController {
 
     @Autowired
     private Result result;
+
+    @Autowired
+    private AddresRepository addresRepository;
 
     @PostMapping
     public ResponseEntity save(@RequestBody AddressDTO addressDTO){
@@ -56,13 +62,20 @@ public class AddressController {
         return ResponseEntity.ok().body(result);
     }
 
-    @GetMapping
-    public ResponseEntity getAddresses(){
-        Address address1;
+    @GetMapping("listaEndereco")
+    public ResponseEntity getAllAddresses(@Param("id") Long id){
 
-        result = facade.list(new Address());
+        Address address = new Address();
 
-        return ResponseEntity.ok().body(result);
+        Client client = new Client();
+        client.setId(id);
+        address.setClient(client);
+
+        List<Address> addressesListDTO;
+//        result = facade.list(new Address());
+        addressesListDTO = addresRepository.findAllAddressByClientIdAndDeletedFalse(id);
+
+        return ResponseEntity.ok().body(addressesListDTO);
     }
 
     @DeleteMapping("/deletar")

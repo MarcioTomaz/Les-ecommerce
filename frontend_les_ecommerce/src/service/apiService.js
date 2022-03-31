@@ -25,6 +25,13 @@ class ApiService{
         return httpClient.put(requestUrl, objeto);
     }
 
+    // put(url){
+
+    //     const requestUrl = `${this.apiurl}${url}`
+
+    //     return httpClient.put(requestUrl);
+    // }
+
     delete(url){
 
         const requestUrl = `${this.apiurl}${url}`

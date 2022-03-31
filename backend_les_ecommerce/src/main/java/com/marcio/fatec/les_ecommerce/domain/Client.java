@@ -57,6 +57,12 @@ public class Client extends DomainEntity{
     @Enumerated( EnumType.STRING)
     private Gender gender;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Address> addressList;
+    //
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CreditCard> creditCard;
+
     public Client(ClientDTO clientDTO) {
         this.name = clientDTO.getName();
         this.cpf = clientDTO.getCpf();
@@ -92,15 +98,5 @@ public class Client extends DomainEntity{
 
         this.setId(client.getId());
     }
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Address> addressList;
-//
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CreditCard> creditCard;
-
-
-
-
 
 }

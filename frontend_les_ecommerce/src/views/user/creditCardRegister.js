@@ -36,7 +36,6 @@ class CreditCardRegister extends React.Component {
 
         const creditCard = { creditCardNumber, cardHolder, expirationDateMonth, expirationDateYear, cardSecurity,
             cardHolderCpf, cardPreferencial, cardFlag, client: loggedUser.id }
-
         
             this.service.save( creditCard )
                 .then( response => {

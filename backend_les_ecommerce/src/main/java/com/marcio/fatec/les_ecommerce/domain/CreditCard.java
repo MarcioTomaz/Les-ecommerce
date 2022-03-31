@@ -1,6 +1,7 @@
 package com.marcio.fatec.les_ecommerce.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.marcio.fatec.les_ecommerce.DTO.CreditCardDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -45,6 +46,7 @@ public class CreditCard extends DomainEntity{
     @Column(name = "cardFlag" )
     private String cardFlag;// bandeira
 
+    @JsonIgnore
     @ManyToOne
     private Client client;
 
