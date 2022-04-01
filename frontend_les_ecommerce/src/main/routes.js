@@ -55,7 +55,7 @@ function Routes(){
                 <AuthenticateRoute path="/editarCliente" component={EditClientData} />
                 <AuthenticateRoute path="/alterarSenha" component={ChangePassword} />
                 <AuthenticateRoute path="/novoEndereco" component={NewAddress} />
-                <AuthenticateRoute path="/editarEndereco" component={EditAddress} />
+                <AuthenticateRoute path="/editarEndereco/:id" component={EditAddress} />
                 <AuthenticateRoute path="/cartoes" component={CreditCardList} />
                 <AuthenticateRoute path="/cadastrarCartao" component={CreditCardRegister} />
                 <AuthenticateRoute path="/listaEndereco" component={AddressList}/>

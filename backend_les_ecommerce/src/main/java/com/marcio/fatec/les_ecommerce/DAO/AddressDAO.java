@@ -48,8 +48,8 @@ public class AddressDAO implements IDAO{
     public void update(DomainEntity domainEntity) {
 
         Address address = (Address) domainEntity;
-        address.setId(1L);
-        address.setClient(((Address) domainEntity).getClient());
+//        address.setId(1L);
+//        address.setClient(((Address) domainEntity).getClient());
 
         Address editAddress = addresRepository.getById(address.getId());
 

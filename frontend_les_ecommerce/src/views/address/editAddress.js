@@ -25,7 +25,8 @@ class EditAddress extends React.Component {
         country: '',
         state: '',
         addressType: '',        
-        client: null
+        client: null,
+        id:'',
     }
 
     constructor(){
@@ -92,11 +93,13 @@ class EditAddress extends React.Component {
 
     componentDidMount() {
 
-        const usuarioLogado = LocalStorageService.obterItem('_usuario_logado');       
+        // const usuarioLogado = LocalStorageService.obterItem('_usuario_logado');       
        
-        console.log(usuarioLogado.id)
+        // console.log(usuarioLogado.id);
 
-        this.addresService.getAddressDetails(usuarioLogado.id)
+        const params = this.props.match.params;
+
+        this.addresService.getAddressDetails(params.id)
             .then( response =>{
                 const responseData = response.data;
 
@@ -114,7 +117,8 @@ class EditAddress extends React.Component {
                     city: responseData.city,
                     country: responseData.country,
                     state: responseData.state,
-                    addressType: responseData.addressType 
+                    addressType: responseData.addressType,
+                    id: params.id
 
                 })
 
@@ -125,15 +129,11 @@ class EditAddress extends React.Component {
     
         const loggedUser = LocalStorageService.obterItem('_usuario_logado');
 
-        console.log("USUARIO LOGADO", loggedUser.id);
-        console.log("USUARIO LOGADO", loggedUser);      
-        
-
         const {street, residencyType, observation, number, district, zipCode, logradouro, city,
-                country, state, addressType} = this.state;
+                country, state, addressType, id} = this.state;
 
         const updateAddress = {street, residencyType, observation, number, district, zipCode, logradouro, city,
-            country, state, addressType, client: loggedUser.id};
+            country, state, addressType, client: loggedUser.id, id};
            
 
             this.addresService.update(updateAddress)

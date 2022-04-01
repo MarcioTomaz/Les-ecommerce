@@ -10,12 +10,16 @@ class Home extends React.Component {
 
         return (
             <>
-                <h3>TESTE</h3>
-                <h3>TESTE</h3>
-                <h3>TESTE</h3>
-                <h3>TESTE</h3>
-                <h3>TESTE</h3>
-                <h3>TESTE</h3>
+                <div>
+                    <h3>TESTE</h3>
+                    <h3>TESTE</h3>
+                    <h3>TESTE</h3>
+                    <h3>TESTE</h3>
+                    <h3>TESTE</h3>
+                    <h3>TESTE</h3>
+                    <h3>TESTE</h3>
+                    <h3>TESTE</h3>                    
+                </div>
             </>
         )
 

@@ -13,7 +13,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AddressDTO {
 
-    private Long client;
+//    private Long client;
+    private Long id;
 
     private String street;
     private String residencyType;

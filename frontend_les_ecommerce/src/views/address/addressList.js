@@ -40,17 +40,10 @@ class AddressList extends React.Component {
     }
 
     editAddress = (addressId) =>{
-        console.log("editar endereco", addressId)
-        
-        this.addresService.put(addressId)
-            .then( response => {
 
-                console.log("Editar");
+        console.log('ID', addressId);
 
-                successMessage("Endereço editado com sucesso! ");
-
-                this.props.history.push('/listaEndereco');
-            })
+        this.props.history.push(`/editarEndereco/${addressId}`)
     }
 
     deleteAddress = (addressId) => {
@@ -90,7 +83,7 @@ class AddressList extends React.Component {
 
         console.log(usuarioLogado.id)
 
-        this.addresService.getAddressDetails(usuarioLogado.id)
+        this.addresService.getAllAddress(usuarioLogado.id)
             .then(response => {
                 const responseData = response.data;
 

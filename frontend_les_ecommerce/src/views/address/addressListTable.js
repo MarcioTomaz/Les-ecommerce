@@ -13,6 +13,7 @@ export default props => {
         return (
             <tr key={index}>
 
+                <td>{addressList.id}</td>
                 <td>{addressList.logradouro}</td>
                 <td>{addressList.number}</td>
                 <td>{addressList.zipCode}</td>
@@ -42,6 +43,7 @@ export default props => {
         <table className="table table-hover">
             <thead>
                 <tr>
+                    <th scope="col">Id: </th>
                     <th scope="col">Logradouro: </th>
                     <th scope="col">Número: </th>
                     <th scope="col">CEP: </th>

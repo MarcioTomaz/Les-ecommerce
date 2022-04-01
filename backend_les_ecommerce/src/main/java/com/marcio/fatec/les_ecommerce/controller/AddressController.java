@@ -42,6 +42,7 @@ public class AddressController {
     public ResponseEntity<Result> update( @RequestBody AddressDTO addressDTO){
 
         System.out.println("To no controller endereço UPDATE");
+        System.out.println(addressDTO);
 
         Address address = new Address(addressDTO);
 
@@ -62,7 +63,7 @@ public class AddressController {
         return ResponseEntity.ok().body(result);
     }
 
-    @GetMapping("listaEndereco")
+    @GetMapping("/listaEndereco")
     public ResponseEntity getAllAddresses(@Param("id") Long id){
 
         Address address = new Address();
