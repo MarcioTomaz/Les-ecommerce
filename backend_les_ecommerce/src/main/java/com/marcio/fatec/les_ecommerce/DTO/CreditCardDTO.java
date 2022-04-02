@@ -37,6 +37,4 @@ public class CreditCardDTO {
 //        this.client = creditCard.getClient();
     }
 
-    public CreditCardDTO(CreditCardDTO x) {
-    }
 }

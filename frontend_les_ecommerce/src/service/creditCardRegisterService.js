@@ -18,7 +18,7 @@ class CreditCardRegisterService extends ApiService{
         return this.delete(`/deletar?id=${id}`);
     }
 
-    getCreditCardDetails(id){
+    getAllCreditCards(id){
 
         console.log(id)
         return this.get(`/cartoes?id=${id}`)

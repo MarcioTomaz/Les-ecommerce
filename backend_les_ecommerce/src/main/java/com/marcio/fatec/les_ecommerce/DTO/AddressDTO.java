@@ -1,5 +1,6 @@
 package com.marcio.fatec.les_ecommerce.DTO;
 
+import com.marcio.fatec.les_ecommerce.domain.Address;
 import com.marcio.fatec.les_ecommerce.domain.Client;
 import com.marcio.fatec.les_ecommerce.domain.Enums.AddressType;
 import lombok.AllArgsConstructor;
@@ -13,8 +14,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AddressDTO {
 
-//    private Long client;
-    private Long id;
+    private Long client;
+//    private Long id;
 
     private String street;
     private String residencyType;
@@ -27,4 +28,17 @@ public class AddressDTO {
     private String country;
     private String state;
     private AddressType addressType;
+
+    public AddressDTO( Address address){
+        this.street = address.getStreet();
+        this.residencyType = address.getResidencyType();
+        this.observation = address.getObservation();
+        this.number = address.getNumber();
+        this.district = address.getDistrict();
+        this.zipCode = address.getZipCode();
+        this.logradouro = address.getLogradouro();
+        this.city = address.getCity();
+        this.country = address.getCountry();
+        this.state = address.getState();
+    }
 }

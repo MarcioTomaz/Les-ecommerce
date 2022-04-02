@@ -51,7 +51,7 @@ public class CreditCardController {
     public ResponseEntity getAllCreditCards(@Param("id") Long id){
 
         CreditCard creditCard = new CreditCard();
-//        creditCard.setId(id)
+
         Client client = new Client();
         client.setId(id);
         creditCard.setClient(client);

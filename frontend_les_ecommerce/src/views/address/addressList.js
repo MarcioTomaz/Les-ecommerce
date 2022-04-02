@@ -39,6 +39,25 @@ class AddressList extends React.Component {
         // this.editAddress = new EditAddressService();
     }
 
+    componentDidMount() {
+
+        const usuarioLogado = LocalStorageService.obterItem('_usuario_logado');
+
+        console.log(usuarioLogado.id)
+
+        this.addresService.getAllAddress(usuarioLogado.id)
+            .then(response => {
+                const responseData = response.data;
+
+                console.log(responseData);
+
+                this.setState({
+
+                    addressList: response.data
+                })
+            })
+    }
+
     editAddress = (addressId) =>{
 
         console.log('ID', addressId);
@@ -75,25 +94,6 @@ class AddressList extends React.Component {
                 }
 
             }).catch(error => { })
-    }
-
-    componentDidMount() {
-
-        const usuarioLogado = LocalStorageService.obterItem('_usuario_logado');
-
-        console.log(usuarioLogado.id)
-
-        this.addresService.getAllAddress(usuarioLogado.id)
-            .then(response => {
-                const responseData = response.data;
-
-                console.log(responseData);
-
-                this.setState({
-
-                    addressList: response.data
-                })
-            })
     }
 
     render() {

@@ -59,7 +59,7 @@ class CreditCardList extends React.Component {
 
         console.log('Cliente ID', usuarioLogado.id);
         
-        this.service.getCreditCardDetails(usuarioLogado.id)
+        this.service.getAllCreditCards(usuarioLogado.id)
             .then( response => {     
                 
                 const responseData = response.data;

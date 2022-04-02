@@ -48,6 +48,8 @@ class NewAddress extends React.Component {
                 //let qtdMsg = response.data.msg.length;
                 let qtdMsg = 0;
 
+                console.log( address )
+
                 console.log("QUANTIDADES STRATEGY",qtdMsg);
 
                 if( qtdMsg === 0){
