@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -94,16 +96,14 @@ public class ClientController {
         return ResponseEntity.ok().body(result);
     }
 
-//    @DeleteMapping
-//    public ResponseEntity delete(@RequestBody ClientdDeleteDTO clientdDeleteDTO) {
-//
-//        Client client = new Client(clientdDeleteDTO);
-//        client.setId(clientdDeleteDTO.getClient());
-//
-//        result = facade.delete(client);
-//
-//        return ResponseEntity.ok().body(result);
-//    }
+    @GetMapping("/listaClientes")
+    public ResponseEntity getAllClients(){
+
+        List<Client> clientList = new ArrayList<>();
+        clientList = clientRepository.findAll();
+
+        return ResponseEntity.ok().body(clientList);
+    }
 
     @PutMapping()
     public ResponseEntity<Result> update(@RequestBody ClienEditDTO clienEditDTO  ){// @Param("id") Long id,
@@ -113,5 +113,16 @@ public class ClientController {
         result = facade.update(client);
 
         return ResponseEntity.ok().body(result);
+    }
+
+    @PutMapping("/inativar")
+    public Optional<Client> disableClient(@RequestParam("id") Long id){
+        Client client = new Client();
+
+        client.setId(id);
+
+        Optional<Client> clientDisable = clientService.setToDisable(id);
+
+        return clientDisable;
     }
 }

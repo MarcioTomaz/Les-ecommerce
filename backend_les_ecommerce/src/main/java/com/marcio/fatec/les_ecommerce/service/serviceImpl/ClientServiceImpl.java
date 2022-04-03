@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -55,6 +57,7 @@ public class ClientServiceImpl implements IClientService {
     }
 
 
+
     @Override
     public void validarEmail(String email) {
 
@@ -64,4 +67,27 @@ public class ClientServiceImpl implements IClientService {
             throw new IllegalArgumentException(new Exception());
         }
     }
-}
+
+    @Override
+    public List<Client> findAllClientDeletedFalse() {
+        return null;
+    }
+
+    @Override
+    public Optional<Client> setToDisable(Long id) {
+        Optional<Client> client = clientRepository.findById(id);
+
+        if (client.get().isDeleted() == true) {
+            client.get().setUpdatedDate(LocalDateTime.now());
+            client.get().setDeletedDate(null);
+            client.get().setDeleted(false);
+            clientRepository.save(client.get());
+        } else {
+            client.get().setDeletedDate(LocalDateTime.now());
+            client.get().setUpdatedDate(LocalDateTime.now());
+            client.get().setDeleted(true);
+            clientRepository.save(client.get());
+        }
+            return client;
+        }
+    }

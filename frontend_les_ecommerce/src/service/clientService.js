@@ -25,6 +25,16 @@ class ClientService extends ApiService {
 
     }
 
+    disableClientId(id){
+        console.log("to ino no inativar")
+        return this.put(`/inativar?id=${id}`);
+    }
+
+    getAllClients(){
+        console.log("BUSCANTO TODOS")
+        return this.get('/listaClientes')
+    }
+
     getClientDetails(id){
         
         return this.get(`/detalhesUsuario?id=${id}`);

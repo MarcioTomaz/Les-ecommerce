@@ -1,14 +1,13 @@
 
 import React from "react";
 import { withRouter } from "react-router-dom";
-import CardComponent from "./userComponent/cardComponent";
+import CardComponent from "../user/userComponent/cardComponent";
 import CreditCardRegisterService from "../../service/creditCardRegisterService";
 import LocalStorageService from "../../service/localStorageService";
 import { errorMessage, successMessage } from "../../components/toastr";
-import CrediCardListTable from "../address/crediCardListTable";
+import CrediCardListTable from "./crediCardListTable";
 
 class CreditCardList extends React.Component {
-
 
     state = {
         creditCardNumber:'',
@@ -77,7 +76,6 @@ class CreditCardList extends React.Component {
                     creditCards: response.data
                 })
             })
-
     }
 
     render() {

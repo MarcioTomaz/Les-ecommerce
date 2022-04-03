@@ -14,13 +14,17 @@ import ClientDetails from '../views/user/clientDetails';
 import EditClientData from '../views/user/editClientData';
 import ChangePassword from '../views/user/changePassword';
 import NewAddress from '../views/address/newAddress';
-import CreditCardList from '../views/user/creditCardList';
-import CreditCardRegister from '../views/user/creditCardRegister';
+
+import CreditCardList from '../views/creditCard/creditCardList';
+import CreditCardRegister from '../views/creditCard/creditCardRegister'
+
 import AddressList from '../views/address/addressList';
 import CouponList from '../views/user/couponList';
 import AuthService from '../service/authService';
 import EditAddress from '../views/address/editAddress';
 import adminManagement from '../views/admin/adminManagement';
+
+import ClientListAdmin from '../views/admin/client/ClientListAdmin';
 
 function AuthenticateRoute( {component: Component, ...props} ){//qbrando a props e pegando os componentes
     return(
@@ -60,11 +64,13 @@ function Routes(){
                 <AuthenticateRoute path="/cadastrarCartao" component={CreditCardRegister} />
                 <AuthenticateRoute path="/listaEndereco" component={AddressList}/>
                 <AuthenticateRoute path="/listaCupom" component={CouponList}/>
+                
 
 
                 {/* Admin Routes */}
 
                 <AuthenticateRoute path="/administracao" component={adminManagement}/>
+                <AuthenticateRoute path="/listaCliente" component={ClientListAdmin}/>
                 
     
             </Switch>
