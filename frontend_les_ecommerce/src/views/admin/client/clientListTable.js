@@ -13,15 +13,15 @@ export default props => {
                 <td>{clientList.name}</td>
                 <td>{clientList.email}</td>
                 <td>{clientList.areaCode}</td>
-                <td>{clientList.phoneNumber}</td>
-                <td>{clientList.deleted}Ativo</td>
+                <td>{clientList.phoneNumber}</td>                
+                <td>{clientList.deleted? 'Inativo': 'Ativo'}</td>
 
                 <td>
                     <button 
                         type="button"
                         className="btn btn-danger"
                         onClick={e => props.disableClient(clientList.id)}>
-                            Inativar
+                           {clientList.deleted? 'Ativar': 'Inativar'} 
                     </button>                        
                 </td>
 

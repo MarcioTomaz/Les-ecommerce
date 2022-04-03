@@ -6,6 +6,9 @@ import ClientService from "../../../service/clientService";
 import CrediCardListTable from "../../creditCard/crediCardListTable";
 import ClientListTable from "./clientListTable";
 
+import { errorMessage,successMessage } from "../../../components/toastr";
+
+
 class ClientListAdmin extends React.Component{
 
     state = {
@@ -41,7 +44,12 @@ class ClientListAdmin extends React.Component{
 
         this.service.disableClientId(clientId)
             .then( response =>{
-
+                console.log(response.data)
+                if(response.data.deleted){
+                    successMessage("Cliente inativado com sucesso!")
+                }else{
+                    successMessage("Cliente inativado com sucesso!")
+                }                
             })
     }
 
@@ -59,7 +67,8 @@ class ClientListAdmin extends React.Component{
                     <div className="container">
                         <ClientListTable 
                             clientList={this.state.clients} 
-                            disableClient={this.disableClient} />
+                            disableClient={this.disableClient} /> 
+                            {/* Arrumar q o campo nao é atualizado ao clicar em ativar, inativar */}
                     </div>
 
                     <a href="#/administracao" className="btn btn-secondary " >Voltar</a>

@@ -19,15 +19,14 @@ class AdmintManagement extends React.Component {
 
                                     <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/listaCliente">Listagem de clientes</a>
                                     <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/">Pedidos</a>
-                                    <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/">Cupons</a>
-                                    
+                                    <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/novoProduto">Cadastrar Produto</a>
                                     
                                 </div>
 
                                 <div className="card border-0 col-6 my-3 px-5 py-5" style={{width: '18rem'}}>
 
-                                    <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/">Estoque</a>
-                                    <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/">Cadastrar Produto</a>
+                                    <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/estoque">Estoque</a>                                                                      
+                                    <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/">Cupons</a>
                                     <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/">Listar Produtos</a>
 
                                 </div>

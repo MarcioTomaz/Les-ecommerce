@@ -25,6 +25,8 @@ import EditAddress from '../views/address/editAddress';
 import adminManagement from '../views/admin/adminManagement';
 
 import ClientListAdmin from '../views/admin/client/ClientListAdmin';
+import NewProduct from '../views/admin/Product/newProduct';
+import ProductList from '../views/admin/Product/productList';
 
 function AuthenticateRoute( {component: Component, ...props} ){//qbrando a props e pegando os componentes
     return(
@@ -71,6 +73,8 @@ function Routes(){
 
                 <AuthenticateRoute path="/administracao" component={adminManagement}/>
                 <AuthenticateRoute path="/listaCliente" component={ClientListAdmin}/>
+                <AuthenticateRoute path="/novoProduto" component={NewProduct}/>
+                <AuthenticateRoute path="/estoque" component={ProductList}/>
                 
     
             </Switch>

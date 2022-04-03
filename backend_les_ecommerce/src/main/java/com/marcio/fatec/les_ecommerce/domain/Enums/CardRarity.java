@@ -7,5 +7,6 @@ public enum CardRarity {
     SUPER_RARA,
     ULTRA_RARA,
     SECRETA_RARA,
-    ULTIMATE_RARA
+    ULTIMATE_RARA,
+    RARAS_FANTASMAS
 }
