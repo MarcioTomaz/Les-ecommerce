@@ -5,6 +5,7 @@ import com.marcio.fatec.les_ecommerce.domain.Product;
 import com.marcio.fatec.les_ecommerce.repository.ProductRepository;
 import com.marcio.fatec.les_ecommerce.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -36,7 +37,7 @@ public class ProductController {
                 erros.add(error.getDefaultMessage());
             }
 
-            return ResponseEntity.unprocessableEntity().body(erros);
+            return ResponseEntity.badRequest().body(erros);
         }
 
         Product product = new Product(productDTO);
@@ -64,5 +65,27 @@ public class ProductController {
 
         return productDisable;
     }
+
+    @GetMapping("/detalhesProduto")
+    public ResponseEntity getProductDetails(@Param("id") Long id){
+
+        Product product = new Product();
+
+       product = productRepository.findProductById(id);
+
+       return ResponseEntity.ok().body(product);
+    }
+
+    @PostMapping("/salvarEdit")
+    public ResponseEntity saveEdit(@Valid @RequestBody ProductDTO productDTO, BindingResult result){
+
+        Product product = new Product(productDTO);
+        Product editProduct = productRepository.findProductById(productDTO.getId());
+
+        productRepository.save(editProduct);
+
+        return ResponseEntity.ok().body(editProduct);
+    }
+
 
 }

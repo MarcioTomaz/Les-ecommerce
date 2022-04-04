@@ -11,5 +11,7 @@ public interface IProductService {
 //    Client saveClient(Client client);
     Product saveProduct(Product product);
 
+    Product updateProduct(Product product);
+
     Optional<Product> setToDisable( Long id);
 }

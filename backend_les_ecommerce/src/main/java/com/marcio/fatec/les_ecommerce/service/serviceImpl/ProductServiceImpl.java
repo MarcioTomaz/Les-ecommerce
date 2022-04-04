@@ -22,6 +22,14 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
+    public Product updateProduct(Product product) {
+
+
+
+        return null;
+    }
+
+    @Override
     public Optional<Product> setToDisable(Long id) {
         Optional<Product>  product = productRepository.findById(id);
 

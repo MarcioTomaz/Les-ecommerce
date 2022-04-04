@@ -56,8 +56,6 @@ public class ClientServiceImpl implements IClientService {
         return clientRepository.save(client);
     }
 
-
-
     @Override
     public void validarEmail(String email) {
 
