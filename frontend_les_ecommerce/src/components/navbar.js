@@ -39,6 +39,7 @@ function NavBar() {
                         </form>
 
                         <NavBarItem href="#/register" label="Cadastrar" />
+                        <NavBarItem href="#/carrinho" label="Carrinho" />
                         <NavBarItem onClick={logOut}  href="#/login" label="Sair" />
                                               
                     </ul>

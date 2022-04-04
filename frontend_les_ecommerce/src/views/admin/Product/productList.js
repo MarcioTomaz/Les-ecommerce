@@ -35,8 +35,9 @@ class ProductList extends React.Component{
             })
     }
 
-    editAction = () => {
+    editAction = (productId) => {
 
+      this.props.history.push(`/editarProduto/${productId}`)        
     }
 
     changeActive = (productId) => {
@@ -49,7 +50,7 @@ class ProductList extends React.Component{
 
                 }else{
                     successMessage("Produto inativado com sucesso!")
-                                    this.props.history.push('/estoque');
+                    this.props.history.push('/estoque');
 
                 }   
             })

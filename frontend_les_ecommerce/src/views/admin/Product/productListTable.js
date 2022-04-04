@@ -6,8 +6,9 @@ import React from "react";
 export default props => {
 
     const rows = props.productList.map( ( productList, index ) => {
-        
+        console.log('BBBBBBBBBBBBBBBBBBBBB', productList)
         return (
+            
             <tr key={index} className="text-center">
                 <td>{productList.id}</td>
                 <td>{productList.name}</td>
@@ -17,11 +18,13 @@ export default props => {
                 <td>{productList.cardRarity}</td>
                 <td>{productList.cardType}</td>
                 {/* <td>{productList.productDescription}</td> */}
+                
                 <td>
 
-                <button type="button" 
-                            className="btn btn-success"
-                            onClick={e => props.editAction(productList.id)}>Editar</button>
+                <button 
+                    type="button" 
+                    className="btn btn-success"
+                    onClick={e => props.editAction(productList.id)}>Editar</button>
 
                 </td>
                 <td>

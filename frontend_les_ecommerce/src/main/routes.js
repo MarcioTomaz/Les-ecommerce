@@ -28,6 +28,10 @@ import ClientListAdmin from '../views/admin/client/ClientListAdmin';
 import NewProduct from '../views/admin/Product/newProduct';
 import ProductList from '../views/admin/Product/productList';
 
+import EditProduct from '../views/admin/Product/editProduct';
+
+import ProductListClient from '../views/admin/Product/productListClient';
+
 function AuthenticateRoute( {component: Component, ...props} ){//qbrando a props e pegando os componentes
     return(
         <Route {...props} render={ (componentProps) => {
@@ -75,6 +79,9 @@ function Routes(){
                 <AuthenticateRoute path="/listaCliente" component={ClientListAdmin}/>
                 <AuthenticateRoute path="/novoProduto" component={NewProduct}/>
                 <AuthenticateRoute path="/estoque" component={ProductList}/>
+                <AuthenticateRoute path="/editarProduto/:id" component={EditProduct}/>
+                <AuthenticateRoute path="/produtos/" component={ProductListClient}/>
+
                 
     
             </Switch>

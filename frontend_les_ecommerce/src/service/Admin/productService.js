@@ -14,6 +14,10 @@ class ProductService extends ApiService{
         return this.post('/', product)
     }
 
+    update(product){
+        return this.put('/editar', product);
+    }
+
     deleteId(id){
 
         return this.delete(`/deletar?id=${id}`);
@@ -43,8 +47,7 @@ class ProductService extends ApiService{
             {label: 'ULTRA RARA', value: 'ULTRA_RARA'},
             {label: 'SECRETA RARA', value: 'SECRETA_RARA'},
             {label: 'ULTIMATE RARA', value: 'ULTIMATE_RARA'},
-            {label: 'RARAS FANTASMAS', value: 'RARAS_FANTASMAS'},           
-            
+            {label: 'RARAS FANTASMAS', value: 'RARAS_FANTASMAS'},    
         ]
     }
 
@@ -57,6 +60,7 @@ class ProductService extends ApiService{
             {label: 'MAGICA', value: 'MAGICA'}, 
         ]
     }
+
 }
 
 export default ProductService;

@@ -26,30 +26,35 @@ class ClientListAdmin extends React.Component{
         this.service = new ClientService();
     }
 
-    componentDidMount(){
-
-        console.log("TESTE ");
-
+    getAllClients(){
         this.service.getAllClients()
-            .then( response => {
+        .then( response => {
 
-                console.log(response)
-                this.setState({
-                    clients: response.data
-                })
-            } )   
+            console.log(response)
+            this.setState({
+                clients: response.data
+            })
+        } )   
     }
 
+    componentDidMount(){
+        this.getAllClients();
+        console.log("TESTE ");   
+    }
+    
     disableClient = (clientId) =>{
 
         this.service.disableClientId(clientId)
             .then( response =>{
                 console.log(response.data)
                 if(response.data.deleted){
-                    successMessage("Cliente inativado com sucesso!")
+                    successMessage("Cliente inativado com sucesso!");
+                    
                 }else{
                     successMessage("Cliente inativado com sucesso!")
-                }                
+                }   
+                
+                this.getAllClients();
             })
     }
 

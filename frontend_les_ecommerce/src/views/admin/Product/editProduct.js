@@ -1,12 +1,16 @@
 
 
-import React from "react";
-import { withRouter } from "react-router-dom";
-import ProductService from "../../../service/Admin/productService";
-import SelectMenu from "../../../components/selectMenu"
-import { successMessage, errorMessage } from "../../../components/toastr";
 
-class NewProduct extends React.Component{
+import React from "react";
+
+import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
+
+import { errorMessage, successMessage } from "../../../components/toastr";
+import ProductService from "../../../service/Admin/productService";
+import SelectMenu from "../../../components/selectMenu";
+
+
+class EditProduct extends React.Component{
 
     state ={
 
@@ -24,11 +28,32 @@ class NewProduct extends React.Component{
         this.service = new ProductService();
     }
 
+    componentDidMount(){
+        const params = this.props.match.params;
+
+        this.service.getProductDetails(params.id)
+            .then( response => {
+                const responseData = response.data;
+
+                console.log(responseData);
+
+                this.setState({
+                    name: responseData.name,
+                    cardRarity: responseData.cardRarity,
+                    cardType: responseData.cardType,
+                    productDescription: responseData.productDescription,
+                    stock: responseData.stock,
+                    price: responseData.price,
+                    id: params.id
+                })
+            })
+    }
+
     saveProduct = () => {
         
-        const {name, stock, productDescription, cardRarity, cardType, price} = this.state;
+        const {id, name, stock, productDescription, cardRarity, cardType, price} = this.state;
 
-        const product = { name, stock, productDescription, cardRarity, cardType, price};
+        const product = { id, name, stock, productDescription, cardRarity, cardType, price};
 
         this.service.save( product )
             .then( response => {
@@ -56,7 +81,6 @@ class NewProduct extends React.Component{
 
         this.setState({ [name]: value })
     }
-
 
     render(){
         const rarity = this.service.getRarity();
@@ -176,7 +200,7 @@ class NewProduct extends React.Component{
             </>
         )
     }
-    
+
 }
 
-export default withRouter(NewProduct);
+export default withRouter(EditProduct);
