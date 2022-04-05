@@ -53,6 +53,7 @@ class ProductList extends React.Component{
                     this.props.history.push('/estoque');
 
                 }   
+                this.service.getAllProducts()
             })
     }
 

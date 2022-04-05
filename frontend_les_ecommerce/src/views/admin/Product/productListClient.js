@@ -47,6 +47,7 @@ class ProductListClient extends React.Component{
         this.cartService.addToCart({product: product,quantity:1})
             .then(response => {
                 console.log('resposta do carinho', response.data)
+                successMessage("Produto adicionado no carrinho!")
             })
     }
 

@@ -9,7 +9,7 @@ export default props => {
         console.log('BBBBBBBBBBBBBBBBBBBBB', productList)
         return (
             
-            <tr key={index} className="text-center">
+            <tr className="text-center">
                 <td>{productList.id}</td>
                 <td>{productList.name}</td>
                 <td>{productList.price}</td>

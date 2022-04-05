@@ -3,7 +3,6 @@ package com.marcio.fatec.les_ecommerce.controller;
 import com.marcio.fatec.les_ecommerce.domain.Cart;
 import com.marcio.fatec.les_ecommerce.domain.ItemOrder;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Scope;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -16,6 +16,11 @@ class CartService extends ApiService{
         return this.post('/adicionarCarrinho', product)
     }
 
+    getCart(){
+
+        return this.get('/')
+    }
+
 }
 
 export default CartService;
