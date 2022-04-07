@@ -9,6 +9,7 @@ export default props => {
 
     console.log(props)
     const rows = props.cartList.map( ( cartList, index ) => {
+        console.log('CCCCCCCCCCC', cartList)
         
         return (
             <>
@@ -39,7 +40,10 @@ export default props => {
                                 </div>
                                 </div>
                                 <div className="col-md-3 float-left">
-                                <button class="btn btn-danger float-right">Remover do carrinho</button>
+                                <button 
+                                    className="btn btn-danger float-right"
+                                    onClick={e => props.removeCart(cartList)}
+                                    >Remover do carrinho</button>
 
                                 {/* <button 
                                     type="button" 

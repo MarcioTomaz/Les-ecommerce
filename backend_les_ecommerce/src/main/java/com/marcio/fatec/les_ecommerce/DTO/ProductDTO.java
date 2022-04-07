@@ -42,7 +42,7 @@ public class ProductDTO {
         this.id = product.getId();
         this.stock = product.getStock();
         this.name = product.getName();
-//        this.productStatus = product.getProductStatus().toString();
+        this.productDescription = getProductDescription();
         this.cardRarity = product.getCardRarity().toString();
         this.cardType = product.getCardType().toString();
         this.price = product.getPrice();

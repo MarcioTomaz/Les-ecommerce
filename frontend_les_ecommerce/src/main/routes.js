@@ -34,6 +34,8 @@ import ProductListClient from '../views/admin/Product/productListClient';
 
 import Cart from '../views/admin/Product/cart/cart';
 
+import ProductDetails from '../views/admin/Product/productDetails';
+
 function AuthenticateRoute( {component: Component, ...props} ){//qbrando a props e pegando os componentes
     return(
         <Route {...props} render={ (componentProps) => {
@@ -72,7 +74,8 @@ function Routes(){
                 <AuthenticateRoute path="/cadastrarCartao" component={CreditCardRegister} />
                 <AuthenticateRoute path="/listaEndereco" component={AddressList}/>
                 <AuthenticateRoute path="/listaCupom" component={CouponList}/>
-                
+                <AuthenticateRoute path="/detalhesProduto/:id" component={ProductDetails}/>
+
 
 
                 {/* Admin Routes */}
@@ -84,6 +87,9 @@ function Routes(){
                 <AuthenticateRoute path="/editarProduto/:id" component={EditProduct}/>
                 <AuthenticateRoute path="/produtos/" component={ProductListClient}/>
                 <AuthenticateRoute path="/carrinho/" component={Cart}/>
+
+
+                
 
                 
     

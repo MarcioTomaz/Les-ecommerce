@@ -16,6 +16,12 @@ class CartService extends ApiService{
         return this.post('/adicionarCarrinho', product)
     }
 
+    removeItemCart(item){
+
+        console.log('item', item)
+        return this.put('/removerItemCarrinho', item)
+    }
+
     getCart(){
 
         return this.get('/')

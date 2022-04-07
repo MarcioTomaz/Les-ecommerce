@@ -28,12 +28,22 @@ class Cart extends React.Component{
             })
     }
 
+    removeItem = (item) =>{
+        console.log('item', item)
+
+        this.service.removeItemCart({listOrder: item, quantity:1})
+            .then( response => {
+                console.log('resposta remover carrinho', response.data)
+                successMessage('Removido com sucesso!')
+            })
+    }
+
     render(){
         return(
             <>
             <CartListItems
                 cartList={this.state.listOrder}
-                
+                removeCart={this.removeItem}                
             />  
               <div className="row cart">
                     <div className="col-lg-12">

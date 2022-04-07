@@ -7,6 +7,7 @@ import { withRouter } from "react-router-dom";
 import { errorMessage,successMessage } from "../../../components/toastr";
 import ProductListToClient from "./productListToClient";
 import CartService from "../../../service/client/cartService";
+import LocalStorageService from "../../../service/localStorageService";
 
 
 class ProductListClient extends React.Component{
@@ -18,7 +19,10 @@ class ProductListClient extends React.Component{
         productDescription: '',     
         stock: '',       
         price: '',
-        productList: []
+        productList: [],
+        quantity: 2,//teste mudar dpssssssssss
+        clientId: '',
+        productId:'',
     }
 
     constructor(){
@@ -42,14 +46,42 @@ class ProductListClient extends React.Component{
             })
     }
 
+    // addCart = (product) => {
+    //     console.log('product',product)
+    //     this.cartService.addToCart({product: product,quantity:1})
+    //         .then(response => {
+    //             console.log('resposta do carinho', response.data)
+    //             successMessage("Produto adicionado no carrinho!")
+    //         })
+    // }
+
     addCart = (product) => {
-        console.log('product',product)
-        this.cartService.addToCart({product: product,quantity:1})
+
+        console.log('product', product);
+
+        const loggedUser = LocalStorageService.obterItem('_usuario_logado');       
+
+        const {clientId, productId, quantity } = this.state;
+
+        const cart = { clientId: loggedUser.id, productId, quantity}
+        console.log('cart ',cart)
+
+        this.cartService.addToCart(cart)
             .then(response => {
                 console.log('resposta do carinho', response.data)
                 successMessage("Produto adicionado no carrinho!")
             })
     }
+
+    getProductDetails = (productId) => {
+        console.log('productId', productId)
+        this.service.getProductDetails(productId)
+            .then( response => {
+                console.log('detalhes produto', response.data)
+                
+                this.props.history.push(`/detalhesProduto/${productId}`)
+            })
+    } 
 
     render(){
         return(
@@ -60,6 +92,7 @@ class ProductListClient extends React.Component{
                             <ProductListToClient
                                 productList={this.state.productList}
                                 addToCart={this.addCart}
+                                getProductDetails={this.getProductDetails}
                             />
                         </div>
                     </div>

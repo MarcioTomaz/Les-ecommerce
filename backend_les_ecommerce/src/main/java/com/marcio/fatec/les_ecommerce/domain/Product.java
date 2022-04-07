@@ -57,7 +57,7 @@ public class Product extends DomainEntity{
     public Product( ProductDTO product ){
         this.name = product.getName();
         this.stock = product.getStock();
-//        this.productStatus = ProductStatus.valueOf(product.getProductStatus());
+        this.productDescription = product.getProductDescription();
         this.cardRarity = CardRarity.valueOf(product.getCardRarity());
         this.cardType = CardType.valueOf(product.getCardType());
         this.price = product.getPrice();
@@ -66,7 +66,7 @@ public class Product extends DomainEntity{
     public Product( Product product ){
         this.name = product.getName();
         this.stock = product.getStock();
-//        this.productStatus = ProductStatus.valueOf(product.getProductStatus());
+        this.productDescription = product.getProductDescription();
         this.cardRarity = CardRarity.valueOf(String.valueOf(product.getCardRarity()));
         this.cardType = CardType.valueOf(String.valueOf(product.getCardType()));
         this.price = product.getPrice();

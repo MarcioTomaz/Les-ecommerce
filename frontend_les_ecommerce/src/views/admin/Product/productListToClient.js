@@ -15,8 +15,16 @@ export default props => {
                     <div className="mx-5 my-5">
                         <div className="card">
                             
+
+                        <div class="block-img py-3 px-3">
+                        <img className="img-fluid rounded mb-4" src="https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Yugioh_Card_Back.jpg/250px-Yugioh_Card_Back.jpg" alt="" />
+    </div>
+                        <div className="row">
+                          
+                            </div>
                             <hr/>
                             <div className="card-body">
+                                
                             <div className="mt-0">
                                 <h6 className="card-subtitle ">{}</h6>
                             </div>
@@ -31,7 +39,9 @@ export default props => {
                                 <button                                           
                                     className="btn btn-sm btn-outline-secondary mb-1" 
                                     role="button"
-                                    target="new">Ver Oferta
+                                    target="new"
+                                    onClick={ e => props.getProductDetails(productList.id)}
+                                    >Ver Oferta
                                 </button>
                                 <button
                                     className="btn btn-sm btn-outline-primary mb-1"  

@@ -11,6 +11,7 @@ export default props => {
             
             <tr className="text-center">
                 <td>{productList.id}</td>
+                
                 <td>{productList.name}</td>
                 <td>{productList.price}</td>
                 <td>{productList.stock}</td>

@@ -50,7 +50,9 @@ public class ProductController {
     public ResponseEntity getAllProducts(){
 
         List<Product> productList = new ArrayList<>();
-        productList = productRepository.findAll();
+//        productList = productRepository.findAllProductDeletedFalse();
+        productList = productRepository.findByDeletedFalse();
+
 
         return ResponseEntity.ok().body(productList);
     }
