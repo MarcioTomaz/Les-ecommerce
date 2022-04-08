@@ -10,19 +10,8 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import java.util.ArrayList;
+import javax.persistence.*;
 import java.util.List;
-
-//@Getter
-//@Setter
-//@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
-////@Scope("session")
-////@Component
-
 
 @Getter
 @Setter
@@ -34,6 +23,6 @@ public class Cart extends DomainEntity{
     @OneToOne
     private Client client;
 
-    @OneToMany( cascade = {CascadeType.PERSIST, CascadeType.MERGE })
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE })
     private List<ItemOrder> itemOrders;
 }

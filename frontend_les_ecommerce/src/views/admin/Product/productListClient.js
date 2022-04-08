@@ -63,7 +63,9 @@ class ProductListClient extends React.Component{
 
         const {clientId, productId, quantity } = this.state;
 
-        const cart = { clientId: loggedUser.id, productId, quantity}
+        console.log("ID DO PRODUTO", productId)
+
+        const cart = { clientId: loggedUser.id, productId: product.id, quantity}
         console.log('cart ',cart)
 
         this.cartService.addToCart(cart)

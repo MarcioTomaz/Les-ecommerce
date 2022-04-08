@@ -7,18 +7,17 @@ import React from "react";
 export default props => {
 
     const rows = props.productList.map( ( productList, index ) => {
-        console.log('AAAAAAAAAAAAAA', productList)
+        console.log('AAAAAAAAAAAAAA', productList)        
         return (
 
-            <>
-                <div className="">
+           
+                <div key={index} className="">
                     <div className="mx-5 my-5">
-                        <div className="card">
-                            
+                        <div className="card">                            
 
-                        <div class="block-img py-3 px-3">
+                        <div className="block-img py-3 px-3">
                         <img className="img-fluid rounded mb-4" src="https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Yugioh_Card_Back.jpg/250px-Yugioh_Card_Back.jpg" alt="" />
-    </div>
+                        </div>
                         <div className="row">
                           
                             </div>
@@ -54,8 +53,7 @@ export default props => {
                             </div>
                         </div>
                     </div>
-                </div>
-            </>
+                </div>            
      
         )
     } )

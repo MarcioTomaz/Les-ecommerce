@@ -35,61 +35,6 @@ class EditAddress extends React.Component {
         this.editAddress = new EditAddressService();
     }
 
-    // validate(){
-    //     const msgs = [];
-
-    //     if (!this.state.logradouro) {
-    //         msgs.push('O preenchimento do campo Logradouro é obrigatório.')
-           
-    //     }
-
-    //     if (!this.state.street) {
-    //         msgs.push('O preenchimento do campo Rua é obrigatório.')
-           
-    //     }
-
-    //     if (!this.state.number) {
-    //         msgs.push('O preenchimento do campo Número é obrigatório.')
-           
-    //     }
-
-    //     if (!this.state.zipCode) {
-    //         msgs.push('O preenchimento do campo CEP é obrigatório.')
-           
-    //     }
-
-    //     if (!this.state.district) {
-    //         msgs.push('O preenchimento do campo Bairro é obrigatório.')
-           
-    //     }
-
-    //     if (!this.state.residencyType) {
-    //         msgs.push('O preenchimento do campo Tipo de residencia é obrigatório.')
-           
-    //     }         
-
-    //     if (!this.state.city) {
-    //         msgs.push('O preenchimento do campo Cidade é obrigatório.')
-           
-    //     }
-
-    //     if (!this.state.country) {
-    //         msgs.push('O preenchimento do campo País é obrigatório.')
-           
-    //     }
-
-    //     if (!this.state.state) {
-    //         msgs.push('O preenchimento do campo Estado é obrigatório.')
-           
-    //     }
-
-    //     if (!this.state.addressType) {
-    //         msgs.push('O preenchimento do campo Tipo endereço é obrigatório.')
-           
-    //     }
-
-    //     return msgs;
-    // }
 
     componentDidMount() {
 
@@ -98,6 +43,8 @@ class EditAddress extends React.Component {
         // console.log(usuarioLogado.id);
 
         const params = this.props.match.params;
+
+        console.log('id', params)
 
         this.addresService.getAddressDetails(params.id)
             .then( response =>{

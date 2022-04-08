@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 //@Getter
@@ -30,5 +31,9 @@ public class ItemOrder extends DomainEntity{
     @ManyToOne
     private Product product;
 
-    private Integer quantity;
+    private Long quantity;
+
+    @ManyToOne
+    @JsonIgnore
+    private Cart cart;
 }

@@ -14,8 +14,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AddressDTO {
 
-    private Long client;
-//    private Long id;
+//    private Long client;
+    private Long id;
 
     private String street;
     private String residencyType;
@@ -30,6 +30,7 @@ public class AddressDTO {
     private AddressType addressType;
 
     public AddressDTO( Address address){
+        this.id = address.getId();
         this.street = address.getStreet();
         this.residencyType = address.getResidencyType();
         this.observation = address.getObservation();

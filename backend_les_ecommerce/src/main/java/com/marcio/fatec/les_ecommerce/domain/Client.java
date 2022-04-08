@@ -63,6 +63,9 @@ public class Client extends DomainEntity{
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CreditCard> creditCard;
 
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Cart cart;
+
     public Client(ClientDTO clientDTO) {
         this.name = clientDTO.getName();
         this.cpf = clientDTO.getCpf();

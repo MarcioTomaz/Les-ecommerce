@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { errorMessage,successMessage } from "../../../../components/toastr";
 import CartService from "../../../../service/client/cartService";
 import CartListItems from "./cartListItems";
+import LocalStorageService from "../../../../service/localStorageService";
 
 class Cart extends React.Component{
  
@@ -19,23 +20,28 @@ class Cart extends React.Component{
     
     componentDidMount(){
         
-        this.service.getCart()
+        const loggedUser = LocalStorageService.obterItem('_usuario_logado');       
+
+        this.service.getCart(loggedUser.id)
             .then( response => {
                 
                 this.setState({
                     listOrder: response.data
                 })
-            })
+            })            
+            
     }
 
     removeItem = (item) =>{
         console.log('item', item)
 
-        this.service.removeItemCart({listOrder: item, quantity:1})
+        this.service.removeItemCart(item)
             .then( response => {
                 console.log('resposta remover carrinho', response.data)
                 successMessage('Removido com sucesso!')
+                this.componentDidMount()
             })
+
     }
 
     render(){

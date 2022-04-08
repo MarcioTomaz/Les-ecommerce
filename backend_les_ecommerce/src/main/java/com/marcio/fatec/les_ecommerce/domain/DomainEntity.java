@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
+@NoArgsConstructor
 @MappedSuperclass
 public abstract class DomainEntity extends Result implements Serializable {
 
@@ -23,9 +24,9 @@ public abstract class DomainEntity extends Result implements Serializable {
     @Column(name = "deleted", nullable = false)
     private boolean deleted = false;
 
-    @Column(name = "creation_date", nullable = false)
-//    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
-    private LocalDateTime creationDate = LocalDateTime.now();
+//    @Column(name = "creation_date", nullable = false)
+////    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
+//    private LocalDateTime creationDate = LocalDateTime.now();
 
     @Column(name = "deleted_date")
     private LocalDateTime deletedDate;
@@ -33,7 +34,7 @@ public abstract class DomainEntity extends Result implements Serializable {
     @Column(name = "updatedDate")
     private LocalDateTime updatedDate;
 
-    public DomainEntity() {
-        this.creationDate = LocalDateTime.now();
-    }
+//    public DomainEntity() {
+//        this.creationDate = LocalDateTime.now();
+//    }
 }

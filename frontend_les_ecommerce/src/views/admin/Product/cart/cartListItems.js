@@ -10,10 +10,11 @@ export default props => {
     console.log(props)
     const rows = props.cartList.map( ( cartList, index ) => {
         console.log('CCCCCCCCCCC', cartList)
+        console.log("ITEM", cartList.id)
         
         return (
-            <>
-            <div className="container">
+           
+            <div key={index} className="container">
 
                 <h1 className="mt-4 mb-3">Item</h1>
 
@@ -25,11 +26,13 @@ export default props => {
                             <div className="card-body">
                                 <div className="col-md-2 float-left">                                                        
                                 </div>
+                                
                                 <div className="col-lg-7 float-left">
                                 <p className="card-text"><strong>Produto:</strong>{cartList.product.name} </p>
+                                
                                 <p className="card-text"><strong>Valor total:</strong> {cartList.product.price}</p>
-                                <p className="card-text"><strong>Quantidade disponível:</strong>5 </p>
-                                <p className="card-text"><strong>Quantidade:</strong>2 </p>
+                                <p className="card-text"><strong>Quantidade disponível:</strong><h1>{cartList.product.id}</h1></p>
+                                <p className="card-text"><strong>Quantidade:</strong>{cartList.quantity} </p>
                                 <div className="row">
                                     <div className="col-lg-1 col-md-2 btn">                                
                                     
@@ -42,7 +45,7 @@ export default props => {
                                 <div className="col-md-3 float-left">
                                 <button 
                                     className="btn btn-danger float-right"
-                                    onClick={e => props.removeCart(cartList)}
+                                    onClick={e => props.removeCart(cartList.id)}
                                     >Remover do carrinho</button>
 
                                 {/* <button 
@@ -61,7 +64,7 @@ export default props => {
                         </div>
                     </div>
             </div>            
-        </>
+        
         )        
     } )
 
