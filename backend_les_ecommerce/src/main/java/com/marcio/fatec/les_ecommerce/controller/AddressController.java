@@ -2,6 +2,7 @@ package com.marcio.fatec.les_ecommerce.controller;
 
 
 import com.marcio.fatec.les_ecommerce.DTO.AddressDTO;
+import com.marcio.fatec.les_ecommerce.DTO.AddressEditDTO;
 import com.marcio.fatec.les_ecommerce.domain.Address;
 import com.marcio.fatec.les_ecommerce.domain.Client;
 import com.marcio.fatec.les_ecommerce.domain.CreditCard;
@@ -39,7 +40,7 @@ public class AddressController {
     }
 
     @PutMapping
-    public ResponseEntity<Result> update( @RequestBody AddressDTO addressDTO){
+    public ResponseEntity<Result> update( @RequestBody AddressEditDTO addressDTO){
 
         System.out.println("To no controller endereço UPDATE");
         System.out.println(addressDTO);

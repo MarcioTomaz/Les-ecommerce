@@ -2,6 +2,7 @@ package com.marcio.fatec.les_ecommerce.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.marcio.fatec.les_ecommerce.DTO.AddressDTO;
+import com.marcio.fatec.les_ecommerce.DTO.AddressEditDTO;
 import com.marcio.fatec.les_ecommerce.domain.Enums.AddressType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -77,5 +78,26 @@ public class Address extends DomainEntity{
         this.addressType = addressDTO.getAddressType();
     }
 
+
+    public Address(AddressEditDTO addressDTO) {
+
+        Client client = new Client();
+        client.setId(addressDTO.getClient());
+        this.client = client;
+
+        this.setId(addressDTO.getId());
+        this.client = client;
+        this.street = addressDTO.getStreet();
+        this.residencyType = addressDTO.getResidencyType();
+        this.observation = addressDTO.getObservation();
+        this.number = addressDTO.getNumber();
+        this.district = addressDTO.getDistrict();
+        this.zipCode = addressDTO.getZipCode();
+        this.logradouro = addressDTO.getLogradouro();
+        this.city = addressDTO.getCity();
+        this.country = addressDTO.getCountry();
+        this.state = addressDTO.getState();
+        this.addressType = addressDTO.getAddressType();
+    }
 
  }

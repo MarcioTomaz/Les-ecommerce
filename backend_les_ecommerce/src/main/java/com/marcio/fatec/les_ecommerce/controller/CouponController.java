@@ -57,10 +57,12 @@ public class CouponController {
             coupon.setId(id);
 
             couponRepository.delete(coupon);
+
+            return ResponseEntity.ok().body("result");
+
         }catch (Exception e){
             return ResponseEntity.ok().body(e.getMessage());
         }
 
-        return ResponseEntity.ok().body("result");
     }
 }
