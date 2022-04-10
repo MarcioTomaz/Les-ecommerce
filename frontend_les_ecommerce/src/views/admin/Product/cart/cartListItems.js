@@ -28,11 +28,11 @@ export default props => {
                                 </div>
                                 
                                 <div className="col-lg-7 float-left">
-                                <p className="card-text"><strong>Produto:</strong>{cartList.product.name} </p>
+                                <p className="card-text"><strong>Produto:</strong> {cartList.product.name} </p>
                                 
                                 <p className="card-text"><strong>Valor total:</strong> {cartList.product.price}</p>
-                                <p className="card-text"><strong>Quantidade disponível:</strong><h1>{cartList.product.id}</h1></p>
-                                <p className="card-text"><strong>Quantidade:</strong>{cartList.quantity} </p>
+                                <p className="card-text"><strong>Quantidade disponível:</strong> {cartList.product.stock}</p>
+                                <p className="card-text"><strong>Quantidade:</strong> {cartList.quantity} </p>
                                 <div className="row">
                                     <div className="col-lg-1 col-md-2 btn">                                
                                     

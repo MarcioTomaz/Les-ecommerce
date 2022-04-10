@@ -28,7 +28,7 @@ public class AddressDAO implements IDAO{
 
         Address address = (Address) domainEntity;
 
-        addresRepository.save(address);
+        addresRepository.saveAndFlush(address);
 
         return address;
     }

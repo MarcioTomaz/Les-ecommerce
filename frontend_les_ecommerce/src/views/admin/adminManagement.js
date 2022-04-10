@@ -26,7 +26,7 @@ class AdmintManagement extends React.Component {
                                 <div className="card border-0 col-6 my-3 px-5 py-5" style={{width: '18rem'}}>
 
                                     <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/estoque">Estoque</a>                                                                      
-                                    <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/">Cupons</a>
+                                    <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/listaAdminCupom">Cupons</a>
                                     <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/">Listar Produtos</a>
 
                                 </div>

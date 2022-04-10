@@ -38,10 +38,10 @@ class NewAddress extends React.Component {
         console.log('User LOGADO ID',loggedUser.id)
 
         const {street, residencyType, observation, number, district, zipCode, logradouro, city,
-                country, state, addressType} = this.state;
+                country, state, addressType, client} = this.state;
 
         const address = {street, residencyType, observation, number, district, zipCode, logradouro, city,
-            country, state, addressType, client: loggedUser.id};
+            country, state, addressType, client: loggedUser.id};            
 
             this.service.save(address)
             .then( response => {

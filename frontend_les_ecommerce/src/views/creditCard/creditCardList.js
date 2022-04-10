@@ -63,16 +63,8 @@ class CreditCardList extends React.Component {
                 
                 const responseData = response.data;
 
-                // console.log(responseData);
-
-                // let creditCard = responseData.creditCardNumber;
-                // console.log(creditCard);
-                // let creditCardLast4 = creditCard.substr(-4);
-                // console.log(creditCardLast4)
-
                 this.setState({
-                    // creditCardNumber: creditCardLast4,
-                    // cardFlag: responseData.cardFlag
+
                     creditCards: response.data
                 })
             })

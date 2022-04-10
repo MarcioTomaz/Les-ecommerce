@@ -24,9 +24,9 @@ public abstract class DomainEntity extends Result implements Serializable {
     @Column(name = "deleted", nullable = false)
     private boolean deleted = false;
 
-//    @Column(name = "creation_date", nullable = false)
-////    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
-//    private LocalDateTime creationDate = LocalDateTime.now();
+    @Column(name = "creation_date", nullable = false)
+//    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
+    private LocalDateTime creationDate = LocalDateTime.now();
 
     @Column(name = "deleted_date")
     private LocalDateTime deletedDate;

@@ -78,6 +78,7 @@ public class CartController {
             itemOrder.setCart(cartSaved);
 
             itemRepository.save(itemOrder);
+
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -90,7 +91,7 @@ public class CartController {
 
         ItemOrder itemOrder1 = new ItemOrder();
         itemOrder1.setId(id);
-        
+
         try{
             itemRepository.delete(itemOrder1);
             return ResponseEntity.ok().body("Item removido com sucesso!");

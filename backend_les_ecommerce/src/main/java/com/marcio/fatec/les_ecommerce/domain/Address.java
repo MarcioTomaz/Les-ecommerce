@@ -59,9 +59,10 @@ public class Address extends DomainEntity{
     public Address(AddressDTO addressDTO) {
 
         Client client = new Client();
-//        client.setId(addressDTO.getClient());
+        client.setId(addressDTO.getClient());
+        this.client = client;
 //
-        this.setId(addressDTO.getId());
+//        this.setId(addressDTO.getId());
         this.client = client;
         this.street = addressDTO.getStreet();
         this.residencyType = addressDTO.getResidencyType();
@@ -75,4 +76,6 @@ public class Address extends DomainEntity{
         this.state = addressDTO.getState();
         this.addressType = addressDTO.getAddressType();
     }
+
+
  }

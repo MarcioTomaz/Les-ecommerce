@@ -12,6 +12,8 @@ class NewAddressService extends ApiService {
 
     save(address){
 
+        console.log("ADDRES DO SAVE", address)
+
         return this.post('/', address);
     }
 
@@ -20,6 +22,7 @@ class NewAddressService extends ApiService {
     }
     
     update(address){
+        console.log("ADDRES DO EDIT", address)
         return this.put('/', address)
     }
 

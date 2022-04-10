@@ -36,6 +36,10 @@ import Cart from '../views/admin/Product/cart/cart';
 
 import ProductDetails from '../views/admin/Product/productDetails';
 
+import NewCoupon from '../views/admin/coupon/newCoupon';
+
+import CouponAdminList from '../views/admin/coupon/couponList';
+
 function AuthenticateRoute( {component: Component, ...props} ){//qbrando a props e pegando os componentes
     return(
         <Route {...props} render={ (componentProps) => {
@@ -87,6 +91,8 @@ function Routes(){
                 <AuthenticateRoute path="/editarProduto/:id" component={EditProduct}/>
                 <AuthenticateRoute path="/produtos/" component={ProductListClient}/>
                 <AuthenticateRoute path="/carrinho/" component={Cart}/>
+                <AuthenticateRoute path="/novoCupom/" component={NewCoupon}/>
+                <AuthenticateRoute path="/listaAdminCupom/" component={CouponAdminList}/>
 
 
                 

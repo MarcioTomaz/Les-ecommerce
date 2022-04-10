@@ -3,7 +3,7 @@
 import React from "react";
 import ProductService from "../../../service/Admin/productService";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
-import { successMessage } from "../../../components/toastr";
+import { errorMessage, successMessage } from "../../../components/toastr";
 import CartService from "../../../service/client/cartService";
 import LocalStorageService from "../../../service/localStorageService";
 
@@ -14,9 +14,9 @@ class ProductDetails extends React.Component{
         cardRarity: '',
         cardType: '',
         productDescription: '',     
-        stock: '',       
+        stock: 0,       
         price: '',
-        quantity: 2,//teste mudar dpssssssssss
+        quantity: '',
         clientId: '',
         productId:'',
     }
@@ -46,9 +46,16 @@ class ProductDetails extends React.Component{
                     productDescription: responseData.productDescription,
                     stock: responseData.stock,
                     price: responseData.price,
-                    productId: params.id                    
-                })
+                    productId: params.id,
+                })                
             })
+    }
+
+    handleChange = (event) => {
+        const value = event.target.value;
+        const name = event.target.name;
+
+        this.setState({ [name]: value })
     }
 
 
@@ -63,11 +70,23 @@ class ProductDetails extends React.Component{
         const cart = { clientId: loggedUser.id, productId, quantity}
         console.log('cart ',cart)
 
-        this.cartService.addToCart(cart)
-            .then(response => {
-                console.log('resposta do carinho', response.data)
-                successMessage("Produto adicionado no carrinho!")
-            })
+        console.log("STOCK", this.state.stock)
+
+        if(cart.quantity > this.state.stock ){            
+
+            console.log("to no if sim");
+            errorMessage("Quantidade indisponível no estoque")
+            return false;
+
+        }else if(this.state.quantity <= 0 || this.state.quantity === ''){
+            errorMessage("Insira uma quantidade valida")
+        }else{
+            this.cartService.addToCart(cart)
+                .then(response => {
+                    console.log('resposta do carinho', response.data)
+                    successMessage("Produto adicionado no carrinho!")
+                })
+        }
     }
 
     render(){
@@ -87,7 +106,19 @@ class ProductDetails extends React.Component{
                         <p className="card-text"><strong>Raridade de carta:</strong> {this.state.cardRarity}.</p>
                         <p className="card-text"><strong>Tipo de carta:</strong> {this.state.cardType}.</p>
                         <p className="card-text"><strong>Quantidade disponivel:</strong> {this.state.stock}.</p>
-                        <p className="card-text"><strong>Quantidade:</strong></p>
+                        <p className="card-text">
+                            <strong>Quantidade:</strong>
+                            <input 
+                                type="number"
+                                className="form-control col-md-4"
+                                id="quantity"
+                                name="quantity"                                  
+                                maxLength={this.state.stock}
+                                value={this.state.quantity}
+                                onChange={this.handleChange}
+                            >                            
+                            </input>
+                        </p>
                     </div>
                     <div className="col-lg-3">
                         <h3 className="card-text mt-4 mb-3 alert alert-success" ><strong>{this.state.price} à vista</strong></h3>
