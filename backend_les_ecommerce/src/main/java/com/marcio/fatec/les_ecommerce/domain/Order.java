@@ -30,11 +30,17 @@ public class Order extends DomainEntity {
     @JoinColumn(name = "client_id")
     private Client client;
 
+    @ManyToMany
+    private List<ItemOrder> itemList;
+
     @Enumerated(EnumType.ORDINAL)
     private ProductStatus status;
 
-    @ManyToMany
-    private List<Address> addressList;
+    @OneToOne
+    private Address billingAddress;
+
+    @OneToOne
+    private Address deliveryAddress;
 
     @ManyToMany
     private List<PaymentMethod> paymentMethodList;
@@ -42,9 +48,6 @@ public class Order extends DomainEntity {
     @ManyToOne
     @JoinColumn(name = "coupon_id")
     private Coupon coupon;
-
-    @ManyToMany
-    private List<ItemOrder> itemList;
 
 //    @OneToOne(mappedBy = "order")
 //    @JsonIgnore

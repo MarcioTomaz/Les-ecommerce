@@ -29,7 +29,7 @@ class AddressList extends React.Component {
         country: '',
         state: '',
         addressType: '',
-        client: null,//arrumar id dps rrçrç
+        client: null,
         addressList:[]        
     }
 
@@ -52,7 +52,6 @@ class AddressList extends React.Component {
                 console.log(responseData);
 
                 this.setState({
-
                     addressList: response.data
                 })
             })

@@ -16,9 +16,8 @@ export default props => {
            
             <div key={index} className="container">
 
-                <h1 className="mt-4 mb-3">Item</h1>
 
-                <div className="row">
+                <div className="row">                    
                     <div className="col-lg-12 mb-4">
                         <div className="row">
                         <div className="col-lg-12 mb-4">
@@ -31,7 +30,7 @@ export default props => {
                                 <p className="card-text"><strong>Produto:</strong> {cartList.product.name} </p>
                                 
                                 <p className="card-text"><strong>Valor total:</strong> R${cartList.product.price * cartList.quantity}</p>
-                                <p className="card-text"><strong>Quantidade disponível:</strong> {cartList.product.stock}</p>
+                                {/* <p className="card-text"><strong>Quantidade disponível:</strong> {cartList.product.stock}</p> */}
                                 <p className="card-text"><strong>Quantidade:</strong> {cartList.quantity} </p>                                
                                 <div className="row">
                                     <div className="col-lg-1 col-md-2 btn">                                
@@ -42,11 +41,11 @@ export default props => {
                                     </div>
                                 </div>
                                 </div>
-                                <div className="col-md-3 float-left">
-                                <button 
+                                <div className="col-md-3 float-left">                                    
+                                {/* <button 
                                     className="btn btn-danger float-right"
                                     onClick={e => props.removeCart(cartList.id)}
-                                    >Remover do carrinho</button>
+                                    >Remover do carrinho</button> */}
 
                                 {/* <button 
                                     type="button" 

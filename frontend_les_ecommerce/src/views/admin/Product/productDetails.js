@@ -121,7 +121,7 @@ class ProductDetails extends React.Component{
                         </p>
                     </div>
                     <div className="col-lg-3">
-                        <h3 className="card-text mt-4 mb-3 alert alert-success" ><strong>{this.state.price} à vista</strong></h3>
+                        <h3 className="card-text mt-4 mb-3 alert alert-success" ><strong>R${this.state.quantity > 0 ? this.state.price * this.state.quantity : this.state.price} Valor total</strong></h3>
                     </div>
                     <div className="col-lg-2">
                         <button 

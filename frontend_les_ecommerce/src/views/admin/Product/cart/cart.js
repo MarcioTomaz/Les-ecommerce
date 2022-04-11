@@ -26,8 +26,9 @@ class Cart extends React.Component{
             .then( response => {
                 
                 this.setState({
-                    listOrder: response.data
+                    listOrder: response.data                    
                 })
+                console.log('response data ITENS PARA ENVIAR PRA PROX TELA', response.data)
             })            
             
     }
@@ -44,6 +45,12 @@ class Cart extends React.Component{
 
     }
 
+    nextStep = () => {
+
+        this.props.history.push('/pedido');
+
+    }
+
     render(){
         return(
             <>
@@ -52,8 +59,21 @@ class Cart extends React.Component{
                 removeCart={this.removeItem}                
             />  
               <div className="row cart">
-                    <div className="col-lg-12">
-                        <h3 className="card-text float-right"><strong>Subtotal: num tem</strong></h3>
+                    <div className="col-lg-12 mb-4">
+                        <div>
+                            <h3 className="card h-100"><strong>Subtotal: num tem</strong></h3>
+                        </div>
+                    </div>
+
+                    <div className="col-lg-12 mb-4">
+                        <div className="card h-100"> 
+                            <button                                           
+                                className="btn btn-primary mb-1"                         
+                                target="new"
+                                onClick={this.nextStep}
+                                >Próximo
+                            </button>
+                        </div>
                     </div>
                 </div>                  
             
