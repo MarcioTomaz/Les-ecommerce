@@ -80,6 +80,38 @@ public class AddressController {
         return ResponseEntity.ok().body(addressesListDTO);
     }
 
+    @GetMapping("/listaEndereco/cobranca")
+    public ResponseEntity getAllAddressesCobranca(@Param("id") Long id){
+
+        Address address = new Address();
+
+        Client client = new Client();
+        client.setId(id);
+        address.setClient(client);
+
+        List<Address> addressesListDTO;
+//        result = facade.list(new Address());
+        addressesListDTO = addresRepository.findAllAddresCobranca(id);
+
+        return ResponseEntity.ok().body(addressesListDTO);
+    }
+
+    @GetMapping("/listaEndereco/entrega")
+    public ResponseEntity getAllAddressesEntrega(@Param("id") Long id){
+
+        Address address = new Address();
+
+        Client client = new Client();
+        client.setId(id);
+        address.setClient(client);
+
+        List<Address> addressesListDTO;
+//        result = facade.list(new Address());
+        addressesListDTO = addresRepository.findAllAddresEntrega(id);
+
+        return ResponseEntity.ok().body(addressesListDTO);
+    }
+
     @DeleteMapping("/deletar")
     public ResponseEntity delete(@Param("id") Long id){
 

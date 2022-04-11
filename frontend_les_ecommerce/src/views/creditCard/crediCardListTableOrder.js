@@ -13,14 +13,23 @@ export default props => {
                 <td>{creditCards.cardFlag}</td>                
                 <td>
                     
-                    <button 
+                    {/* <button 
                         type="button" 
                         className="btn btn-success btn-check" 
                         onClick={e =>  props.selectCard(creditCards.id)}>Selecionar cartão
-                    </button>
+                    </button> */}
+
+                    <div class="form-check">
+                        <label className="ml-5 form-check-label" for="flexCheckDefault">Utilizar cartão</label>
+                        <input onChange={e => props.cardToPay(creditCards.id)} className="ml-3 form-check-input" type="checkbox" value={creditCards.id} id="flexCheckDefault" />                        
+                        <br/>                                                
+                    </div>
 
                     {/* <input type="checkbox" className="btn-check" id="btn-check-outlined" autocomplete="off" />
                     <label className="btn btn-outline-primary" htmlFor="btn-check-outlined">Single toggle</label><br></br> */}
+                </td>
+                <td>
+                    <input className="ml-3 form-check-input" type="number"></input>
                 </td>
             </tr>
         )
@@ -33,6 +42,8 @@ export default props => {
                     <th scope="col">ID: </th>
                     <th scope="col">Últimos 4 digitos: </th>
                     <th scope="col">Bandeira: </th>
+                    <th scope="col" className="text-center">Selecionados: </th>
+                    <th scope="col">Valor: </th>
                 </tr>
             </thead>
             

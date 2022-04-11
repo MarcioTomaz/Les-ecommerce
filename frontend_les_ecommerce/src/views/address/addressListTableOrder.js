@@ -22,16 +22,16 @@ export default props => {
 
                 <td>
                     
-                    <button 
+                    {/* <button 
                         type="button" 
                         className="btn btn-primary mr-3" 
                         onClick={e =>  props.selectBillingAddress(addressList.id)}>Cobrança
-                    </button>
+                    </button> */}
 
                     <button 
                         type="button" 
                         className="btn btn-info" 
-                        onClick={e =>  props.selectDeliveryAddress(addressList.id)}>Entrega
+                        onClick={e =>  props.selectTypeAddress(addressList.id)}>Selecionar
                     </button>
 
                 </td>
@@ -49,6 +49,7 @@ export default props => {
                     <th scope="col">CEP: </th>
                     <th scope="col">Distrito: </th>
                     <th scope="col">Cidade: </th>
+                    <th scope="col" className="text-center">Ações: </th>
                 </tr>
 
             </thead>

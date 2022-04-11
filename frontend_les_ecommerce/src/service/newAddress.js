@@ -35,6 +35,15 @@ class NewAddressService extends ApiService {
         return this.get(`/detalhesEndereco?id=${id}`);
     }   
 
+
+    getAllAddressCobranca(id){
+        return this.get(`/listaEndereco/cobranca?id=${id}`);
+    }
+
+    getAllAddressEntrega(id){
+        return this.get(`/listaEndereco/entrega?id=${id}`);
+    }
+
         getAddresType(){
             return [
                 { label: 'Selecione...', value:'' },
