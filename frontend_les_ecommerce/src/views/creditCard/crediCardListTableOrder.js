@@ -19,9 +19,9 @@ export default props => {
                         onClick={e =>  props.selectCard(creditCards.id)}>Selecionar cartão
                     </button> */}
 
-                    <div class="form-check">
-                        <label className="ml-5 form-check-label" for="flexCheckDefault">Utilizar cartão</label>
-                        <input onChange={e => props.cardToPay(creditCards.id)} className="ml-3 form-check-input" type="checkbox" value={creditCards.id} id="flexCheckDefault" />                        
+                    <div className="form-check">
+                        <label className="ml-5 form-check-label" htmlFor="flexCheckDefault">Utilizar cartão</label>
+                        <input onChange={e => props.cardToPay(creditCards.id)} className="ml-3 form-check-input"  type="checkbox" value={creditCards.id} id="flexCheckDefault" />                        
                         <br/>                                                
                     </div>
 
@@ -29,7 +29,7 @@ export default props => {
                     <label className="btn btn-outline-primary" htmlFor="btn-check-outlined">Single toggle</label><br></br> */}
                 </td>
                 <td>
-                    <input className="ml-3 form-check-input" type="number"></input>
+                    <input id={creditCards.id} className="ml-3 form-check-input" type="hidden"></input>
                 </td>
             </tr>
         )

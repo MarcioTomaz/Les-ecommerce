@@ -39,7 +39,10 @@ import ProductDetails from '../views/admin/Product/productDetails';
 import NewCoupon from '../views/admin/coupon/newCoupon';
 
 import CouponAdminList from '../views/admin/coupon/couponList';
-import Order from '../views/user/order/order';
+
+import OrderStepAddress from '../views/user/order/OrderStepAddress';
+
+import OrderStepPayment from '../views/user/order/orderStepPayment';
 
 function AuthenticateRoute( {component: Component, ...props} ){//qbrando a props e pegando os componentes
     return(
@@ -81,7 +84,8 @@ function Routes(){
                 <AuthenticateRoute path="/listaCupom" component={CouponList}/>
                 <AuthenticateRoute path="/detalhesProduto/:id" component={ProductDetails}/>
 
-                <AuthenticateRoute path="/pedido/" component={Order}/>
+                <AuthenticateRoute path="/pedido/:id" component={OrderStepAddress}/>
+                <AuthenticateRoute path="/pagamento/" component={OrderStepPayment}/>
 
                 {/* Admin Routes */}
 

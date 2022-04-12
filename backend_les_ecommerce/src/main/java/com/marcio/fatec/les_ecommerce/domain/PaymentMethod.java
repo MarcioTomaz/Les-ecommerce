@@ -16,7 +16,6 @@ import javax.persistence.ManyToOne;
 @Getter
 @Setter
 @Entity(name = "_payment_method")
-@Where(clause = "deleted_at is null")
 public class PaymentMethod extends DomainEntity {
 
     private Double paymentValue;

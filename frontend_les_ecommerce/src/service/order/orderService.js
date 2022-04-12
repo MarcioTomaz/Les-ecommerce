@@ -8,9 +8,13 @@ class OrderService extends ApiService{
         super('/api/order')
     }
 
-    saveOrder(order){
+    saveOrderStepAddress(orderStepAddress){
 
-        this.post('/', order)
+       return  this.post('/enderecos', orderStepAddress)
+    }
+
+    sendToOrder(id){
+        return this.post(`/carrinhoItens/?id=${id}`)
     }
 
 }

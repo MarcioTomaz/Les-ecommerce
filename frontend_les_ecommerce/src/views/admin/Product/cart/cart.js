@@ -5,6 +5,7 @@ import { errorMessage,successMessage } from "../../../../components/toastr";
 import CartService from "../../../../service/client/cartService";
 import CartListItems from "./cartListItems";
 import LocalStorageService from "../../../../service/localStorageService";
+import OrderService from "../../../../service/order/orderService";
 
 class Cart extends React.Component{
  
@@ -16,6 +17,7 @@ class Cart extends React.Component{
     constructor(){
         super();
         this.service = new CartService();
+        this.orderService = new OrderService();
     }
     
     componentDidMount(){
@@ -47,8 +49,19 @@ class Cart extends React.Component{
 
     nextStep = () => {
 
-        this.props.history.push('/pedido');
+        const loggedUser = LocalStorageService.obterItem('_usuario_logado');
 
+        const clientId = loggedUser.id;
+
+        this.orderService.sendToOrder(clientId)
+            .then( response => {
+
+                let orderId = response.data;
+                console.log("ORDERR RETORNOOOOOO", orderId)
+                successMessage("Selecione os endereços do pedido! ")
+                this.props.history.push(`/pedido/${orderId}`)        
+
+            })
     }
 
     render(){

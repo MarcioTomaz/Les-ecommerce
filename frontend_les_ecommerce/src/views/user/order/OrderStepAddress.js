@@ -13,14 +13,21 @@ import CrediCardListTableOrder from "../../creditCard/crediCardListTableOrder";
 import creditCardList from "../../creditCard/creditCardList";
 import CartService from "../../../service/client/cartService";
 import CartListItemsOrder from "../../admin/Product/cart/cartListItemsOrder";
+import { errorMessage, successMessage } from "../../../components/toastr";
 
-class Order extends React.Component{
+class OrderStepAddress extends React.Component{
 
     state = {
         addressListCobranca: [],
         addressListEntrega: [],
-       creditCards: [],
-       listOrders:[]
+
+        addressCobranca: '',
+        addressEntrega:'',
+        // clientId: '',
+        orderId:13
+
+    //    creditCards: [],
+    //    listOrders:[]
     }
 
     constructor(){
@@ -36,6 +43,14 @@ class Order extends React.Component{
         const loggedUser = LocalStorageService.obterItem('_usuario_logado');       
         const userId = loggedUser.id;
 
+        const params = this.props.match.params;
+
+        this.setState({
+            orderId: params.id
+        })
+
+        console.log("IDDDDDDDDDDDDDDDD", this.orderId)
+
         this.addressService.getAllAddressCobranca(userId)
             .then( response => {
                 this.setState({
@@ -43,43 +58,81 @@ class Order extends React.Component{
                 })
             })
 
-            this.addressService.getAllAddressEntrega(userId)
-            .then( response => {
-                this.setState({
-                    addressListEntrega: response.data
-                })
-            })
-            
-        this.creditCardService.getAllCreditCards(userId)
+        this.addressService.getAllAddressEntrega(userId)
         .then( response => {
-            console.log('credit cards', response.data)
             this.setState({
-                creditCards: response.data
+                addressListEntrega: response.data,                
             })
         })
+            
+        // this.creditCardService.getAllCreditCards(userId)
+        // .then( response => {
+        //     console.log('credit cards', response.data)
+        //     this.setState({
+        //         creditCards: response.data
+        //     })
+        // })
 
-        this.cartService.getCart(userId)
-            .then( response => {
-                console.log('carrinho', response.data)
+        // this.cartService.getCart(userId)
+        //     .then( response => {
+        //         console.log('carrinho', response.data)
 
-                this.setState({
-                    listOrders: response.data
-                })
+        //         this.setState({
+        //             listOrders: response.data
+        //         })
 
-            })
-    }
+        //     })
+    }    
 
 
     selectCard = (crediCardId) => {
         console.log('crediCardId', crediCardId)
     }
 
-    selectTypeAddress = (addressId) =>{
-        console.log('addresId selectTypeAddress', addressId)
+    selectTypeAddressCobranca = (addressId) =>{
+        console.log('addresId COBRANCA', addressId)
+
+        this.setState({
+            addressCobranca: addressId,
+            orderId: '',
+        })
     }
 
-    selectDeliveryAddress = (addressId) =>{
-        console.log('addresId selectDeliveryAddress', addressId)
+    selectTypeAddressEntrega = (addressId) =>{
+        console.log('addresId Entrega', addressId)
+
+        this.setState({
+            addressEntrega: addressId
+        })
+    }
+
+    sendSelectedAddress = () => {
+
+        const loggedUser = LocalStorageService.obterItem('_usuario_logado');        
+
+        const { addressCobranca, addressEntrega, orderId} = this.state;
+        
+        const params = this.props.match.params;
+
+        const orderStepAddress = {addressCobranca, addressEntrega, orderId: params.id}
+
+        console.log('AADRESS', orderStepAddress)
+
+        if( addressCobranca === '' || addressEntrega === ''){
+            errorMessage('Insira um endereço de entrega e cobrança. ')
+        }else{
+
+            this.service.saveOrderStepAddress(orderStepAddress)
+                .then( response => {
+                    console.log('RESPONSE', response.data)
+                    successMessage('Endereços selecionados com sucesso!', response.data)
+
+                    this.props.history.push('/pagamento');
+                    
+                } ).catch( error => {
+                    console.log('aaaaaaaaa  ')
+                } )
+        }
     }
 
     cardToPay = (cardId) =>{
@@ -122,7 +175,7 @@ class Order extends React.Component{
 
                                 <AddressListTableOrder 
                                     addressList={this.state.addressListCobranca} 
-                                    selectTypeAddress={this.selectTypeAddress}                                    
+                                    selectTypeAddress={this.selectTypeAddressCobranca}                                    
                                 />
 {/* 
                                 <AddressListTableOrder 
@@ -137,7 +190,7 @@ class Order extends React.Component{
                                 <h5 className="mt-4 mb-3 text-center">Lista - Endereços de Entrega </h5>
                                 <AddressListTableOrder 
                                     addressList={this.state.addressListEntrega} 
-                                    selectTypeAddress={this.selectTypeAddress}                                    
+                                    selectTypeAddress={this.selectTypeAddressEntrega}                                    
                                 />
                             </div>
 
@@ -146,7 +199,7 @@ class Order extends React.Component{
                     </div>
 
                     <div className="">
-                        <button onClick={this.selectAddress} className=" float-right col-1 btn btn-success mt-3">Próximo</button>
+                        <button onClick={this.sendSelectedAddress} className=" float-right col-1 btn btn-success mt-3">Próximo</button>
 
                         <a href="#/carrinho" className="col-1 btn btn-secondary " >Voltar</a>
                     </div>
@@ -159,4 +212,4 @@ class Order extends React.Component{
 
 }
 
-export default withRouter(Order)
+export default withRouter(OrderStepAddress)

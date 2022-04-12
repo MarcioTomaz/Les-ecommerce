@@ -27,6 +27,7 @@ class CartService extends ApiService{
         return this.get(`/?id=${id}`)
     }
 
+
 }
 
 export default CartService;

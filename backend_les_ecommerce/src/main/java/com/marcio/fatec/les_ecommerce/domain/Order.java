@@ -30,17 +30,17 @@ public class Order extends DomainEntity {
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @ManyToMany
-    private List<ItemOrder> itemList;
-
-    @Enumerated(EnumType.ORDINAL)
-    private ProductStatus status;
-
     @OneToOne
     private Address billingAddress;
 
     @OneToOne
     private Address deliveryAddress;
+
+    @OneToMany
+    private List<ItemOrder> itemList;
+
+    @Enumerated(EnumType.STRING)
+    private ProductStatus status;
 
     @ManyToMany
     private List<PaymentMethod> paymentMethodList;
@@ -58,5 +58,6 @@ public class Order extends DomainEntity {
 
     public Order() {
         this.status = ProductStatus.EM_PROCESSAMENTO;
+        this.deliveryDate = LocalDateTime.now();
     }
 }

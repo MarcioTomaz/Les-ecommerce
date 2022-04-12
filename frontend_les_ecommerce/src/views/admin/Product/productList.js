@@ -5,6 +5,9 @@ import ProductService from "../../../service/Admin/productService";
 import ProductListTable from "./productListTable";
 import { withRouter } from "react-router-dom";
 import { errorMessage,successMessage } from "../../../components/toastr";
+import LocalStorageService from "../../../service/localStorageService";
+import CreditCardRegisterService from "../../../service/creditCardRegisterService";
+import OrderService from "../../../service/order/orderService";
 
 class ProductList extends React.Component{
 
@@ -21,9 +24,11 @@ class ProductList extends React.Component{
     constructor(){
         super();
         this.service = new ProductService();
+        this.creditCardService = new CreditCardRegisterService();
+        this.orderService = new OrderService();
     }
 
-    componentDidMount(){
+    componentDidMount(){   
 
         this.service.getAllProducts()
             .then( response => {
@@ -32,7 +37,7 @@ class ProductList extends React.Component{
                 this.setState({
                     productList: response.data
                 })
-            })
+            })       
     }
 
     editAction = (productId) => {
@@ -73,6 +78,7 @@ class ProductList extends React.Component{
                             changeActive={this.changeActive}
                         />
                     </div>
+                    <a href="#/administracao" className="btn btn-secondary">Cancelar</a>
 
                 </section>
             </>

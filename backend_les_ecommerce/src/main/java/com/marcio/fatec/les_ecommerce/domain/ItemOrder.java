@@ -34,6 +34,9 @@ public class ItemOrder extends DomainEntity{
     private Long quantity;
 
     @ManyToOne
+    private Order order;
+
+    @ManyToOne
     @JsonIgnore
     private Cart cart;
 }
