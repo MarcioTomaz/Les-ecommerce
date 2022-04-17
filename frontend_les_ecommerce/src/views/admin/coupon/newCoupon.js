@@ -40,7 +40,6 @@ class NewCoupon extends React.Component{
                 successMessage("Cupom criado com sucesso!");
 
                 this.props.history.push('/listaAdminCupom')
-
             })
 
     }

@@ -29,7 +29,7 @@ export default props => {
                     <label className="btn btn-outline-primary" htmlFor="btn-check-outlined">Single toggle</label><br></br> */}
                 </td>
                 <td>
-                    <input id={creditCards.id} className="ml-3 form-check-input" type="hidden"></input>
+                    <input id={creditCards.id} className="form-control col-4" type="hidden"></input>
                 </td>
             </tr>
         )

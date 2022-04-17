@@ -13,8 +13,9 @@ class OrderService extends ApiService{
        return  this.post('/enderecos', orderStepAddress)
     }
 
-    sendToOrder(id){
-        return this.post(`/carrinhoItens/?id=${id}`)
+    sendToOrder(order){
+        
+        return this.post('/pedido', order)
     }
 
 }

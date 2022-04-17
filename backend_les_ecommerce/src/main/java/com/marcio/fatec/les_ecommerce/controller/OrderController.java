@@ -1,5 +1,6 @@
 package com.marcio.fatec.les_ecommerce.controller;
 
+import com.marcio.fatec.les_ecommerce.DTO.OrderDTO;
 import com.marcio.fatec.les_ecommerce.DTO.order.OrderStepAddressDTO;
 import com.marcio.fatec.les_ecommerce.domain.*;
 import com.marcio.fatec.les_ecommerce.repository.*;
@@ -29,23 +30,58 @@ public class OrderController {
     @Autowired
     ItemRepository itemRepository;
 
-    @PostMapping("/carrinhoItens")
-    public ResponseEntity orderStepProducts(@RequestParam("id") Long id){
+    @Autowired
+    CouponRepository couponRepository;
 
-        Optional<Client> client =  clientRepository.findById(id);
 
-        Optional<Cart> cartOptional = cartRepository.findByClient(client.get());
+    @PostMapping("/pedido")
+    public ResponseEntity order(@RequestBody OrderDTO orderDTO){
 
-        List<ItemOrder> items = itemRepository.findByCart(cartOptional.get());
+        Order order = new Order(orderDTO);
 
-        Order order = new Order();
+        Optional<Client> client = clientRepository.findById(orderDTO.getClientId());
+
+        Optional<Address> deliveryAddres = addresRepository.findById(orderDTO.getAddressEntrega());
+        Optional<Address> billingAddres = addresRepository.findById(orderDTO.getAddressCobranca());
+
+        Optional<Cart> cart = cartRepository.findByClient(client.get());
+        List<ItemOrder> items = itemRepository.findByCart(cart.get());
+
+        Coupon coupon = couponRepository.findByCode(orderDTO.getCode());
+
+        System.out.println(orderDTO.getPaymentMethodList());
+        System.out.println(orderDTO.getCartSubTotal());
+
+        order.setBillingAddress(billingAddres.get());
+        order.setDeliveryAddress(deliveryAddres.get());
+
         order.setClient(client.get());
         order.setItemList(items);
 
+        order.setCoupon(coupon);
+
         orderRepository.save(order);
 
-        return ResponseEntity.ok().body(order.getId());
+        return ResponseEntity.ok().body(order);
     }
+
+//    @PostMapping("/carrinhoItens")
+//    public ResponseEntity orderStepProducts(@RequestParam("id") Long id){
+//
+//        Optional<Client> client =  clientRepository.findById(id);
+//
+//        Optional<Cart> cartOptional = cartRepository.findByClient(client.get());
+//
+//        List<ItemOrder> items = itemRepository.findByCart(cartOptional.get());
+//
+//        Order order = new Order();
+//        order.setClient(client.get());
+//        order.setItemList(items);
+//
+//        orderRepository.save(order);
+//
+//        return ResponseEntity.ok().body(order.getId());
+//    }
 
     @GetMapping
     public Optional<Order> getTeste(){
@@ -55,22 +91,22 @@ public class OrderController {
         return orderRepository.findByClient(client.get());
     }
 
-    @PostMapping("/enderecos")
-    public ResponseEntity orderStepAddress(@RequestBody OrderStepAddressDTO dto){
-
-//        Optional<Client> client =  clientRepository.findById(dto());
-
-        Optional<Address> addressEntrega = addresRepository.findById(dto.getAddressEntrega());
-        Optional<Address> addressCobranca = addresRepository.findById(dto.getAddressCobranca());
-
-        Optional<Order> order = orderRepository.findById(dto.getOrderId());
-//        order.setClient(client.get());
-        order.get().setDeliveryAddress(addressEntrega.get());
-        order.get().setBillingAddress(addressCobranca.get());
-
-        orderRepository.save(order.get());
-
-        return ResponseEntity.ok().body(order);
-    }
+//    @PostMapping("/enderecos")
+//    public ResponseEntity orderStepAddress(@RequestBody OrderStepAddressDTO dto){
+//
+////        Optional<Client> client =  clientRepository.findById(dto());
+//
+//        Optional<Address> addressEntrega = addresRepository.findById(dto.getAddressEntrega());
+//        Optional<Address> addressCobranca = addresRepository.findById(dto.getAddressCobranca());
+//
+//        Optional<Order> order = orderRepository.findById(dto.getOrderId());
+////        order.setClient(client.get());
+//        order.get().setDeliveryAddress(addressEntrega.get());
+//        order.get().setBillingAddress(addressCobranca.get());
+//
+//        orderRepository.save(order.get());
+//
+//        return ResponseEntity.ok().body(order);
+//    }
 
 }

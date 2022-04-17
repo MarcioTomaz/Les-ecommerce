@@ -1,5 +1,6 @@
 package com.marcio.fatec.les_ecommerce.controller;
 
+import com.marcio.fatec.les_ecommerce.DTO.CouponCheckDTO;
 import com.marcio.fatec.les_ecommerce.DTO.CouponDTO;
 import com.marcio.fatec.les_ecommerce.DTO.CreditCardDTO;
 import com.marcio.fatec.les_ecommerce.domain.Client;
@@ -11,6 +12,7 @@ import com.marcio.fatec.les_ecommerce.repository.CouponRepository;
 import com.marcio.fatec.les_ecommerce.repository.CreditCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,6 +49,32 @@ public class CouponController {
         couponList = couponRepository.findByDeletedFalse();
 
         return ResponseEntity.ok().body(couponList);
+    }
+
+    @PostMapping("/verificarCupom")
+    public ResponseEntity getCoupon(@RequestBody CouponCheckDTO couponCheckDTO){
+
+        try {
+            Coupon result = new Coupon();
+
+            if( !couponCheckDTO.getCode().isEmpty()) {
+
+                result = couponRepository.findByCode(couponCheckDTO.getCode());
+
+                if(result == null ){
+                    return ResponseEntity.notFound().build();
+                }else {
+
+                    return ResponseEntity.ok().body(result);
+                }
+
+            }else{
+                return ResponseEntity.notFound().build();
+            }
+
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).body(false);
+        }
     }
 
     @DeleteMapping("/deletar")

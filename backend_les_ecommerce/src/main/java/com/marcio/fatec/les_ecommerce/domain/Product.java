@@ -53,7 +53,6 @@ public class Product extends DomainEntity{
     @Column(name = "price")
     private Double price;
 
-
     public Product( ProductDTO product ){
         this.name = product.getName();
         this.stock = product.getStock();

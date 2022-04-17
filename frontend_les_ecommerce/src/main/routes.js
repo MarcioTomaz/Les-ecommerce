@@ -84,7 +84,7 @@ function Routes(){
                 <AuthenticateRoute path="/listaCupom" component={CouponList}/>
                 <AuthenticateRoute path="/detalhesProduto/:id" component={ProductDetails}/>
 
-                <AuthenticateRoute path="/pedido/:id" component={OrderStepAddress}/>
+                <AuthenticateRoute path="/pedido/" component={OrderStepAddress}/>
                 <AuthenticateRoute path="/pagamento/" component={OrderStepPayment}/>
 
                 {/* Admin Routes */}

@@ -32,7 +32,18 @@ export default props => {
                                 
                                 <p className="card-text"><strong>Valor total:</strong> R${cartList.product.price * cartList.quantity}</p>
                                 <p className="card-text"><strong>Quantidade disponível:</strong> {cartList.product.stock}</p>
-                                <p className="card-text"><strong>Quantidade:</strong> {cartList.quantity} </p>                                
+                                <p className="card-text"><strong>Quantidade:</strong> {cartList.quantity} </p>
+
+
+                                {/* <p className="card-text"><strong>Quantidade:</strong>
+                                    <input 
+                                        className="form-control"
+                                        type="number" 
+                                        value={cartList.quantity}
+                                        onClick={e => props.plusCartItem(cartList.quantity)}
+                                    />
+                                </p> */}
+                                                                
                                 <div className="row">
                                     <div className="col-lg-1 col-md-2 btn">                                
                                     

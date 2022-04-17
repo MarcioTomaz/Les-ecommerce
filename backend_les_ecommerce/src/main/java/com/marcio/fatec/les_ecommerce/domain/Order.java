@@ -1,6 +1,7 @@
 package com.marcio.fatec.les_ecommerce.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.marcio.fatec.les_ecommerce.DTO.OrderDTO;
 import com.marcio.fatec.les_ecommerce.domain.Enums.ProductStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -59,5 +60,28 @@ public class Order extends DomainEntity {
     public Order() {
         this.status = ProductStatus.EM_PROCESSAMENTO;
         this.deliveryDate = LocalDateTime.now();
+    }
+
+    public Order(OrderDTO orderDTO) {
+//        Client client = new Client();
+//        client.setId((orderDTO.getClientId()));
+        this.client = client;
+
+        this.total = orderDTO.getCartSubTotal();
+
+        this.status = ProductStatus.EM_PROCESSAMENTO;
+        this.deliveryDate = LocalDateTime.now();
+        this.code = "code123";
+
+//        Address billingAddress = new Address();
+//        billingAddress.setId(orderDTO.getClientId());
+//        this.billingAddress = billingAddress;
+//
+//        Address deliveryAddres = new Address();
+//        deliveryAddres.setId(orderDTO.getAddressEntrega());
+//        this.deliveryAddress = deliveryAddres;
+
+        this.itemList = orderDTO.getItemList();
+        this.paymentMethodList = orderDTO.getPaymentMethodList();
     }
 }
