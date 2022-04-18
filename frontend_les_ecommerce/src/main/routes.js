@@ -44,6 +44,11 @@ import OrderStepAddress from '../views/user/order/OrderStepAddress';
 
 import OrderStepPayment from '../views/user/order/orderStepPayment';
 
+import OrderClientDetails from '../views/user/order/OrderClientDetails';
+
+import OrderClientList from '../views/user/order/OrderClientList';
+import OrderAdmList from '../views/admin/order/orderAdmList';
+
 function AuthenticateRoute( {component: Component, ...props} ){//qbrando a props e pegando os componentes
     return(
         <Route {...props} render={ (componentProps) => {
@@ -86,6 +91,9 @@ function Routes(){
 
                 <AuthenticateRoute path="/pedido/" component={OrderStepAddress}/>
                 <AuthenticateRoute path="/pagamento/" component={OrderStepPayment}/>
+                <AuthenticateRoute path="/listaPedidos" component={OrderClientList} />
+                <AuthenticateRoute path="/detalhesPedido/:id" component={OrderClientDetails} />
+                
 
                 {/* Admin Routes */}
 
@@ -98,6 +106,7 @@ function Routes(){
                 <AuthenticateRoute path="/carrinho/" component={Cart}/>
                 <AuthenticateRoute path="/novoCupom/" component={NewCoupon}/>
                 <AuthenticateRoute path="/listaAdminCupom/" component={CouponAdminList}/>
+                <AuthenticateRoute path="/listaAdmPedidos/" component={OrderAdmList}/>
     
             </Switch>
     

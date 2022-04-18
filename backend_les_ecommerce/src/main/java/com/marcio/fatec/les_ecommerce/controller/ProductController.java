@@ -71,7 +71,7 @@ public class ProductController {
     @GetMapping("/detalhesProduto")
     public ResponseEntity getProductDetails(@Param("id") Long id){
 
-        Product product = new Product();
+      Product product = new Product();
 
        product = productRepository.findProductById(id);
 

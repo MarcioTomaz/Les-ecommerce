@@ -61,7 +61,7 @@ class ClientListAdmin extends React.Component{
     render(){
         return(
             <>
-                 <section className=" card px-5 py-5 mx-5 my-5">
+                <section className=" card px-5 py-5 mx-5 my-5">
 
                     <h1 className="mt-4 mb-3 text-center">Lista de clientes</h1>
                     <hr />

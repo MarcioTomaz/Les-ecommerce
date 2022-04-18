@@ -25,7 +25,7 @@ class ClientManagement extends React.Component {
 
                                 <div className="card border-0 col-6 my-3 px-5 py-5" style={{width: '18rem'}}>
 
-                                    <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark">Meus Pedidos</a>
+                                    <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/listaPedidos">Meus Pedidos</a>
                                     <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/listaCupom">Cupons</a>
 
                                 </div>
