@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,6 +66,10 @@ public class OrderController {
         order.setCoupon(coupon);
 
         orderRepository.save(order);
+
+        itemRepository.findByCart(cart.get()).forEach( x -> { x.setCart(null);
+            itemRepository.save(x);
+        } );
 
         return ResponseEntity.ok().body(order);
     }

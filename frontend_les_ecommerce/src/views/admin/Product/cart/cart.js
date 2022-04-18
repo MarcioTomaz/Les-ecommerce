@@ -191,17 +191,19 @@ class Cart extends React.Component{
         const order = { listOrder, cartSubTotal, addressCobranca, addressEntrega, paymentMethodList, clientId, cartSubTotal, code }
 
 
-        this.orderService.sendToOrder(order)
+        if( addressCobranca === '' || addressEntrega === ''){
+            errorMessage('Insira um endereço de entrega e cobrança. ');
+        }else{
+            this.orderService.sendToOrder(order)
             .then( response => {
 
                 successMessage('Pedido feito com sucesso!')
 
-                // let orderId = response.data;
-                // console.log("ORDERR RETORNOOOOOO", orderId)
-                // successMessage("Selecione os endereços do pedido! ")
-                // this.props.history.push(`/pedido/${orderId}`)        
+                this.props.history.push(`/listaPedidos/`)        
 
             })
+        }
+      
     }
 
     render(){

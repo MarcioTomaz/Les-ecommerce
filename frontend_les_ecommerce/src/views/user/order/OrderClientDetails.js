@@ -97,7 +97,8 @@ class OrderClientDetails extends React.Component{
                             'RECUSADO': 'text-danger',
                             'EM_TROCA': 'text-info',
                             'TROCA_AUTORIZADA': 'text-success'
-                        }[this.state.status]}><strong>Status:</strong> {this.state.status}</p>
+                        }[this.state.status]}>
+                            <strong>Status:</strong> {this.state.status}</p>
 
                         <div />
                             {/* <div className="row" >

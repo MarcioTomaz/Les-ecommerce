@@ -37,7 +37,8 @@ public class Order extends DomainEntity {
     @OneToOne
     private Address deliveryAddress;
 
-    @OneToMany
+//    @OneToMany
+    @ManyToMany
     private List<ItemOrder> itemList;
 
     @Enumerated(EnumType.STRING)
