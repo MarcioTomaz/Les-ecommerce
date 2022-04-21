@@ -20,7 +20,7 @@ class ProductListClient extends React.Component{
         stock: '',       
         price: '',
         productList: [],
-        quantity: 2,//teste mudar dpssssssssss
+        quantity: 1,//teste mudar dpssssssssss
         clientId: '',
         productId:'',
     }

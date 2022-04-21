@@ -8,8 +8,6 @@ import LocalStorageService from "../../../../service/localStorageService";
 import OrderService from "../../../../service/order/orderService";
 import NewAddressService from "../../../../service/newAddress";
 import CreditCardRegisterService from "../../../../service/creditCardRegisterService";
-import AddressListTableOrder from "../../../address/addressListTableOrder";
-import CrediCardListTableOrder from "../../../creditCard/crediCardListTableOrder";
 import CouponService from "../../../../service/Admin/couponService";
 
 class Cart extends React.Component{
@@ -18,17 +16,6 @@ class Cart extends React.Component{
     state = {
         listOrder: [],
         cartSubTotal: '',
-
-        addressListCobranca: [],
-        addressListEntrega:[],
-
-        addressCobranca: '',
-        addressEntrega:'',
-        paymentMethodList: [],
-
-        code: '',
-
-        creditCards: [],
 
     }
     
@@ -57,27 +44,30 @@ class Cart extends React.Component{
 
         let carrinhoTamanho;
 
-        this.service.getCart(loggedUser.id)
+        this.service.getCart(userId)
             .then( response => {
                 
                 let responseData = response.data;
 
                 carrinhoTamanho = responseData.length;
 
+                if( carrinhoTamanho > 0){
+                    
+                    document.getElementById('emptyCart').style.display = 'none';                    
+                }else{
+
+                    document.getElementById('emptyCart').style.display = '';                    
+                }
+                
+
                 let subTotal = 0;
 
                 console.log('carrinho tamanho', carrinhoTamanho)
 
                 for(let i = 0; i < carrinhoTamanho; i++){
-                    subTotal += ( responseData[i].quantity * responseData[i].product.price )
-
-                    console.log('subTotal', subTotal);
-                    // console.log(responseData[i].quantity);
-                    // console.log( responseData[i].product.price );
+                    subTotal += ( responseData[i].quantity * responseData[i].product.price )                  
                 }
 
-                console.log(subTotal,'subtotal')
-                // console.log(responseData[0].quantity * responseData[0].product.price);
                 
                 this.setState({
                     listOrder: response.data,
@@ -85,28 +75,6 @@ class Cart extends React.Component{
                 })         
 
             })            
-            
-            this.addressService.getAllAddressCobranca(userId)
-            .then( response => {
-                this.setState({
-                    addressListCobranca: response.data
-                })
-            })
-
-            this.addressService.getAllAddressEntrega(userId)
-            .then( response => {
-                this.setState({
-                    addressListEntrega: response.data,                
-                })
-            })
-                
-            this.creditCardService.getAllCreditCards(userId)
-            .then( response => {
-                
-                this.setState({
-                    creditCards: response.data
-                })
-            })
             
     }
 
@@ -119,7 +87,6 @@ class Cart extends React.Component{
                 successMessage('Removido com sucesso!')
                 this.componentDidMount()
             })
-
     }
 
     selectCard = (crediCardId) => {
@@ -129,80 +96,12 @@ class Cart extends React.Component{
             paymentMethodList: crediCardId
         })
     }
-
-    cardToPay = (cardId) =>{
-
-        console.log("CARTAO PRA PAGAa", cardId)
-        let teste = document.getElementById(`${cardId}`);
-
-        
-
-        teste.setAttribute('type', 'hidden');
-        console.log("CARTAO PRA PAGAa", cardId);
-        
-        teste.setAttribute('type', 'number');
-
-        console.log("OBJTO", this.state)
-    }
-
-
-    selectTypeAddressCobranca = (addressId) =>{
-        console.log('addresId COBRANCA', addressId)
-
-        this.setState({
-            addressCobranca: addressId,
-            orderId: '',
-        })
-    }
-
-    selectTypeAddressEntrega = (addressId) =>{
-        console.log('addresId Entrega', addressId)
-
-        this.setState({
-            addressEntrega: addressId
-        })
-    }
-
-    verifyCoupon = () => {
-
-        const { code } = this.state
-
-        let verifyCoupon = { code }
-
-        this.couponService.verifyCoupon( verifyCoupon )
-            .then( response => {
-
-                console.log("VERIFY COUPON", response)
-                successMessage("Cupom válido!");                
-
-            }).catch( error => {
-                errorMessage("Cupom invalido")
-            })
-    }
-
+    
     nextStep = () => {
 
-        const loggedUser = LocalStorageService.obterItem('_usuario_logado');
-
-        const clientId = loggedUser.id;
-
-        const { listOrder, cartSubTotal, addressCobranca, addressEntrega, paymentMethodList, code } = this.state;
-
-        const order = { listOrder, cartSubTotal, addressCobranca, addressEntrega, paymentMethodList, clientId, cartSubTotal, code }
+        this.props.history.push(`/pagamento/`)        
 
 
-        if( addressCobranca === '' || addressEntrega === ''){
-            errorMessage('Insira um endereço de entrega e cobrança. ');
-        }else{
-            this.orderService.sendToOrder(order)
-            .then( response => {
-
-                successMessage('Pedido feito com sucesso!')
-
-                this.props.history.push(`/listaPedidos/`)        
-
-            })
-        }
       
     }
 
@@ -214,67 +113,14 @@ class Cart extends React.Component{
                 <CartListItems
                     cartList={this.state.listOrder}
                     removeCart={this.removeItem}
-                />                                     
+                />   
 
-                <div className="container">
+                <div className="container text-center" id="emptyCart" >
 
-                <div className="container">
-                    <a href="#/novoEndereco" className="btn btn-secondary col-md-3" >Adicionar novo endereco</a>
-                    <h5 className="mt-4 mb-3 text-center">Lista - Endereços de Cobrança </h5>
+                    <h1>Carrinho vazio</h1>
+                </div>                                  
 
-                    <AddressListTableOrder 
-                        addressList={this.state.addressListCobranca} 
-                        selectTypeAddress={this.selectTypeAddressCobranca}                                    
-                    />
-                {/* 
-                    <AddressListTableOrder 
-                        addressList={this.state.addressList} 
-                        selectBillingAddress={this.selectBillingAddress}
-                        selectDeliveryAddress={this.selectDeliveryAddress}
-                    /> */}
-                </div>
-
-                <div className="container">
-                    {/* <a href="#/novoEndereco" className="btn btn-secondary col-md-3" >Adicionar novo endereco</a> */}
-                    <h5 className="mt-4 mb-3 text-center">Lista - Endereços de Entrega </h5>
-                    <AddressListTableOrder 
-                        addressList={this.state.addressListEntrega} 
-                        selectTypeAddress={this.selectTypeAddressEntrega}                                    
-                    />
-                </div>
-                </div>  
-
-                <div className="container">
-
-                    <a href="#/cadastrarCartao" className="btn btn-secondary" >Adicionar novo cartão</a>
-                    <h5 className="mt-4 mb-3 text-center">Cartões cadastrados</h5>  
-
-                    <CrediCardListTableOrder 
-                        creditCards={this.state.creditCards} 
-                        selectCard={this.selectCard}
-                        cardToPay={this.cardToPay} 
-                    />
-                </div>
-
-                <div className="container row">
-                    <div className="col-6">
-                            <input 
-                                className="card-text mt-4 mb-3 form-control"
-                                id="code"
-                                name="code"
-                                value={this.state.code}
-                                onChange={this.handleChange}
-                                ></input>
-                        </div>
-                        <div className="col-4">
-                            <button 
-                                className="btn btn-lg btn-success btn-block mt-4 mb-3"
-                                onClick={this.verifyCoupon}>Verificar cupom</button>
-                        </div>
-                    
-                </div>
-
-                <div className="container">
+                <div className="container" >
                     <h3 className="mt-5 h-100"><strong>Subtotal: R$ {this.state.cartSubTotal} </strong></h3>
                 </div>                  
             </div>
