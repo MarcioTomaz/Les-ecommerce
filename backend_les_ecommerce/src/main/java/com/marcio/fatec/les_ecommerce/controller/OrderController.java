@@ -53,6 +53,10 @@ public class OrderController {
 
         Coupon coupon = couponRepository.findByCode(orderDTO.getCode());
 
+        if( coupon != null) {
+            coupon.setAmount(coupon.getAmount() - 1);
+        }
+
         System.out.println(orderDTO.getPaymentMethodList());
         System.out.println(orderDTO.getCartSubTotal());
 
@@ -83,13 +87,13 @@ public class OrderController {
         return ResponseEntity.ok().body(result);
     }
 
-    @GetMapping
-    public Optional<Order> getTeste(){
-
-        Optional<Client> client =  clientRepository.findById(1L);
-
-        return orderRepository.findByClient(client.get());
-    }
+//    @GetMapping
+//    public Optional<Order> getTeste(){
+//
+//        Optional<Client> client =  clientRepository.findById(1L);
+//
+//        return orderRepository.findByClient(client.get());
+//    }
 
     @GetMapping("/detalhesPedido")
     public ResponseEntity getOrderDetails(@Param("id") Long id){

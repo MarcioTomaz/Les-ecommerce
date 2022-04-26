@@ -29,6 +29,7 @@ class OrderStepPayment extends React.Component{
         paymentMethodList: [],
 
         code: '',
+        coupon:'',
 
         creditCards: [],
 
@@ -174,8 +175,17 @@ class OrderStepPayment extends React.Component{
         this.couponService.verifyCoupon( verifyCoupon )
             .then( response => {
 
-                console.log("VERIFY COUPON", response)
-                successMessage("Cupom válido!");                
+                let respondeData = response.data;
+                let discount = respondeData.value;
+
+                console.log("VERIFY COUPON", response.data)
+                successMessage("Cupom válido!");
+
+                this.setState({
+                    cartSubTotal: this.state.cartSubTotal - discount,
+                    code: respondeData.id
+                })
+
 
             }).catch( error => {
                 errorMessage("Cupom invalido")

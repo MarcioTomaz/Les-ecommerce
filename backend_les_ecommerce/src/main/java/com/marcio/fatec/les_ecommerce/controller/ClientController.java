@@ -49,18 +49,18 @@ public class ClientController {
         }
     }
 
-    @PostMapping("/autenticar/admin")
-    public ResponseEntity authenticateAdmin( @RequestBody Admin admin){
-
-        try {
-            Client adminAuthenticate = clientService.authenticate(admin.getEmail(), admin.getPassword());
-
-            return ResponseEntity.ok(adminAuthenticate);
-
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email ou senha não invalidos");
-        }
-    }
+//    @PostMapping("/autenticar/admin")
+//    public ResponseEntity authenticateAdmin( @RequestBody Admin admin){
+//
+//        try {
+//            Client adminAuthenticate = clientService.authenticate(admin.getEmail(), admin.getPassword());
+//
+//            return ResponseEntity.ok(adminAuthenticate);
+//
+//        }catch (Exception e){
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Email ou senha não invalidos");
+//        }
+//    }
 
     @PostMapping
     public ResponseEntity save(@RequestBody ClientDTO dto){
