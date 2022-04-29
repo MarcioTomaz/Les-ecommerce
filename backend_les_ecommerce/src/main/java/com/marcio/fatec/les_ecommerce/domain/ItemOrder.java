@@ -33,6 +33,8 @@ public class ItemOrder extends DomainEntity{
 
     private Long quantity;
 
+    private Boolean exchange;
+
     @ManyToOne
     private Order order;
 

@@ -27,6 +27,8 @@ public class Order extends DomainEntity {
 
     private Double shippingTax;
 
+    private String reason;
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;

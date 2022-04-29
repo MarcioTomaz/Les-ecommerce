@@ -73,7 +73,7 @@ public class CouponController {
             }
 
         }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).body(false);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(false);
         }
     }
 
