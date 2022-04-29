@@ -15,18 +15,18 @@ export default props => {
                 <td>R$ {ordersList.total}</td>               
          
                 <td className={{
-                    'EM_PROCESSAMENTO': 'text-info',
-                    'EM_TRANSITO': 'text-warning',
+                    'EM_PROCESSAMENTO': 'text-secondary',
+                    'EM_TRANSITO': 'text-info',
                     'ENTREGUE': 'text-success',
                     'RECUSADO': 'text-danger',
-                    'EM_TROCA': 'text-info',
+                    'EM_TROCA': 'text-warning',
                     'TROCA_AUTORIZADA': 'text-success'
                 }[ordersList.status]}>
 
                     {ordersList.status}
                 </td>                
 
-                <td>
+                <td>                    
                     <button 
                         type="button"
                         className="btn btn-success"

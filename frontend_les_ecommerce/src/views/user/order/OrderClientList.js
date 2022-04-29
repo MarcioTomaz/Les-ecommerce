@@ -46,6 +46,20 @@ class OrderClientList extends React.Component {
         
     }
 
+    exchange = (orderId) => {
+        console.log(orderId,"aaaaaaaaaaaaaaaaaaa")
+        this.service.orderExchange(orderId)
+            .then( response => {
+                console.log(response.data)
+
+                this.props.location.state = {order: response.data}
+
+                console.log("PROPSSSSSP", this.props)
+
+                this.props.history.push(`/trocaPedidos/${orderId}`)
+            })
+    }
+
     render(){
         return(
             <>
@@ -56,8 +70,7 @@ class OrderClientList extends React.Component {
 
                     <div className="container">
                        <OrderClientListTable 
-                            ordersList={this.state.ordersList}
-                            devolution={this.devolution}
+                            ordersList={this.state.ordersList}                            
                             exchange={this.exchange}
                             details={this.details}
                        />

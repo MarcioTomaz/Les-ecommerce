@@ -183,7 +183,7 @@ class OrderStepPayment extends React.Component{
 
                 this.setState({
                     cartSubTotal: this.state.cartSubTotal - discount,
-                    code: respondeData.id
+                    code: respondeData.code
                 })
 
 

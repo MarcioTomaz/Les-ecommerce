@@ -1,6 +1,7 @@
 
 
 import React from "react";
+import { Button, Form, Modal } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import OrderService from "../../../service/order/orderService";
 import OrderAdmListTable from "./orderAdmListTable";
@@ -9,7 +10,9 @@ import OrderAdmListTable from "./orderAdmListTable";
 class OrderAdmList extends React.Component{
 
     state = {
-        ordersList: []
+        ordersList: [],
+
+        openModal: false,
     }
 
     constructor(){
@@ -48,10 +51,50 @@ class OrderAdmList extends React.Component{
     }
 
 
+        closeModal = () => {
+
+            this.setState({
+                openModal: false,
+            })
+        }
+
+        openModal = () => {
+
+            this.setState({
+                openModal: true,
+            })
+        }
+
+
     render(){
         return(
-            <>
-                
+            <>   
+
+               {/* <Button variant="primary" onClick={this.openModal}>
+                        Launch demo modal
+                </Button> */}
+
+                <Modal show={this.state.openModal} onHide={this.closeModal}>
+                    <Modal.Header closeButton>
+                    <Modal.Title>Deseja recusar o pedido?</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                    <Form.Label>Insira o motivo</Form.Label>
+                    <Form.Control type="textArea" placeholder="Motivo" />
+
+                    </Modal.Body>
+                    <Modal.Footer>
+                    <Button variant="secondary" onClick={this.closeModal}>
+                        Fechar
+                    </Button>
+                    <Button variant="danger" onClick={this.closeModal}>
+                        Recusar Pedido
+                    </Button>
+                    </Modal.Footer>
+                </Modal> 
+
+
+            
                 <section className=" card px-5 py-5 mx-5 my-5">
 
                     <h1 className="mt-4 mb-3 text-center">Lista de pedidos</h1>
@@ -61,7 +104,7 @@ class OrderAdmList extends React.Component{
                        <OrderAdmListTable 
                             ordersList={this.state.ordersList}
                             accept={this.accept}
-                            refuse={this.refuse}
+                            refuse={this.openModal}
                             details={this.details}
                        />
                     </div>

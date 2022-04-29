@@ -27,6 +27,16 @@ class OrderService extends ApiService{
         return this.get(`/detalhesPedido?id=${id}`)
     }
 
+    orderExchange(id){
+        return this.post(`/pedidoTroca?id=${id}`)
+    }
+
+
+    sendExchange(orderItems){
+
+        return this.post('/emTroca', orderItems)
+    }
+
     // ********************************************************
 
     getAllOrdersAdm(){

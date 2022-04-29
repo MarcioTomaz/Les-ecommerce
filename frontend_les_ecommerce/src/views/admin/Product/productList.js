@@ -8,6 +8,7 @@ import { errorMessage,successMessage } from "../../../components/toastr";
 import LocalStorageService from "../../../service/localStorageService";
 import CreditCardRegisterService from "../../../service/creditCardRegisterService";
 import OrderService from "../../../service/order/orderService";
+import { Col, Container, Row } from "react-bootstrap";
 
 class ProductList extends React.Component{
 
@@ -71,15 +72,21 @@ class ProductList extends React.Component{
                     <hr />
                     <a href="#/novoProduto" className="btn btn-secondary" >Adicionar novo produto</a>
 
-                    <div className="container">
-                        <ProductListTable
-                            productList={this.state.productList}
-                            editAction={this.editAction}
-                            changeActive={this.changeActive}
-                        />
-                    </div>
-                    <a href="#/administracao" className="btn btn-secondary">Cancelar</a>
 
+                    <Container > 
+                    <Row className="justify-content-md-center">
+                        <div className="container">
+                            <Col md={6}>
+                                <ProductListTable
+                                    productList={this.state.productList}
+                                    editAction={this.editAction}
+                                    changeActive={this.changeActive}
+                                />
+                                </Col>
+                            </div>
+                            <a href="#/administracao" className="btn btn-secondary">Cancelar</a>
+                        </Row>
+                    </Container>
                 </section>
             </>
         )

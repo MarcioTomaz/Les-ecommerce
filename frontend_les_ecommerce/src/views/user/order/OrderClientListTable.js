@@ -24,14 +24,14 @@ export default props => {
                 }[ordersList.status]}>
                     {ordersList.status}
                 </td>                
-
+{/* 
                 <td>
                     <button 
                         type="button"
                         className="btn btn-warning"
                         onClick={e => props.devolution(ordersList.id)}>Devolucão
                     </button>
-                </td>    
+                </td>     */}
 
                 <td>
                     <button 
@@ -61,7 +61,7 @@ export default props => {
                     <th scope="col">Id da compra: </th>
                     <th scope="col">Valor total: </th>
                     <th scope="col">Status: </th>
-                    <th scope="col">Devolucão: </th>
+                    {/* <th scope="col">Devolucão: </th> */}
                     <th scope="col">Troca: </th>                
                     <th scope="col">Detalhes: </th>                
                 </tr>

@@ -48,6 +48,7 @@ import OrderClientDetails from '../views/user/order/OrderClientDetails';
 
 import OrderClientList from '../views/user/order/OrderClientList';
 import OrderAdmList from '../views/admin/order/orderAdmList';
+import ExchangeSelectItem from '../views/user/exchange/exchangeSelectItem';
 
 function AuthenticateRoute( {component: Component, ...props} ){//qbrando a props e pegando os componentes
     return(
@@ -93,6 +94,7 @@ function Routes(){
                 <AuthenticateRoute path="/pagamento/" component={OrderStepPayment}/>
                 <AuthenticateRoute path="/listaPedidos" component={OrderClientList} />
                 <AuthenticateRoute path="/detalhesPedido/:id" component={OrderClientDetails} />
+                <AuthenticateRoute path="/trocaPedidos/:id" component={ExchangeSelectItem} />
                 
 
                 {/* Admin Routes */}
