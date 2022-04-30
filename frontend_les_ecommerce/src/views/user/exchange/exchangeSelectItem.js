@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Button, Modal } from "react-bootstrap";
 import { useParams} from 'react-router-dom'
 import { withRouter } from "react-router-dom";
+import { successMessage } from '../../../components/toastr';
 import OrderService from "../../../service/order/orderService";
 import ExchangeListOrderItems from "./exchangeListOrderItems";
 
@@ -16,8 +17,8 @@ class ExchangeSelectItems extends React.Component{
         itemList: [],
 
         orderId: 1,
-        idList: [1,2],
-        reason: 'Motivo porq eu quero',
+        idList: [],
+        reason: '',
 
         openModal: false,
     }
@@ -47,20 +48,27 @@ class ExchangeSelectItems extends React.Component{
 
     sendExchange = () => {
 
+        console.log(this.state.reason)
+
         this.service.sendExchange({orderId:this.state.orderId, idList: this.state.idList, reason: this.state.reason})
             .then( response => {
+                successMessage("Pedido de troca enviado com sucesso!")
                 console.log("RESPOSTA", response.data)
             })
 
     }
-
-    selectItems = (itemId) =>{
-
-        // this.setState({
-        //     idList: itemId
-        // })
     
-        console.log("itemId", itemId)        
+    selectItems = (itemId) =>{   
+        
+        console.log(itemId)
+        console.log("itemId", this.state.idList)       
+
+
+        this.setState({
+            idList: [...this.state.idList, itemId]
+            // idList: this.state.idList.concat(itemId)
+        })
+    
     }
 
     closeModal = () => {
@@ -75,6 +83,14 @@ class ExchangeSelectItems extends React.Component{
         this.setState({
             openModal: true,
         })
+    }
+
+    
+    handleChange = (event) => {
+        const value = event.target.value;
+        const name = event.target.name;
+
+        this.setState({ [name]: value })
     }
 
     render(){
@@ -108,9 +124,18 @@ class ExchangeSelectItems extends React.Component{
                         <ExchangeListOrderItems 
                             exchangeListOrder={this.state.itemList}
                             selectItems={this.selectItems}
-                        />
+                        />                        
 
-                        <button onClick={this.sendExchange}>Enviar pedido</button>
+                        <label className='mt-3 mb-3'><strong>Motivo da troca: </strong></label>
+                        
+                        <textarea 
+                            className='form-control mb-3' 
+                            value={this.state.reason}
+                            name="reason"
+                            onChange={this.handleChange}
+                            ></textarea> 
+
+                        <button onClick={this.sendExchange} className="btn btn-primary">Enviar pedido</button>
 
                         {/* <div >
                             <ul>

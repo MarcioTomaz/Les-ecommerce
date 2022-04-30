@@ -15,15 +15,18 @@ class ClientManagement extends React.Component {
                             <h6 className="text-center">Bem-vindo à sua conta. Aqui você pode gerenciar todos os seus dados pessoais e pedidos.</h6>
                             <div className="row">
 
-                                <div className="card border-0 col-6 my-3 px-5 py-5 " style={{width: '18rem'}}>
+                                <hr className="mt-3"/>
+
+                                <div className="card border-0 col-6 my-3 px-5 py-5 " style={{width: '600px'}}>
 
                                     <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/perfilDetalhes">Sua Conta</a>
                                     <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/listaEndereco">Endereços</a>
                                     <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/cartoes">Cartões</a>
                                     
                                 </div>
+                                
 
-                                <div className="card border-0 col-6 my-3 px-5 py-5" style={{width: '18rem'}}>
+                                <div className="card border-0 col-6 my-3 px-5 py-5" style={{width: '600px'}}>
 
                                     <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/listaPedidos">Meus Pedidos</a>
                                     <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/listaCupom">Cupons</a>

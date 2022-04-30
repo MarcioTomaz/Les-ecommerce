@@ -29,6 +29,11 @@ export default props => {
                                     className="form-check-input"
                                     onClick={ e => props.selectItems(exchangeListOrder.id)}                                   
                                     />
+
+                                {/* <button 
+                                    type="button"                                     
+                                    onClick={ e => props.selectItems(exchangeListOrder.id)}                                   
+                                    >teste </button> */}
                                 {/* <button 
                                     type="button" 
                                     className="btn btn-info" 

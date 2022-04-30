@@ -50,9 +50,8 @@ public class ProductController {
     public ResponseEntity getAllProducts(){
 
         List<Product> productList = new ArrayList<>();
-//        productList = productRepository.findAllProductDeletedFalse();
-        productList = productRepository.findByDeletedFalse();
 
+        productList = productRepository.findByDeletedFalse();
 
         return ResponseEntity.ok().body(productList);
     }
@@ -88,6 +87,5 @@ public class ProductController {
 
         return ResponseEntity.ok().body(editProduct);
     }
-
 
 }

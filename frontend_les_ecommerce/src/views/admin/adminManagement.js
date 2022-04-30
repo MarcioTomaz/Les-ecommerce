@@ -15,7 +15,9 @@ class AdmintManagement extends React.Component {
                             <h6 className="text-center">Menu principal administrador.</h6>
                             <div className="row">
 
-                                <div className="card border-0 col-6 my-3 px-5 py-5 " style={{width: '18rem'}}>
+                                <hr className="mt-3"/>
+
+                                <div className="card border-0 col-6 my-3 px-5 py-5 " style={{width: '600px'}}>
 
                                     <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/listaCliente">Listagem de clientes</a>
                                     <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/listaAdmPedidos">Pedidos</a>
@@ -23,7 +25,7 @@ class AdmintManagement extends React.Component {
                                     
                                 </div>
 
-                                <div className="card border-0 col-6 my-3 px-5 py-5" style={{width: '18rem'}}>
+                                <div className="card border-0 col-6 my-3 px-5 py-5" style={{width: '600px'}}>
 
                                     <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/estoque">Estoque</a>                                                                      
                                     <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/listaAdminCupom">Cupons</a>

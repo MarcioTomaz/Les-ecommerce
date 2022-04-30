@@ -8,6 +8,8 @@ import { errorMessage,successMessage } from "../../../components/toastr";
 import ProductListToClient from "./productListToClient";
 import CartService from "../../../service/client/cartService";
 import LocalStorageService from "../../../service/localStorageService";
+import { Card } from "react-bootstrap";
+import { Button } from "bootstrap";
 
 
 class ProductListClient extends React.Component{
@@ -67,12 +69,17 @@ class ProductListClient extends React.Component{
 
         const cart = { clientId: loggedUser.id, productId: product.id, quantity}
         console.log('cart ',cart)
+        console.log("PRODUTCT", product.quantity)
 
-        this.cartService.addToCart(cart)
-            .then(response => {
-                console.log('resposta do carinho', response.data)
-                successMessage("Produto adicionado no carrinho!")
-            })
+        if(product.stock < 1){
+            errorMessage("Estoque invalido!")
+        }else{
+            this.cartService.addToCart(cart)
+                .then(response => {
+                    console.log('resposta do carinho', response.data)
+                    successMessage("Produto adicionado no carrinho!")
+                })
+        }
     }
 
     getProductDetails = (productId) => {
@@ -88,10 +95,12 @@ class ProductListClient extends React.Component{
     render(){
         return(
             <>
+
+
                 <div className="album py-5 bg-light mx-5 my-5">
                     <div className="container">
                         <div className="row">
-                            <ProductListToClient
+                            <ProductListToClient                                
                                 productList={this.state.productList}
                                 addToCart={this.addCart}
                                 getProductDetails={this.getProductDetails}
