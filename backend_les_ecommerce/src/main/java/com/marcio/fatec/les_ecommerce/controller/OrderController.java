@@ -60,7 +60,7 @@ public class OrderController {
             productRepository.save(itemProduct);
         }
 
-
+                
         //        Product productStock = new Product();
         // productStock.setStock();
 
@@ -114,6 +114,15 @@ public class OrderController {
         return ResponseEntity.ok().body(order);
     }
 
+    @GetMapping("/detalhesPedidoAdm")
+    public ResponseEntity getOrderDetailsAdm(@Param("id") Long id){
+
+        Optional<Order> order = orderRepository.findById(id);
+//       Optional<Order> order = Optional.ofNullable(orderRepository.findByIdAndExchangeTrue(id));
+
+        return ResponseEntity.ok().body(order);
+    }
+
     @GetMapping("/pedidosAdm")
     public ResponseEntity getOrdersAdmList(){
 
@@ -122,17 +131,42 @@ public class OrderController {
         return ResponseEntity.ok().body(order);
     }
 
+//    @PostMapping("/recusarPedido")
+//    public ResponseEntity refuseOrder(@Param("id") Long id){
+//
+//        Optional<Order> order = orderRepository.findById(id);
+//
+//        order.get().setStatus(RECUSADO);
+//
+//        orderRepository.save(order.get());
+//
+//        return ResponseEntity.ok().body(order);
+//    }
+
     @PostMapping("/recusarPedido")
     public ResponseEntity refuseOrder(@Param("id") Long id){
 
         Optional<Order> order = orderRepository.findById(id);
 
-        order.get().setStatus(RECUSADO);
+        List<ItemOrder> items = order.get().getItemList();
 
+        // buscar os itens da ordem pelo ID
+        for (ItemOrder item : items) {
+
+            Product product = item.getProduct();
+
+            product.setStock((int) (product.getStock() + item.getQuantity()));
+            productRepository.save(product);
+
+            itemRepository.save(item);
+        }
+
+        order.get().setStatus(RECUSADO);
         orderRepository.save(order.get());
 
         return ResponseEntity.ok().body(order);
     }
+
 
     @PostMapping("/aceitarPedido")
     public ResponseEntity acceptOrder(@Param("id") Long id){
@@ -170,4 +204,55 @@ public class OrderController {
 
         return ResponseEntity.ok().body(dto);
     }
+
+    @PostMapping("/confirmarRecebimento")
+    public ResponseEntity confirmReceipt(@Param("id") Long id){
+
+        Optional<Order> order = orderRepository.findById(id);
+
+        order.get().setStatus(PEDIDO_RECEBIDO);
+
+        orderRepository.save(order.get());
+
+        return ResponseEntity.ok().body(order);
+    }
+
+    @PostMapping("/trocaAceita")
+    public ResponseEntity acceptExchange(@Param("id") Long id){
+
+        Optional<Order> order = orderRepository.findById(id);
+
+        List<ItemOrder> items = order.get().getItemList();
+
+        // buscar os itens da ordem pelo ID
+        for (ItemOrder item : items) {
+
+            if(item.getExchange()){
+
+                Product product = item.getProduct();
+
+                product.setStock((int) (product.getStock() + item.getQuantity()));
+                productRepository.save(product);
+            }
+
+            itemRepository.save(item);
+        }
+
+        order.get().setStatus(TROCA_AUTORIZADA);
+        orderRepository.save(order.get());
+
+        return ResponseEntity.ok().body(order);
+    }
+
+    @PostMapping("/recusarTroca")
+    public ResponseEntity refuseExchange(@Param("id") Long id){
+
+        Optional<Order> order = orderRepository.findById(id);
+
+        order.get().setStatus(TROCA_RECUSADA);
+        orderRepository.save(order.get());
+
+        return ResponseEntity.ok().body(order);
+    }
+
 }

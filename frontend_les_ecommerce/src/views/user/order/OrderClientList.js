@@ -47,7 +47,9 @@ class OrderClientList extends React.Component {
     }
 
     exchange = (orderId) => {
+
         console.log(orderId,"aaaaaaaaaaaaaaaaaaa")
+        
         this.service.orderExchange(orderId)
             .then( response => {
                 console.log(response.data)
@@ -76,7 +78,7 @@ class OrderClientList extends React.Component {
                        />
                     </div>
 
-                    <a href="#/administracao" className="btn btn-secondary " >Voltar</a>
+                    <a href="#/meusDados" className="btn btn-secondary " >Voltar</a>
                 </section>
 
             </>

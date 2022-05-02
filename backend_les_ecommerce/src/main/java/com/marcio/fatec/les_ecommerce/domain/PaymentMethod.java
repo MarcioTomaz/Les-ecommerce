@@ -19,7 +19,6 @@ import javax.persistence.ManyToOne;
 public class PaymentMethod extends DomainEntity {
 
     private Double paymentValue;
-
     @ManyToOne
     @JoinColumn(name = "credit_card_id")
     private CreditCard creditCard;

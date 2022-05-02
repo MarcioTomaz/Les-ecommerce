@@ -49,6 +49,7 @@ import OrderClientDetails from '../views/user/order/OrderClientDetails';
 import OrderClientList from '../views/user/order/OrderClientList';
 import OrderAdmList from '../views/admin/order/orderAdmList';
 import ExchangeSelectItem from '../views/user/exchange/exchangeSelectItem';
+import OrderClientDetailsAdm from '../views/admin/order/orderClientDetailsAdm';
 
 function AuthenticateRoute( {component: Component, ...props} ){//qbrando a props e pegando os componentes
     return(
@@ -98,6 +99,8 @@ function Routes(){
                 
 
                 {/* Admin Routes */}
+
+                <AuthenticateRoute path="/detalhesPedidoAdm/:id" component={OrderClientDetailsAdm} />
 
                 <AuthenticateRoute path="/administracao" component={adminManagement}/>
                 <AuthenticateRoute path="/listaCliente" component={ClientListAdmin}/>

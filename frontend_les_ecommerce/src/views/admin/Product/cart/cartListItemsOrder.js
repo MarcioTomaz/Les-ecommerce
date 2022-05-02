@@ -7,10 +7,7 @@ import productList from "../productList";
 
 export default props => {
 
-    console.log(props)
-    const rows = props.cartList.map( ( cartList, index ) => {
-
-        console.log('CartListItem', cartList)        
+    const rows = props.cartList.map( ( cartList, index ) => {   
         
         return (
            

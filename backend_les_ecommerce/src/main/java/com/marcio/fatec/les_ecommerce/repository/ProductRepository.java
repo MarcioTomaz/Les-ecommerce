@@ -13,7 +13,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Product findProductById(Long id);
 
-    @Query(value = "SELECT * FROM _PRODUCT where deleted = false and stock > 0", nativeQuery = true)
+    @Query(value = "SELECT * FROM _product where deleted = false and stock > 0", nativeQuery = true)
     List<Product> findByDeletedFalse();
 
 }

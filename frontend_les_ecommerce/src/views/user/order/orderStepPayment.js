@@ -26,7 +26,8 @@ class OrderStepPayment extends React.Component{
 
         addressCobranca: '',
         addressEntrega:'',
-        paymentMethodList: [],
+        paymentMethodCardList: [],
+
 
         code: '',
         coupon:'',
@@ -67,20 +68,13 @@ class OrderStepPayment extends React.Component{
 
                 carrinhoTamanho = responseData.length;
 
-                let subTotal = 0;
-
-                console.log('carrinho tamanho', carrinhoTamanho)
+                let subTotal = 0;                
 
                 for(let i = 0; i < carrinhoTamanho; i++){
-                    subTotal += ( responseData[i].quantity * responseData[i].product.price )
 
-                    console.log('subTotal', subTotal);
-                    // console.log(responseData[i].quantity);
-                    // console.log( responseData[i].product.price );
+                    subTotal += ( responseData[i].quantity * responseData[i].product.price )                  
+                    
                 }
-
-                console.log(subTotal,'subtotal')
-                // console.log(responseData[0].quantity * responseData[0].product.price);
                 
                 this.setState({
                     listOrder: response.data,
@@ -114,43 +108,48 @@ class OrderStepPayment extends React.Component{
     }
 
     removeItem = (item) =>{
-        console.log('item', item)
-
+        
         this.service.removeItemCart(item)
             .then( response => {
-                console.log('resposta remover carrinho', response.data)
+                
                 successMessage('Removido com sucesso!')
                 this.componentDidMount()
             })
 
     }
+ 
 
-    selectCard = (crediCardId) => {
-        console.log('crediCardId', crediCardId)
+    selectCard = (crediCardId) => {        
 
         this.setState({
-            paymentMethodList: crediCardId
+            paymentMethodCardList: [...this.state.paymentMethodCardList, crediCardId]
         })
+
+        // console.log("crediLIST", this.state.paymentMethodCardList)
+
     }
 
     cardToPay = (cardId) =>{
 
-        console.log("CARTAO PRA PAGAa", cardId)
-        let teste = document.getElementById(`${cardId}`);
-
+        let teste = document.getElementById(`${cardId}`); 
         
+        console.log(teste)
+        
+        this.setState({
+            paymentMethodCardList: [...this.state.paymentMethodCardList, cardId]
+        })
 
-        teste.setAttribute('type', 'hidden');
-        console.log("CARTAO PRA PAGAa", cardId);
+        console.log(this.state.paymentMethodCardList)
+        
+        teste.setAttribute('type', 'hidden');        
         
         teste.setAttribute('type', 'number');
-
-        console.log("OBJTO", this.state)
     }
 
 
     selectTypeAddressCobranca = (addressId) =>{
-        console.log('addresId COBRANCA', addressId)
+
+        successMessage("Endereço de cobrança selecionado")
 
         this.setState({
             addressCobranca: addressId,
@@ -159,11 +158,14 @@ class OrderStepPayment extends React.Component{
     }
 
     selectTypeAddressEntrega = (addressId) =>{
-        console.log('addresId Entrega', addressId)
 
+        successMessage("Endereço de entrega selecionado")
+        
         this.setState({
-            addressEntrega: addressId
+
+            addressEntrega: addressId            
         })
+
     }
 
     verifyCoupon = () => {
@@ -177,8 +179,7 @@ class OrderStepPayment extends React.Component{
 
                 let respondeData = response.data;
                 let discount = respondeData.value;
-
-                console.log("VERIFY COUPON", response.data)
+                
                 successMessage("Cupom válido!");
 
                 this.setState({
@@ -198,9 +199,9 @@ class OrderStepPayment extends React.Component{
 
         const clientId = loggedUser.id;
 
-        const { listOrder, cartSubTotal, addressCobranca, addressEntrega, paymentMethodList, code } = this.state;
+        const { listOrder, cartSubTotal, addressCobranca, addressEntrega, paymentMethodList,paymentMethodCardList, code } = this.state;
 
-        const order = { listOrder, cartSubTotal, addressCobranca, addressEntrega, paymentMethodList, clientId, cartSubTotal, code }
+        const order = { listOrder, cartSubTotal, addressCobranca, addressEntrega, paymentMethodList,paymentMethodCardList, clientId, cartSubTotal, code }
 
 
         if( addressCobranca === '' || addressEntrega === ''){

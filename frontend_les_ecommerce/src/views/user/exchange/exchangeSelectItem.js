@@ -16,7 +16,7 @@ class ExchangeSelectItems extends React.Component{
         order:'',
         itemList: [],
 
-        orderId: 1,
+        orderId: '',
         idList: [],
         reason: '',
 
@@ -32,6 +32,12 @@ class ExchangeSelectItems extends React.Component{
     componentDidMount(){  
 
         const id = this.props.match.params.id;
+
+        console.log("GETORDERDETAILS ID ", id)
+
+        this.setState({
+            orderId: id
+        })
 
         this.service.getOrderDetails(id)
             .then( response => {
@@ -50,19 +56,23 @@ class ExchangeSelectItems extends React.Component{
 
         console.log(this.state.reason)
 
+        let orderId = this.state.orderId;
+
         this.service.sendExchange({orderId:this.state.orderId, idList: this.state.idList, reason: this.state.reason})
             .then( response => {
                 successMessage("Pedido de troca enviado com sucesso!")
                 console.log("RESPOSTA", response.data)
+
+                this.props.history.push('/listaPedidos')
             })
+            
 
     }
     
     selectItems = (itemId) =>{   
         
         console.log(itemId)
-        console.log("itemId", this.state.idList)       
-
+        console.log("itemId", this.state.idList)
 
         this.setState({
             idList: [...this.state.idList, itemId]

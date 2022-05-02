@@ -31,15 +31,20 @@ class OrderAdmList extends React.Component{
 
             this.setState({
                 ordersList: response.data
-            })
+            })            
         })
     }
 
     accept = ( orderId ) => {
+
         this.service.acceptOrder( orderId )
             .then( response=> {
+
                 this.getAllOrdersAdmin();
+                this.props.history.push('/listaAdmPedidos')
+
             })
+
     }
 
     refuse = ( orderId ) => {
@@ -48,6 +53,19 @@ class OrderAdmList extends React.Component{
                 console.log(response.data)
                 this.getAllOrdersAdmin();      
             })
+
+            this.props.history.push('/listaAdmPedidos')
+    }
+
+    confirmReceipt = (orderId) => {
+        
+        this.service.confirmReceipt( orderId )
+            .then( response => {
+                
+            })
+
+            this.props.history.push('/listaAdmPedidos')
+
     }
 
 
@@ -64,6 +82,20 @@ class OrderAdmList extends React.Component{
                 openModal: true,
             })
         }
+
+        details = (orderId) =>{
+
+           console.log("SOCORRR", orderId)
+
+           this.service.getOrderDetailsAdm(orderId)
+            .then( response => {
+
+                console.log(response.data)
+
+                this.props.history.push(`/detalhesPedidoAdm/${orderId}`)
+            })
+            
+        }      
 
 
     render(){
@@ -104,7 +136,8 @@ class OrderAdmList extends React.Component{
                        <OrderAdmListTable 
                             ordersList={this.state.ordersList}
                             accept={this.accept}
-                            refuse={this.openModal}
+                            refuse={this.refuse}
+                            confirmReceipt={this.confirmReceipt}
                             details={this.details}
                        />
                     </div>

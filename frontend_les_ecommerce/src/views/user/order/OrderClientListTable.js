@@ -15,12 +15,14 @@ export default props => {
                 <td>R$ {ordersList.total}</td>               
          
                 <td className={{
-                    'EM_PROCESSAMENTO': 'text-info',
-                    'EM_TRANSITO': 'text-warning',
+                    'EM_PROCESSAMENTO': 'text-secondary',
+                    'EM_TRANSITO': 'text-info',
                     'ENTREGUE': 'text-success',
                     'RECUSADO': 'text-danger',
-                    'EM_TROCA': 'text-info',
-                    'TROCA_AUTORIZADA': 'text-success'
+                    'EM_TROCA': 'text-warning',
+                    'TROCA_AUTORIZADA': 'text-success',
+                    'TROCA_RECUSADA': 'text-danger',
+                    'PEDIDO_RECEBIDO': 'text-success'
                 }[ordersList.status]}>
                     {ordersList.status}
                 </td>                

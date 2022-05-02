@@ -27,6 +27,10 @@ class OrderService extends ApiService{
         return this.get(`/detalhesPedido?id=${id}`)
     }
 
+    getOrderDetailsAdm(id){
+        return this.get(`/detalhesPedidoAdm?id=${id}`)
+    }
+
     orderExchange(id){
         return this.post(`/pedidoTroca?id=${id}`)
     }
@@ -37,6 +41,16 @@ class OrderService extends ApiService{
         return this.post('/emTroca', orderItems)
     }
 
+    acceptExchange(id){
+        
+        return this.post(`/trocaAceita?id=${id}`)
+    }
+
+    refuseExchange(id){
+
+        return this.post(`/recusarTroca?id=${id}`)
+    }
+
     // ********************************************************
 
     getAllOrdersAdm(){
@@ -44,11 +58,17 @@ class OrderService extends ApiService{
     }
 
     refuseOrder( orderId ){
+        console.log("ORDER ID", orderId)
         return this.post(`/recusarPedido?id=${orderId}`)
     }
 
     acceptOrder( orderId ) {
         return this.post(`/aceitarPedido?id=${orderId}`)
+    }
+
+    confirmReceipt( orderId ){
+
+        return this.post(`/confirmarRecebimento?id=${orderId}`)
     }
 
 }

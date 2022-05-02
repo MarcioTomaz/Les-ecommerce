@@ -7,5 +7,10 @@ public enum ProductStatus {
     ENTREGUE,
     RECUSADO,
     EM_TROCA,
+
     TROCA_AUTORIZADA,
+
+    TROCA_RECUSADA,
+
+    PEDIDO_RECEBIDO
 }

@@ -20,7 +20,9 @@ export default props => {
                     'ENTREGUE': 'text-success',
                     'RECUSADO': 'text-danger',
                     'EM_TROCA': 'text-warning',
-                    'TROCA_AUTORIZADA': 'text-success'
+                    'TROCA_AUTORIZADA': 'text-success',
+                    'TROCA_RECUSADA': 'text-danger',
+                    'PEDIDO_RECEBIDO': 'text-success'
                 }[ordersList.status]}>
 
                     {ordersList.status}
@@ -48,7 +50,7 @@ export default props => {
                         className="btn btn-danger"
                         onClick={e => props.refuse(ordersList.id)}>Recusar
                     </button>
-                </td>
+                </td>               
 
                 <td>
                     <button 
@@ -70,8 +72,8 @@ export default props => {
                     <th scope="col">Id da compra: </th>
                     <th scope="col">Valor total: </th>
                     <th scope="col">Status: </th>
-                    <th scope="col">Devolucão: </th>
-                    <th scope="col">Troca: </th>                
+                    <th scope="col">Aceitar: </th>
+                    <th scope="col">Recusar: </th>                
                     <th scope="col">Detalhes: </th>                
                 </tr>
             </thead>

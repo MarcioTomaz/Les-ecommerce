@@ -79,12 +79,18 @@ class ProductDetails extends React.Component{
             return false;
 
         }else if(this.state.quantity <= 0 || this.state.quantity === ''){
+
             errorMessage("Insira uma quantidade valida")
+
         }else{
+
             this.cartService.addToCart(cart)
                 .then(response => {
+
                     console.log('resposta do carinho', response.data)
                     successMessage("Produto adicionado no carrinho!")
+
+                    this.props.history.push('/carrinho')
                 })
         }
     }

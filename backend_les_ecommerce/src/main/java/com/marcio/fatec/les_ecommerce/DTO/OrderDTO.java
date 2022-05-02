@@ -42,5 +42,6 @@ public class OrderDTO {
 
     private List<PaymentMethod> paymentMethodList;
 
+    private List<Long> paymentMethodCardList;
     private Long coupon;
 }
