@@ -9,8 +9,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import static com.marcio.fatec.les_ecommerce.domain.Enums.ProductStatus.*;
 
@@ -39,6 +41,9 @@ public class OrderController {
     @Autowired
     ProductRepository productRepository;
 
+    @Autowired
+    ExchangeCouponRepository exchangeCouponRepository;
+
 
     @PostMapping("/pedido")
     public ResponseEntity order(@RequestBody OrderDTO orderDTO){
@@ -65,6 +70,7 @@ public class OrderController {
         // productStock.setStock();
 
         Coupon coupon = couponRepository.findByCode(orderDTO.getCode());
+        ExchangeCoupon exchangeCoupon = exchangeCouponRepository.findByCode(orderDTO.getExchangeCode());
 
         if( coupon != null) {
             coupon.setAmount(coupon.getAmount() - 1);
@@ -79,6 +85,8 @@ public class OrderController {
 
         order.setTotal(orderDTO.getCartSubTotal());
         order.setCoupon(coupon);
+
+        order.setExchangeCoupon(exchangeCoupon);
 
         orderRepository.save(order);
 
@@ -130,18 +138,6 @@ public class OrderController {
 
         return ResponseEntity.ok().body(order);
     }
-
-//    @PostMapping("/recusarPedido")
-//    public ResponseEntity refuseOrder(@Param("id") Long id){
-//
-//        Optional<Order> order = orderRepository.findById(id);
-//
-//        order.get().setStatus(RECUSADO);
-//
-//        orderRepository.save(order.get());
-//
-//        return ResponseEntity.ok().body(order);
-//    }
 
     @PostMapping("/recusarPedido")
     public ResponseEntity refuseOrder(@Param("id") Long id){
@@ -224,12 +220,15 @@ public class OrderController {
 
         List<ItemOrder> items = order.get().getItemList();
 
+        Double result = 0D;
         // buscar os itens da ordem pelo ID
         for (ItemOrder item : items) {
 
             if(item.getExchange()){
 
                 Product product = item.getProduct();
+
+                result = product.getPrice() * item.getQuantity();
 
                 product.setStock((int) (product.getStock() + item.getQuantity()));
                 productRepository.save(product);
@@ -238,7 +237,21 @@ public class OrderController {
             itemRepository.save(item);
         }
 
+        ExchangeCoupon exchangeCoupon = new ExchangeCoupon();
+        exchangeCoupon.setAmount(1);
+        exchangeCoupon.setClient(order.get().getClient());
+        exchangeCoupon.setValue(result);
+
+        Random aleatorio = new Random();
+        int code = aleatorio.nextInt() * 100;
+        System.out.println("Número gerado: " + code);
+        exchangeCoupon.setCode(String.valueOf(code));
+
+        exchangeCouponRepository.save(exchangeCoupon);
+
+
         order.get().setStatus(TROCA_AUTORIZADA);
+
         orderRepository.save(order.get());
 
         return ResponseEntity.ok().body(order);

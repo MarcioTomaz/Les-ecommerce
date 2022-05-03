@@ -66,6 +66,9 @@ public class Client extends DomainEntity{
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Cart cart;
 
+    @OneToMany
+    private List<ExchangeCoupon> exchangeCoupon;
+
     public Client(ClientDTO clientDTO) {
         this.name = clientDTO.getName();
         this.cpf = clientDTO.getCpf();

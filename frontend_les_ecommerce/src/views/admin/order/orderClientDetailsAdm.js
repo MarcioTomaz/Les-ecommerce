@@ -20,6 +20,8 @@ class OrderClientDetailsAdm extends React.Component{
         quantity:'',
         coupon:'',
 
+        client:'',
+
         reason:'',
 
         deliveryAddress:'',
@@ -59,7 +61,11 @@ class OrderClientDetailsAdm extends React.Component{
                     productsListOrder: responseData.itemList,
                     coupon: responseData.coupon,
                     reason: responseData.reason,
+
+                    client: responseData.client,
                 })
+
+                console.log('aaa',this.state.client)
 
             })
     }
@@ -123,7 +129,6 @@ class OrderClientDetailsAdm extends React.Component{
 
                 successMessage("Troca aceita com sucesso!")
 
-
                 this.props.history.push('/listaAdmPedidos')
 
                 console.log(orderId)
@@ -186,6 +191,12 @@ class OrderClientDetailsAdm extends React.Component{
                                         <div className="col-lg-12 col-md-10 float-left">
                                             <hr />
                                             <h4 className="mb-md-3"><strong>Dados do pedido: </strong></h4>
+
+                                            <p className="card-text"><strong>Nome do cliente: </strong>{this.state.client.name}</p>
+                                            
+                                            <p className="card-text"><strong>E-mail do cliente: </strong>{this.state.client.email}</p>
+
+
                                             <p className="card-text"><strong>Endereço de Entrega: </strong> 
                                                 {this.state.deliveryAddress.city},
                                                 {this.state.deliveryAddress.country}, 
@@ -212,14 +223,19 @@ class OrderClientDetailsAdm extends React.Component{
                                                 {this.state.creationDate[1]}/ 
                                                 {this.state.creationDate[0]}  
                                             </p>
-                                            <p className="card-text"><strong>Data estimada para entrega:</strong> Um dia </p>
+                                            <p className="card-text"><strong>Data estimada para entrega:</strong> Um dia </p>                                            
+                                            
+                                            {{
+                                                'EM_TROCA': <p><strong>Motivo do pedido de troca:</strong> {this.state.reason != null ? this.state.reason : ''}</p>
+                                            }[this.state.status]}
+
                                             <p className={{
                                                 'EM_PROCESSAMENTO': 'text-secondary',
                                                 'EM_TRANSITO': 'text-info',
                                                 'ENTREGUE': 'text-success',
                                                 'RECUSADO': 'text-danger',
                                                 'EM_TROCA': 'text-warning',
-                                                'TROCA_AUTORIZADA': 'text-success',
+                                                'TROCA_AUTORIZADA': 'text-primary',
                                                 'TROCA_RECUSADA': 'text-danger',
                                                 'PEDIDO_RECEBIDO': 'text-success'
                                             }[this.state.status]}>
@@ -245,16 +261,16 @@ class OrderClientDetailsAdm extends React.Component{
 
 
                                             {/* <div className="row" >
-                        <div className="col-lg-3 mb-md-3 float-left">
-                            <p className="card-text">
-                            <strong>Cartão com final:</strong>
-                            </p>
-                        </div>
-                        <div className="col-lg-4 mb-md-3 float-left">
-                            <p className="card-text">
-                            <strong>Valor pago nesse cartão:</strong> </p>
-                        </div>
-                        </div>                             */}
+                                                <div className="col-lg-3 mb-md-3 float-left">
+                                                    <p className="card-text">
+                                                    <strong>Cartão com final:</strong>
+                                                    </p>
+                                                </div>
+                                                <div className="col-lg-4 mb-md-3 float-left">
+                                                    <p className="card-text">
+                                                    <strong>Valor pago nesse cartão:</strong> </p>
+                                                </div>
+                                                </div>                             */}
                         
                                         </div>
 
@@ -267,43 +283,99 @@ class OrderClientDetailsAdm extends React.Component{
                                     <div className="row">
                                         <div className="col-lg-5 col-md-10">
                                             <h3><strong>Valor da compra: R${this.state.total} </strong> </h3>
-                                        </div>                                            
-                                        <div className="col-lg-1" >
-                                            <button 
-                                                className="btn-sm btn-warning text-center"
-                                                onClick={this.acceptExchange}
-                                                ><strong>Aceitar troca</strong></button>
-                                        </div>
-
+                                        </div>   
 
                                         <div className="col-lg-1" >
-                                            <button 
-                                                className="btn-sm btn-primary text-center"
-                                                onClick={this.acceptOrder}
-                                                ><strong>Aceitar pedido</strong></button>
-                                        </div>
+                                            
+                                        </div>                                                                         
+                                     
+                                        <div className="col-lg-1">{{
+                                                'EM_PROCESSAMENTO':
+                                                    <div className="col-lg-1">
 
-                                        <div className="col-lg-1" >
-                                            <button 
-                                                className="btn-sm btn-danger text-center "
-                                                onClick={this.refuse}
-                                                ><strong>Recusar pedido</strong></button>
-                                        </div>
+                                                        <div className="col-lg-1">
+                                                            <button 
+                                                                className="btn-sm btn-primary text-center"
+                                                                onClick={this.acceptOrder}
+                                                            ><strong>Aceitar pedido</strong></button>
+                                                        </div>
 
-                                        <div className="col-lg-1" >
-                                            <button 
-                                                className="btn-sm btn-success text-center"
-                                                onClick={this.confirmReceipt}
-                                                ><strong>Confirmar Recebimento</strong></button>
-                                        </div>
-                                       
+                                                    <div className="col-lg-1" >
+                                                        <button 
+                                                            className="btn-sm btn-danger text-center "
+                                                            onClick={this.refuse}
+                                                            ><strong>Recusar pedido</strong></button>
+                                                    </div>
+                                                    </div>,
+                                            }[this.state.status]}
+                                        </div>                                       
 
-                                        <div className="col-lg-2 mx-4" >
-                                            <button 
-                                                className="btn-sm btn-danger text-center"
-                                                onClick={this.refuse}
-                                                ><strong>Recusar pedido de troca</strong></button>
-                                        </div>
+
+                                        {/* <p className={{
+                                                'EM_PROCESSAMENTO': 'text-secondary',
+                                                'EM_TRANSITO': 'text-info',
+                                                'ENTREGUE': 'text-success',
+                                                'RECUSADO': 'text-danger',
+                                                'EM_TROCA': 'text-warning',
+                                                'TROCA_AUTORIZADA': 'text-success',
+                                                'TROCA_RECUSADA': 'text-danger',
+                                                'PEDIDO_RECEBIDO': 'text-success'
+                                            }[this.state.status]}>
+                                        /</p>                                        */}
+
+
+                                        <div className="col-lg-1">{{
+                                                'EM_TROCA':
+                                                    <div className="col-lg-1">
+
+                                                         <div className="col-lg-1" >
+                                                            <button 
+                                                                className="btn-sm btn-warning text-center"
+                                                                onClick={this.acceptExchange}
+                                                                ><strong>Aceitar troca</strong></button>
+                                                        </div>
+
+                                                        <div className="col-lg-2 " >
+                                                            <button 
+                                                                className="btn-sm btn-danger text-center"
+                                                                onClick={this.refuse}
+                                                                ><strong>Recusar pedido de troca</strong></button>
+                                                        </div>
+                                                    </div>,
+                                            }[this.state.status]}
+                                        </div>  
+
+                                           <div className="col-lg-1">{{
+                                                'RECUSADO':
+                                                    <div className="col-lg-1">
+                                                    
+                                                    </div>,
+                                            }[this.state.status]}
+                                        </div>   
+
+
+                                           <div className="col-lg-1">{{
+                                                'EM_TRANSITO':
+                                                <div className="col-lg-1" >
+                                                    <button 
+                                                        className="btn-sm btn-success text-center"
+                                                        onClick={this.confirmReceipt}
+                                                        ><strong>Confirmar Recebimento</strong></button>
+                                                </div>,
+                                            }[this.state.status]}
+                                        </div>  
+
+                                        <div className="col-lg-1">{{
+                                                'TROCA_AUTORIZADA':
+                                                <div className="col-lg-1" >
+                                                    <button 
+                                                        className="btn-sm btn-success text-center"
+                                                        onClick={this.confirmReceipt}
+                                                        ><strong>Confirmar Recebimento</strong></button>
+                                                </div>,
+                                            }[this.state.status]}
+                                        </div>  
+                                      
                                     </div>
                                 </div>
 

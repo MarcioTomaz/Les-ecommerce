@@ -20,7 +20,7 @@ export default props => {
                     'ENTREGUE': 'text-success',
                     'RECUSADO': 'text-danger',
                     'EM_TROCA': 'text-warning',
-                    'TROCA_AUTORIZADA': 'text-success',
+                    'TROCA_AUTORIZADA': 'text-primary',
                     'TROCA_RECUSADA': 'text-danger',
                     'PEDIDO_RECEBIDO': 'text-success'
                 }[ordersList.status]}>

@@ -30,6 +30,7 @@ class ClientManagement extends React.Component {
 
                                     <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/listaPedidos">Meus Pedidos</a>
                                     <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/listaCupom">Cupons</a>
+                                    <a className="btn btn-outline-light list-group-item mx-2 my-2 border border-light" href="#/administracao"></a>
 
                                 </div>
 

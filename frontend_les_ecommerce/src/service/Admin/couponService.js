@@ -28,6 +28,11 @@ class CouponService extends ApiService{
 
         return this.post("/verificarCupom", code)
     }
+
+    verifyExchangeCoupon(code){
+
+        return this.post("/verificarCupomTroca", code)
+    }
 }
 
 export default CouponService;

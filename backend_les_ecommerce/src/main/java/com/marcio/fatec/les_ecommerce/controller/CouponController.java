@@ -3,13 +3,12 @@ package com.marcio.fatec.les_ecommerce.controller;
 import com.marcio.fatec.les_ecommerce.DTO.CouponCheckDTO;
 import com.marcio.fatec.les_ecommerce.DTO.CouponDTO;
 import com.marcio.fatec.les_ecommerce.DTO.CreditCardDTO;
-import com.marcio.fatec.les_ecommerce.domain.Client;
-import com.marcio.fatec.les_ecommerce.domain.Coupon;
-import com.marcio.fatec.les_ecommerce.domain.CreditCard;
-import com.marcio.fatec.les_ecommerce.domain.Result;
+import com.marcio.fatec.les_ecommerce.DTO.ExchangeCouponCheckDTO;
+import com.marcio.fatec.les_ecommerce.domain.*;
 import com.marcio.fatec.les_ecommerce.facade.Facade;
 import com.marcio.fatec.les_ecommerce.repository.CouponRepository;
 import com.marcio.fatec.les_ecommerce.repository.CreditCardRepository;
+import com.marcio.fatec.les_ecommerce.repository.ExchangeCouponRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
@@ -25,6 +24,9 @@ public class CouponController {
 
     @Autowired
     CouponRepository couponRepository;
+
+    @Autowired
+    ExchangeCouponRepository exchangeCouponRepository;
 
     @PostMapping
     public ResponseEntity save(@RequestBody CouponDTO couponDTO){
@@ -60,6 +62,32 @@ public class CouponController {
             if( !couponCheckDTO.getCode().isEmpty()) {
 
                 result = couponRepository.findByCode(couponCheckDTO.getCode());
+
+                if(result == null ){
+                    return ResponseEntity.notFound().build();
+                }else {
+
+                    return ResponseEntity.ok().body(result);
+                }
+
+            }else{
+                return ResponseEntity.notFound().build();
+            }
+
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(false);
+        }
+    }
+
+    @PostMapping("/verificarCupomTroca")
+    public ResponseEntity getExchangeCoupon(@RequestBody ExchangeCouponCheckDTO exchangeCouponCheckDTO){
+
+        try {
+            ExchangeCoupon result = new ExchangeCoupon();
+
+            if( !exchangeCouponCheckDTO.getExchangeCode().isEmpty()) {
+
+                result = exchangeCouponRepository.findByCode(exchangeCouponCheckDTO.getExchangeCode());
 
                 if(result == null ){
                     return ResponseEntity.notFound().build();

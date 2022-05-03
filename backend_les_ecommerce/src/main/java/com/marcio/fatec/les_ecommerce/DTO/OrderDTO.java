@@ -30,6 +30,8 @@ public class OrderDTO {
 
     private String code;
 
+    private String exchangeCode;
+
     private Long clientId;
 
     private Long addressCobranca;

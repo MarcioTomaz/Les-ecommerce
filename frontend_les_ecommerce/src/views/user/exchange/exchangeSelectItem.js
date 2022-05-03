@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Button, Modal } from "react-bootstrap";
 import { useParams} from 'react-router-dom'
 import { withRouter } from "react-router-dom";
-import { successMessage } from '../../../components/toastr';
+import { errorMessage, successMessage } from '../../../components/toastr';
 import OrderService from "../../../service/order/orderService";
 import ExchangeListOrderItems from "./exchangeListOrderItems";
 
@@ -58,14 +58,19 @@ class ExchangeSelectItems extends React.Component{
 
         let orderId = this.state.orderId;
 
-        this.service.sendExchange({orderId:this.state.orderId, idList: this.state.idList, reason: this.state.reason})
+        if(this.state.idList == '' ){
+
+            errorMessage("Selecione pelo menos 1 produto para troca")
+            
+        }else{
+            this.service.sendExchange({orderId:this.state.orderId, idList: this.state.idList, reason: this.state.reason})
             .then( response => {
                 successMessage("Pedido de troca enviado com sucesso!")
                 console.log("RESPOSTA", response.data)
 
                 this.props.history.push('/listaPedidos')
             })
-            
+        }   
 
     }
     

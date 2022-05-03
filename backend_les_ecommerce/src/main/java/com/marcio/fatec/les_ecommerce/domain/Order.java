@@ -53,6 +53,9 @@ public class Order extends DomainEntity {
     @JoinColumn(name = "coupon_id")
     private Coupon coupon;
 
+    @ManyToOne
+    private ExchangeCoupon exchangeCoupon;
+
 //    @OneToOne(mappedBy = "order")
 //    @JsonIgnore
 //    private Devolution devolution;

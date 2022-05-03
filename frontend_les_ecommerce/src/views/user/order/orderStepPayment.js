@@ -30,6 +30,7 @@ class OrderStepPayment extends React.Component{
 
 
         code: '',
+        exchangeCode:'',
         coupon:'',
 
         creditCards: [],
@@ -193,15 +194,41 @@ class OrderStepPayment extends React.Component{
             })
     }
 
+    verifyExchangeCoupon = () => {
+
+        const { exchangeCode } = this.state
+
+        let verifyCoupon = { exchangeCode }
+
+        this.couponService.verifyExchangeCoupon( verifyCoupon )
+            .then( response => {
+
+                let respondeData = response.data;
+                let discount = respondeData.value;
+                
+                successMessage("Cupom válido!");
+
+                this.setState({
+                    cartSubTotal: this.state.cartSubTotal - discount,
+                    exchangeCode: respondeData.exchangeCode
+                })
+
+
+            }).catch( error => {
+                errorMessage("Cupom invalido")
+            })
+
+    }
+
     nextStep = () => {
 
         const loggedUser = LocalStorageService.obterItem('_usuario_logado');
 
         const clientId = loggedUser.id;
 
-        const { listOrder, cartSubTotal, addressCobranca, addressEntrega, paymentMethodList,paymentMethodCardList, code } = this.state;
+        const { listOrder, cartSubTotal, addressCobranca, addressEntrega, paymentMethodList,paymentMethodCardList, code, exchangeCode } = this.state;
 
-        const order = { listOrder, cartSubTotal, addressCobranca, addressEntrega, paymentMethodList,paymentMethodCardList, clientId, cartSubTotal, code }
+        const order = { listOrder, cartSubTotal, addressCobranca, addressEntrega, paymentMethodList,paymentMethodCardList, clientId, cartSubTotal, code, exchangeCode }
 
 
         if( addressCobranca === '' || addressEntrega === ''){
@@ -282,7 +309,26 @@ class OrderStepPayment extends React.Component{
                         <div className="col-4">
                             <button 
                                 className="btn btn-lg btn-success btn-block mt-4 mb-3"
-                                onClick={this.verifyCoupon}>Verificar cupom</button>
+                                onClick={this.verifyCoupon}>Verificar cupom de desconto</button>
+                        </div>
+                    
+                </div>
+
+
+                <div className="container row">
+                    <div className="col-6">
+                            <input 
+                                className="card-text mt-4 mb-3 form-control"
+                                id="exchangeCode"
+                                name="exchangeCode"
+                                value={this.state.exchangeCode}
+                                onChange={this.handleChange}
+                                ></input>
+                        </div>
+                        <div className="col-4">
+                            <button 
+                                className="btn btn-lg btn-success btn-block mt-4 mb-3"
+                                onClick={this.verifyExchangeCoupon}>Verificar cupom de troca</button>
                         </div>
                     
                 </div>
