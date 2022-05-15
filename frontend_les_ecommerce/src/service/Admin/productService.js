@@ -51,6 +51,18 @@ class ProductService extends ApiService{
         ]
     }
 
+    getRarity2(){
+        return [            
+            {value: 'COMUNS'},
+            {value: 'RARAS'},
+            {value: 'SUPER_RARA'},
+            {value: 'ULTRA_RARA'},
+            {value: 'SECRETA_RARA'},
+            {value: 'ULTIMATE_RARA'},
+            {value: 'RARAS_FANTASMAS'},    
+        ]
+    }
+
     getType(){
         return [
 

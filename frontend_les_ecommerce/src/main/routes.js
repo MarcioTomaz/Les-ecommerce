@@ -50,6 +50,7 @@ import OrderClientList from '../views/user/order/OrderClientList';
 import OrderAdmList from '../views/admin/order/orderAdmList';
 import ExchangeSelectItem from '../views/user/exchange/exchangeSelectItem';
 import OrderClientDetailsAdm from '../views/admin/order/orderClientDetailsAdm';
+import dashBoard from '../views/admin/dashBoard/dashBoard';
 
 function AuthenticateRoute( {component: Component, ...props} ){//qbrando a props e pegando os componentes
     return(
@@ -112,6 +113,8 @@ function Routes(){
                 <AuthenticateRoute path="/novoCupom/" component={NewCoupon}/>
                 <AuthenticateRoute path="/listaAdminCupom/" component={CouponAdminList}/>
                 <AuthenticateRoute path="/listaAdmPedidos/" component={OrderAdmList}/>
+
+                <AuthenticateRoute path="/relatorio/" component={dashBoard}/>
     
             </Switch>
     

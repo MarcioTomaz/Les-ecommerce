@@ -11,6 +11,8 @@ import 'toastr/build/toastr.min'
 import 'toastr/build/toastr.css'
 
 import Routes from "./routes";
+import LineChart from "../views/admin/dashBoard/LineChart";
+
 class App extends React.Component {
 
 

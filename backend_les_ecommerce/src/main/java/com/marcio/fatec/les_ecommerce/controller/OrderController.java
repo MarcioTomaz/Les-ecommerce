@@ -249,7 +249,6 @@ public class OrderController {
 
         exchangeCouponRepository.save(exchangeCoupon);
 
-
         order.get().setStatus(TROCA_AUTORIZADA);
 
         orderRepository.save(order.get());

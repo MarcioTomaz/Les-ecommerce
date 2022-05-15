@@ -29,7 +29,7 @@ class AdmintManagement extends React.Component {
 
                                     <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/estoque">Estoque</a>                                                                      
                                     <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/listaAdminCupom">Cupons</a>
-                                    <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/">Listar Produtos</a>
+                                    <a className="btn btn-outline-dark list-group-item mx-2 my-2 border border-dark" href="#/relatorio">Relatório</a>
 
                                 </div>
 
