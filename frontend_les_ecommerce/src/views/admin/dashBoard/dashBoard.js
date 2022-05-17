@@ -2,9 +2,11 @@
 import React from "react";
 import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import { errorMessage } from "../../../components/toastr";
+import DashboardService from "../../../service/Admin/dashboardService";
 import ProductService from "../../../service/Admin/productService";
 import CardRarity from "./cardRarity";
 import LineChart from "./LineChart";
+
 
 class DashBoard extends React.Component {
 
@@ -13,6 +15,10 @@ class DashBoard extends React.Component {
         data: [50, 19, 3, 5, 2, 3],
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
 
+        // data: [5,1,1],
+        // labels: ['Mago Negro', 'Fusao'],
+        // data:[],
+        // labels:[],
         startDate: '',
         endDate: '',
 
@@ -23,10 +29,21 @@ class DashBoard extends React.Component {
     constructor() {
         super();
         this.service = new ProductService();
+        this.dashboardService = new DashboardService();
     }
 
     componentDidMount() {
+        
+        this.dashboardService.getDashboard()
+            .then( response => {
 
+                console.log( "did mount" , response.data )    
+
+                // this.setState({
+                //     data: response.data,
+                //     labels: response.data                
+                // })
+            })
     }
 
     handleChange = (event) => {
@@ -41,9 +58,27 @@ class DashBoard extends React.Component {
 
         if (this.state.startDate === '' || this.state.endDate === '') {
             errorMessage("Insira as duas datas para filtrar")
-        } else {
+        } else {            
 
-            
+            this.dashboardService.getDashboardFilterDate({dtInicio: this.state.startDate, dtFim: this.state.endDate})
+            .then( response => {
+                // console.log( "quantity: ", response.data[0].cardsQuantity )
+                // console.log( "Card name", response.data[0].cardName )
+
+                let listaName = [];
+                let listaQuantity = [];
+
+                for(let x in response.data){
+                    listaName.push(response.data[x].cardName)
+                    listaQuantity.push( response.data[x].cardsQuantity)
+                    }
+
+                this.setState({
+                    
+                    data: listaQuantity,
+                    labels: listaName
+                })           
+            })
 
             console.log("FILTRANDO CIONFIA")
             console.log("startDate", this.state.startDate)

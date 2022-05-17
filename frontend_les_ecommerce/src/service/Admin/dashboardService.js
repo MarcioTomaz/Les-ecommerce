@@ -8,9 +8,15 @@ class DashboardService extends ApiService{
         super('/api/adm')
     }
 
-    getOrders(filter){
+    getDashboard(filter){
 
         return this.post('/dashboard', filter)
     }
 
+    getDashboardFilterDate(filterDate){
+        return this.post('/dashboardFilter', filterDate)
+    }
+
 }
+
+export default DashboardService;

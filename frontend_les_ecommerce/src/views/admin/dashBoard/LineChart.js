@@ -25,6 +25,9 @@ ChartJS.register(
 )
 
 const LineChart = (props) => {
+
+    console.log("PROPS LINE CHART DATA: ", props.data)
+    console.log("PROPS LINE CHART LABEL: ", props.labels)
     
     var data = {
         labels: props.labels,

@@ -35,6 +35,8 @@ class ProductList extends React.Component{
             .then( response => {
                 const responseData = response.data;
 
+                console.log('response.data', response.data)
+
                 this.setState({
                     productList: response.data
                 })
