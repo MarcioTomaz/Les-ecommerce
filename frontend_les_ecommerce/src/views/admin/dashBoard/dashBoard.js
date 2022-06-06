@@ -15,6 +15,8 @@ class DashBoard extends React.Component {
         data: [50, 19, 3, 5, 2, 3],
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
 
+        cardName: [],
+
         // data: [5,1,1],
         // labels: ['Mago Negro', 'Fusao'],
         // data:[],
@@ -64,26 +66,34 @@ class DashBoard extends React.Component {
             .then( response => {
                 // console.log( "quantity: ", response.data[0].cardsQuantity )
                 // console.log( "Card name", response.data[0].cardName )
+ 
+                console.log( 'Respostas',  response.data )
 
                 let listaName = [];
                 let listaQuantity = [];
+                let orderDate = [];
 
                 for(let x in response.data){
+
                     listaName.push(response.data[x].cardName)
+
                     listaQuantity.push( response.data[x].cardsQuantity)
-                    }
+
+                    orderDate.push(response.data[x].orderDate)
+                }
 
                 this.setState({
                     
+                    cardName: listaName,
                     data: listaQuantity,
-                    labels: listaName
+                    labels: orderDate
                 })           
             })
 
-            console.log("FILTRANDO CIONFIA")
-            console.log("startDate", this.state.startDate)
+            // console.log("FILTRANDO CIONFIA")
+            // console.log("startDate", this.state.startDate)
 
-            console.log("endDate", this.state.endDate)
+            // console.log("endDate", this.state.endDate)
         }
 
     }
@@ -159,6 +169,7 @@ class DashBoard extends React.Component {
                                     </div>
 
                                     <LineChart
+                                        cardName={this.state.cardName}
                                         data={this.state.data}
                                         labels={this.state.labels}
                                     />
