@@ -1,6 +1,5 @@
 package com.marcio.fatec.les_ecommerce.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.marcio.fatec.les_ecommerce.DTO.OrderDTO;
 import com.marcio.fatec.les_ecommerce.domain.Enums.ProductStatus;
 import lombok.AllArgsConstructor;

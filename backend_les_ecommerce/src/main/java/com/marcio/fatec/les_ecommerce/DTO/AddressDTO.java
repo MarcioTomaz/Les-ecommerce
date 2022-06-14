@@ -1,7 +1,6 @@
 package com.marcio.fatec.les_ecommerce.DTO;
 
 import com.marcio.fatec.les_ecommerce.domain.Address;
-import com.marcio.fatec.les_ecommerce.domain.Client;
 import com.marcio.fatec.les_ecommerce.domain.Enums.AddressType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +26,7 @@ public class AddressDTO {
     private String city;
     private String country;
     private String state;
+
     private AddressType addressType;
 
     public AddressDTO( Address address){

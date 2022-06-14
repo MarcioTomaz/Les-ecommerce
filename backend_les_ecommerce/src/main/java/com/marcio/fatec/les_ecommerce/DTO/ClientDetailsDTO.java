@@ -2,14 +2,10 @@ package com.marcio.fatec.les_ecommerce.DTO;
 
 
 import com.marcio.fatec.les_ecommerce.domain.Client;
-import com.marcio.fatec.les_ecommerce.domain.Enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.LocalDate;
-import java.util.Optional;
 
 @Getter
 @Setter

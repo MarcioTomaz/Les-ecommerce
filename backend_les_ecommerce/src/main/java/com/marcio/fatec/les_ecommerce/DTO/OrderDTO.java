@@ -1,7 +1,5 @@
 package com.marcio.fatec.les_ecommerce.DTO;
 
-import com.marcio.fatec.les_ecommerce.domain.Address;
-import com.marcio.fatec.les_ecommerce.domain.Coupon;
 import com.marcio.fatec.les_ecommerce.domain.Enums.ProductStatus;
 import com.marcio.fatec.les_ecommerce.domain.ItemOrder;
 import com.marcio.fatec.les_ecommerce.domain.PaymentMethod;
@@ -11,9 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
 import java.time.LocalDateTime;
 import java.util.List;
 

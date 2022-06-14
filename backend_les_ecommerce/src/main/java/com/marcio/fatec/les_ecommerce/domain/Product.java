@@ -2,7 +2,6 @@ package com.marcio.fatec.les_ecommerce.domain;
 
 import com.marcio.fatec.les_ecommerce.DTO.ProductDTO;
 import com.marcio.fatec.les_ecommerce.domain.Enums.CardRarity;
-import com.marcio.fatec.les_ecommerce.domain.Enums.ProductStatus;
 import com.marcio.fatec.les_ecommerce.domain.Enums.CardType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +11,6 @@ import javax.validation.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Getter
 @Setter
