@@ -1,7 +1,6 @@
 package com.marcio.fatec.les_ecommerce.controller;
 
 import com.marcio.fatec.les_ecommerce.DTO.*;
-import com.marcio.fatec.les_ecommerce.domain.Admin;
 import com.marcio.fatec.les_ecommerce.domain.Client;
 import com.marcio.fatec.les_ecommerce.domain.Result;
 import com.marcio.fatec.les_ecommerce.facade.Facade;
