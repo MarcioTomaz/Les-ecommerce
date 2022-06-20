@@ -48,7 +48,7 @@ public class ClientDAO implements IDAO{
         editClient.setBirthDate(client.getBirthDate());
         editClient.setCpf(client.getCpf());
         editClient.setAreaCode(client.getAreaCode());
-        editClient.setType(client.getType());
+        editClient.setPhoneType(client.getPhoneType());
 
         clientRepository.save(editClient);
     }

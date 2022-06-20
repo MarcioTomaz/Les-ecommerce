@@ -4,6 +4,8 @@ import com.marcio.fatec.les_ecommerce.DTO.OrderDTO;
 import com.marcio.fatec.les_ecommerce.DTO.OrderExchangeDTO;
 import com.marcio.fatec.les_ecommerce.domain.*;
 import com.marcio.fatec.les_ecommerce.repository.*;
+import com.marcio.fatec.les_ecommerce.service.IOrderService;
+import com.marcio.fatec.les_ecommerce.service.serviceImpl.OrderServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
@@ -44,57 +46,16 @@ public class OrderController {
     @Autowired
     ExchangeCouponRepository exchangeCouponRepository;
 
+    @Autowired
+    IOrderService orderService;
+
 
     @PostMapping("/pedido")
     public ResponseEntity order(@RequestBody OrderDTO orderDTO){
 
-        Order order = new Order(orderDTO);
+        Order result = orderService.order(orderDTO);
 
-        Optional<Client> client = clientRepository.findById(orderDTO.getClientId());
-
-        Optional<Address> deliveryAddres = addresRepository.findById(orderDTO.getAddressEntrega());
-        Optional<Address> billingAddres = addresRepository.findById(orderDTO.getAddressCobranca());
-
-        Optional<Cart> cart = cartRepository.findByClient(client.get());
-        List<ItemOrder> items = itemRepository.findByCart(cart.get());
-
-        for (ItemOrder item : items) {
-            Product itemProduct = item.getProduct();
-            itemProduct.setStock((int) (itemProduct.getStock() - item.getQuantity())); //arrumar o cast dps
-            item.setExchange(false);
-            productRepository.save(itemProduct);
-        }
-
-                
-        //        Product productStock = new Product();
-        // productStock.setStock();
-
-        Coupon coupon = couponRepository.findByCode(orderDTO.getCode());
-        ExchangeCoupon exchangeCoupon = exchangeCouponRepository.findByCode(orderDTO.getExchangeCode());
-
-        if( coupon != null) {
-            coupon.setAmount(coupon.getAmount() - 1);
-            couponRepository.save(coupon);
-        }
-
-        order.setBillingAddress(billingAddres.get());
-        order.setDeliveryAddress(deliveryAddres.get());
-
-        order.setClient(client.get());
-        order.setItemList(items);
-
-        order.setTotal(orderDTO.getCartSubTotal());
-        order.setCoupon(coupon);
-
-        order.setExchangeCoupon(exchangeCoupon);
-
-        orderRepository.save(order);
-
-        itemRepository.findByCart(cart.get()).forEach( x -> { x.setCart(null);
-            itemRepository.save(x);
-        } );
-
-        return ResponseEntity.ok().body(order);
+        return ResponseEntity.ok().body(result);
     }
 
     @GetMapping("/pedidos")
@@ -168,6 +129,8 @@ public class OrderController {
     public ResponseEntity acceptOrder(@Param("id") Long id){
 
         Optional<Order> order = orderRepository.findById(id);
+
+        System.out.println(order.get().getTotal() +  "TOTALLLLLLLLLLLLLL");
 
         order.get().setStatus(EM_TRANSITO);
 

@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -44,7 +45,7 @@ public class Client extends DomainEntity{
 
     @Column(name = "PhoneType")
     @Enumerated( EnumType.STRING)
-    private PhoneType type;
+    private PhoneType phoneType;
 
     @Column(name = "areaCode")//DDD
     private String areaCode;
@@ -66,6 +67,7 @@ public class Client extends DomainEntity{
     private Cart cart;
 
     @OneToMany
+    @Nullable()
     private List<ExchangeCoupon> exchangeCoupon;
 
     public Client(ClientDTO clientDTO) {
@@ -75,7 +77,7 @@ public class Client extends DomainEntity{
         this.password = clientDTO.getPassword();
         this.confirmPassword = clientDTO.getConfirmPassword();
         this.birthDate = clientDTO.getBirthDate();
-        this.type = clientDTO.getType();
+        this.phoneType = clientDTO.getType();
         this.areaCode = clientDTO.getAreaCode();
         this.phoneNumber = clientDTO.getPhoneNumber();
         this.gender = clientDTO.getGender();
@@ -91,7 +93,7 @@ public class Client extends DomainEntity{
         this.cpf = clienEditDTO.getCpf();
         this.email = clienEditDTO.getEmail();
         this.birthDate = clienEditDTO.getBirthDate();
-        this.type = clienEditDTO.getType();
+        this.phoneType = clienEditDTO.getType();
         this.areaCode = clienEditDTO.getAreaCode();
         this.phoneNumber = clienEditDTO.getPhoneNumber();
         this.gender = clienEditDTO.getGender();

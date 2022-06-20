@@ -69,4 +69,9 @@ public class Product extends DomainEntity{
         this.price = product.getPrice();
     }
 
+    public void decreaseStock( ItemOrder itemOrder ){
+
+        this.stock -= Integer.parseInt(String.valueOf(itemOrder.getQuantity()));
+    }
+
 }

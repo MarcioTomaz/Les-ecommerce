@@ -12,15 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-//@Getter
-//@Setter
-//@NoArgsConstructor
-//@AllArgsConstructor
-//////@Table( name= "_itemOrder")
-////@Entity
-
-
-
 @Getter
 @Setter
 @AllArgsConstructor

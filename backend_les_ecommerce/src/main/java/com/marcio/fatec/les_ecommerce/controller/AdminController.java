@@ -28,7 +28,7 @@ public class AdminController {
                 .map(t -> {
 
                     DashboardDTO dashBoardDTO1 = new DashboardDTO();
-                    BigDecimal cardsQuantity = t.get("cardsQuantity", BigDecimal.class);
+                    BigDecimal cardsQuantity = t.get("quantity", BigDecimal.class);
                     dashBoardDTO1.setCardsQuantity(cardsQuantity.intValue());
                     dashBoardDTO1.setCardName(t.get( "cardName", String.class));
                     dashBoardDTO1.setCardRarity(t.get( "cardRarity", String.class ));
@@ -50,9 +50,9 @@ public class AdminController {
                 .map(t -> {
 
                     DashboardDTO dashBoardDTO1 = new DashboardDTO();
-                    BigDecimal cardsQuantity = t.get("cardsQuantity", BigDecimal.class);
+                    BigDecimal cardsQuantity = t.get("quantity", BigDecimal.class);
                     dashBoardDTO1.setCardsQuantity(cardsQuantity.intValue());
-                    dashBoardDTO1.setCardName(t.get( "cardName", String.class));
+                    dashBoardDTO1.setCardName(t.get( "name", String.class));
                     dashBoardDTO1.setCardRarity(t.get( "cardRarity", String.class ));
                     dashBoardDTO1.setCardType(t.get( "cardType", String.class ));
                     dashBoardDTO1.setOrderDate(t.get("orderDate", String.class));

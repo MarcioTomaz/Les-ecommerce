@@ -37,9 +37,9 @@ const LineChart = (props) => {
 
     let dataSetsProps = []
 
-    for( let i = 0; i< 12; i++){
+    for( let i = 0; i< 3; i++){
         
-        dataSetsProps.push ({ label : props.cardName[i], data: props.data[i] })
+        dataSetsProps.push ({ label : props.cardName[i], data: props.data[i], date: props.labels[i] })
 
         console.log("iiiiiiiii", i)
     } 

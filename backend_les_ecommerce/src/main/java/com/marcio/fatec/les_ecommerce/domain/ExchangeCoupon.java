@@ -21,7 +21,6 @@ import javax.validation.constraints.Size;
 @Entity(name = "_exchangeCoupon")
 public class ExchangeCoupon extends DomainEntity {
 
-
     @ManyToOne
     private Client client;
 

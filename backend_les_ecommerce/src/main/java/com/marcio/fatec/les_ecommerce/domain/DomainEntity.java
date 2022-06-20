@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
@@ -26,7 +27,8 @@ public abstract class DomainEntity extends Result implements Serializable {
 
     @Column(name = "creation_date", nullable = false)
 //    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
-    private LocalDateTime creationDate = LocalDateTime.now();
+//    private LocalDateTime creationDate = LocalDateTime.now();
+    private LocalDate creationDate = LocalDate.now();
 
     @Column(name = "deleted_date")
     private LocalDateTime deletedDate;

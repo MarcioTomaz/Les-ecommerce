@@ -13,7 +13,7 @@ public class ValidateTypePhone implements IStrategy {
         Client client = (Client) domainEntity;
         StringBuilder msg = new StringBuilder();
 
-        if(client.getType().equals(" ")){
+        if(client.getPhoneType().equals(" ")){
             msg.append(" Insira um tipo de telefone. ");
         }
 

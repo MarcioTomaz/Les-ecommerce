@@ -35,7 +35,7 @@ public class ClientDetailsDTO {
         this.cpf = client.getCpf();
         this.birthDate = client.getBirthDate().toString();
         this.gender = client.getGender().name();
-        this.type = client.getType().toString();
+        this.type = client.getPhoneType().toString();
         this.areaCode = client.getAreaCode();
         this.phoneNumber = client.getPhoneNumber();
     }

@@ -24,7 +24,6 @@ public class CouponController {
 
     @Autowired
     CouponRepository couponRepository;
-
     @Autowired
     ExchangeCouponRepository exchangeCouponRepository;
 
@@ -77,6 +76,14 @@ public class CouponController {
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(false);
         }
+    }
+
+    @GetMapping("/cuponsTroca")
+    public ResponseEntity getAllExchangeCoupon(@Param("id") Long id){
+
+        List<ExchangeCoupon> result = exchangeCouponRepository.findAllExchangeCouponByClientIdAndDeletedFalse(id);
+
+        return ResponseEntity.ok().body(result);
     }
 
     @PostMapping("/verificarCupomTroca")
