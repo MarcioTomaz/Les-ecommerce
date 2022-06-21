@@ -137,6 +137,19 @@ public class OrderController {
         return ResponseEntity.ok().body(order);
     }
 
+    @PostMapping("/confirmarRecebimento")
+    public ResponseEntity confirmReceipt(@Param("id") Long id){
+
+        Optional<Order> order = orderRepository.findById(id);
+
+        order.get().setStatus(PEDIDO_RECEBIDO);
+
+        orderRepository.save(order.get());
+
+        return ResponseEntity.ok().body(order);
+    }
+
+
     @PostMapping("/emTroca")
     public ResponseEntity exchangeOrder(@RequestBody OrderExchangeDTO dto){
 //        // buscar a order
@@ -162,18 +175,6 @@ public class OrderController {
         return ResponseEntity.ok().body(dto);
     }
 
-    @PostMapping("/confirmarRecebimento")
-    public ResponseEntity confirmReceipt(@Param("id") Long id){
-
-        Optional<Order> order = orderRepository.findById(id);
-
-        order.get().setStatus(PEDIDO_RECEBIDO);
-
-        orderRepository.save(order.get());
-
-        return ResponseEntity.ok().body(order);
-    }
-
     @PostMapping("/trocaAceita")
     public ResponseEntity acceptExchange(@Param("id") Long id){
 
@@ -182,6 +183,7 @@ public class OrderController {
         List<ItemOrder> items = order.get().getItemList();
 
         Double result = 0D;
+
         // buscar os itens da ordem pelo ID
         for (ItemOrder item : items) {
 
@@ -205,7 +207,7 @@ public class OrderController {
 
         Random aleatorio = new Random();
         int code = aleatorio.nextInt() * 100;
-        System.out.println("Número gerado: " + code);
+
         clientCoupon.setCode(String.valueOf(code));
 
         exchangeCouponRepository.save(clientCoupon);

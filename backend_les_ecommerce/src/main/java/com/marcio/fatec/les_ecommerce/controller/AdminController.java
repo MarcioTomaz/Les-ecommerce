@@ -25,6 +25,7 @@ public class AdminController {
     public ResponseEntity getDashboardFilter(@RequestBody FilterDTO filterDTO){
 
         List<Tuple> result = dashboardRepository.findDashboard(filterDTO.getDtInicio(), filterDTO.getDtFim());
+
         List<DashboardDTO> dashBoardDTO = result.stream()
                 .map(t -> {
 
