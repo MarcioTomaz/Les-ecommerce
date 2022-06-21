@@ -44,6 +44,7 @@ public interface DashboardRepository extends JpaRepository<Product, Long> {
                         "       order1.creation_date > :dtInicio" +
                         "  AND order1.creation_date < :dtFim  " +
                 "    group by order1.product_id, order1.creation_date\n" +
+                        " order by order1.creation_date " +
                 "    ;", nativeQuery = true)
         List<Tuple> findDashboard(@Param("dtInicio") String dtInicio, @Param("dtFim") String dtFim);
 

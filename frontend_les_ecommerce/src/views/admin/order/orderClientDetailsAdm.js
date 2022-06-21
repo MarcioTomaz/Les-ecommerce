@@ -374,7 +374,7 @@ class OrderClientDetailsAdm extends React.Component{
                                                         ><strong>Confirmar Recebimento</strong></button>
                                                 </div>,
                                             }[this.state.status]}
-                                        </div>  
+                                        </div>                                        
                                       
                                     </div>
                                 </div>

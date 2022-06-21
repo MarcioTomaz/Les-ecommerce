@@ -2,12 +2,9 @@ package com.marcio.fatec.les_ecommerce.controller;
 
 import com.marcio.fatec.les_ecommerce.DTO.CouponCheckDTO;
 import com.marcio.fatec.les_ecommerce.DTO.CouponDTO;
-import com.marcio.fatec.les_ecommerce.DTO.CreditCardDTO;
 import com.marcio.fatec.les_ecommerce.DTO.ExchangeCouponCheckDTO;
 import com.marcio.fatec.les_ecommerce.domain.*;
-import com.marcio.fatec.les_ecommerce.facade.Facade;
 import com.marcio.fatec.les_ecommerce.repository.CouponRepository;
-import com.marcio.fatec.les_ecommerce.repository.CreditCardRepository;
 import com.marcio.fatec.les_ecommerce.repository.ExchangeCouponRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -78,19 +75,12 @@ public class CouponController {
         }
     }
 
-    @GetMapping("/cuponsTroca")
-    public ResponseEntity getAllExchangeCoupon(@Param("id") Long id){
-
-        List<ExchangeCoupon> result = exchangeCouponRepository.findAllExchangeCouponByClientIdAndDeletedFalse(id);
-
-        return ResponseEntity.ok().body(result);
-    }
 
     @PostMapping("/verificarCupomTroca")
     public ResponseEntity getExchangeCoupon(@RequestBody ExchangeCouponCheckDTO exchangeCouponCheckDTO){
 
         try {
-            ExchangeCoupon result = new ExchangeCoupon();
+            ClientCoupon result = new ClientCoupon();
 
             if( !exchangeCouponCheckDTO.getExchangeCode().isEmpty()) {
 
@@ -110,6 +100,14 @@ public class CouponController {
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(false);
         }
+    }
+
+    @GetMapping("/cuponsTroca")
+    public ResponseEntity getAllExchangeCoupon(@Param("id") Long id){
+
+        List<ClientCoupon> result = exchangeCouponRepository.findAllExchangeCouponByClientIdAndDeletedFalse(id);
+
+        return ResponseEntity.ok().body(result);
     }
 
     @DeleteMapping("/deletar")

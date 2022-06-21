@@ -5,13 +5,11 @@ import com.marcio.fatec.les_ecommerce.DTO.OrderExchangeDTO;
 import com.marcio.fatec.les_ecommerce.domain.*;
 import com.marcio.fatec.les_ecommerce.repository.*;
 import com.marcio.fatec.les_ecommerce.service.IOrderService;
-import com.marcio.fatec.les_ecommerce.service.serviceImpl.OrderServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -200,17 +198,17 @@ public class OrderController {
             itemRepository.save(item);
         }
 
-        ExchangeCoupon exchangeCoupon = new ExchangeCoupon();
-        exchangeCoupon.setAmount(1);
-        exchangeCoupon.setClient(order.get().getClient());
-        exchangeCoupon.setValue(result);
+        ClientCoupon clientCoupon = new ClientCoupon();
+        clientCoupon.setAmount(1);
+        clientCoupon.setClient(order.get().getClient());
+        clientCoupon.setValue(result);
 
         Random aleatorio = new Random();
         int code = aleatorio.nextInt() * 100;
         System.out.println("Número gerado: " + code);
-        exchangeCoupon.setCode(String.valueOf(code));
+        clientCoupon.setCode(String.valueOf(code));
 
-        exchangeCouponRepository.save(exchangeCoupon);
+        exchangeCouponRepository.save(clientCoupon);
 
         order.get().setStatus(TROCA_AUTORIZADA);
 

@@ -7,6 +7,7 @@ import com.marcio.fatec.les_ecommerce.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,11 +62,9 @@ public class OrderServiceImp implements IOrderService {
             productRepository.save(itemProduct);
         }
 
-        //        Product productStock = new Product();
-        // productStock.setStock();
-
         Coupon coupon = couponRepository.findByCode(orderDTO.getCode());
-        ExchangeCoupon exchangeCoupon = exchangeCouponRepository.findByCode(orderDTO.getExchangeCode());
+
+        ClientCoupon clientCoupon = exchangeCouponRepository.findByCode(orderDTO.getExchangeCode());
 
         if( coupon != null) {
             coupon.setAmount(coupon.getAmount() - 1);
@@ -81,7 +80,10 @@ public class OrderServiceImp implements IOrderService {
         order.setTotal(orderDTO.getCartSubTotal());
         order.setCoupon(coupon);
 
-        order.setExchangeCoupon(exchangeCoupon);
+        order.setClientCoupon(clientCoupon);
+
+//        clientCoupon.setDeleted(true);
+//        exchangeCouponRepository.save(clientCoupon);
 
         orderRepository.save(order);
 

@@ -14,6 +14,7 @@ class DashBoard extends React.Component {
 
         data: [50, 19, 3, 5, 2, 3],
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        lengthcards: 0,
 
         cardName: [],
 
@@ -36,16 +37,16 @@ class DashBoard extends React.Component {
 
     componentDidMount() {
         
-        this.dashboardService.getDashboard()
-            .then( response => {
+        // this.dashboardService.getDashboard()
+        //     .then( response => {
 
-                console.log( "did mount" , response.data )    
+        //         console.log( "did mount" , response.data )    
 
-                // this.setState({
-                //     data: response.data,
-                //     labels: response.data                
-                // })
-            })
+        //         // this.setState({
+        //         //     data: response.data,
+        //         //     labels: response.data                
+        //         // })
+        //     })
     }
 
     handleChange = (event) => {
@@ -60,22 +61,23 @@ class DashBoard extends React.Component {
 
         if (this.state.startDate === '' || this.state.endDate === '') {
             errorMessage("Insira as duas datas para filtrar")
-        } else {            
+        } else {    
+            
+            console.log(this.state.startDate)
 
             this.dashboardService.getDashboardFilterDate({dtInicio: this.state.startDate, dtFim: this.state.endDate})
             .then( response => {
-                // console.log( "quantity: ", response.data[0].cardsQuantity )
-                // console.log( "Card name", response.data[0].cardName )
  
-                console.log( 'Respostas',  response.data )
+                console.log( 'Respostas',  response.data.length )
 
                 let listaName = [];
                 let listaQuantity = [];
                 let orderDate = [];
 
                 for(let x in response.data){
-
-                    listaName.push(response.data[x].cardName)
+                    
+                    listaName.push( { name: response.data[x].cardName, cardsQuantity: response.data[x].cardsQuantity, dataVenda:response.data[x].orderDate })
+                    // listaName.push(  response.data[x].cardName)
 
                     listaQuantity.push( response.data[x].cardsQuantity)
 
@@ -86,14 +88,10 @@ class DashBoard extends React.Component {
                     
                     cardName: listaName,
                     data: listaQuantity,
-                    labels: orderDate
+                    labels: orderDate,
+                    lengthcards: response.data.length
                 })           
             })
-
-            // console.log("FILTRANDO CIONFIA")
-            // console.log("startDate", this.state.startDate)
-
-            // console.log("endDate", this.state.endDate)
         }
 
     }
@@ -172,6 +170,7 @@ class DashBoard extends React.Component {
                                         cardName={this.state.cardName}
                                         data={this.state.data}
                                         labels={this.state.labels}
+                                        lengthcards={this.state.lengthcards}
                                     />
                                     {/* 
                                     <CardRarity

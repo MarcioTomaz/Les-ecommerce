@@ -53,7 +53,7 @@ public class Order extends DomainEntity {
     private Coupon coupon;
 
     @ManyToOne
-    private ExchangeCoupon exchangeCoupon;
+    private ClientCoupon clientCoupon;
 
 //    @OneToOne(mappedBy = "order")
 //    @JsonIgnore

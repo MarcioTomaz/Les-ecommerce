@@ -110,27 +110,7 @@ class ExchangeSelectItems extends React.Component{
 
     render(){
         return(
-            <>
-
-                {/* <Button variant="primary" onClick={this.openModal}>
-                        Launch demo modal
-                </Button>
-
-                <Modal show={this.state.openModal} onHide={this.closeModal}>
-                    <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-                    <Modal.Footer>
-                    <Button variant="secondary" onClick={this.closeModal}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={this.closeModal}>
-                        Save Changes
-                    </Button>
-                    </Modal.Footer>
-                </Modal> */}
-
+            <>           
                     
                 <div className="container mt-5 mb-5 card rounded shadow shadow-sm">
                     <h1>Selecione os itens para troca</h1>

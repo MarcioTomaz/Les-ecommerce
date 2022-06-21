@@ -5,14 +5,14 @@ import React from "react";
 
 export default props => {
 
-    const rows = props.creditCards.map( (creditCards, index) => {
+    const rows = props.creditCards.map((creditCards, index) => {
         return (
             <tr key={index}>
                 <td>{creditCards.id}</td>
                 <td>{creditCards.creditCardNumber}</td>
-                <td>{creditCards.cardFlag}</td>                
+                <td>{creditCards.cardFlag}</td>
                 <td>
-                    
+
                     {/* <button 
                         type="button" 
                         className="btn btn-success btn-check" 
@@ -20,9 +20,15 @@ export default props => {
                     </button> */}
 
                     <div className="form-check">
-                        <label className="ml-5 form-check-label" htmlFor="flexCheckDefault">Utilizar cartão</label>
-                        <input onChange={e => props.cardToPay(creditCards.id)} className="ml-3 form-check-input"  type="checkbox" value={creditCards.id} id="flexCheckDefault" />                        
-                        <br/>                                                
+                        {/* <label className="ml-5 form-check-label" htmlFor="flexCheckDefault">Utilizar cartão</label>
+                        <input onChange={e => props.cardToPay(creditCards.id)} className="ml-3 form-check-input" type="checkbox" value={creditCards.id} id="flexCheckDefault" />
+                        <br /> */}
+
+                        <input 
+                            type="checkbox" 
+                            className="form-check-input"
+                            onClick={ e => props.cardToPay(creditCards.id)}                                   
+                        />
                     </div>
 
                     {/* <input type="checkbox" className="btn-check" id="btn-check-outlined" autocomplete="off" />
@@ -46,7 +52,7 @@ export default props => {
                     <th scope="col">Valor: </th>
                 </tr>
             </thead>
-            
+
             <tbody>
                 {rows}
             </tbody>

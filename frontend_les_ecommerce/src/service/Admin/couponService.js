@@ -31,6 +31,8 @@ class CouponService extends ApiService{
 
     verifyExchangeCoupon(code){
 
+        console.log("VERIFY", code)
+
         return this.post("/verificarCupomTroca", code)
     }
 }

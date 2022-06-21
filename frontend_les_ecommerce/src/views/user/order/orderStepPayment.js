@@ -122,9 +122,9 @@ class OrderStepPayment extends React.Component{
 
     selectCard = (crediCardId) => {        
 
-        this.setState({
-            paymentMethodCardList: [...this.state.paymentMethodCardList, crediCardId]
-        })
+        // this.setState({
+        //     paymentMethodCardList: [...this.state.paymentMethodCardList, crediCardId]
+        // })
 
         // console.log("crediLIST", this.state.paymentMethodCardList)
 
@@ -133,14 +133,15 @@ class OrderStepPayment extends React.Component{
     cardToPay = (cardId) =>{
 
         let teste = document.getElementById(`${cardId}`); 
-        
-        console.log(teste)
+
+        console.log(cardId)        
+        console.log("CARD TO PAY ID", cardId)
         
         this.setState({
             paymentMethodCardList: [...this.state.paymentMethodCardList, cardId]
         })
 
-        console.log(this.state.paymentMethodCardList)
+        // console.log(this.state.paymentMethodCardList)
         
         teste.setAttribute('type', 'hidden');        
         
@@ -182,6 +183,14 @@ class OrderStepPayment extends React.Component{
                 let discount = respondeData.value;
                 
                 successMessage("Cupom válido!");
+                    
+                let fieldCoupon = document.getElementById('code');
+                console.log(fieldCoupon);
+
+                fieldCoupon.disabled = true;
+
+                console.log(respondeData.code)
+
 
                 this.setState({
                     cartSubTotal: this.state.cartSubTotal - discount,
@@ -204,10 +213,17 @@ class OrderStepPayment extends React.Component{
             .then( response => {
 
                 let respondeData = response.data;
-                let discount = respondeData.value;
+                let discount = respondeData.value;   
                 
                 successMessage("Cupom válido!");
+                
+                let fieldCoupon = document.getElementById('exchangeCode');
+                console.log(fieldCoupon);
 
+                fieldCoupon.disabled = true;
+
+                console.log(respondeData.exchangeCode)
+                
                 this.setState({
                     cartSubTotal: this.state.cartSubTotal - discount,
                     exchangeCode: respondeData.exchangeCode
@@ -293,7 +309,7 @@ class OrderStepPayment extends React.Component{
                         creditCards={this.state.creditCards} 
                         selectCard={this.selectCard}
                         cardToPay={this.cardToPay} 
-                    />
+                    />               
                 </div>
 
                 <div className="container row">

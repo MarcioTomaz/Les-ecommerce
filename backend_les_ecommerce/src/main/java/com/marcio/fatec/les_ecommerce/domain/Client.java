@@ -68,7 +68,7 @@ public class Client extends DomainEntity{
 
     @OneToMany
     @Nullable()
-    private List<ExchangeCoupon> exchangeCoupon;
+    private List<ClientCoupon> clientCoupon;
 
     public Client(ClientDTO clientDTO) {
         this.name = clientDTO.getName();

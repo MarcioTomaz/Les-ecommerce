@@ -173,16 +173,16 @@ class OrderClientDetails extends React.Component {
 
 
                                                 {/* <div className="row" >
-                            <div className="col-lg-3 mb-md-3 float-left">
-                                <p className="card-text">
-                                <strong>Cartão com final:</strong>
-                                </p>
-                            </div>
-                            <div className="col-lg-4 mb-md-3 float-left">
-                                <p className="card-text">
-                                <strong>Valor pago nesse cartão:</strong> </p>
-                            </div>
-                            </div>                             */}
+                                                    <div className="col-lg-3 mb-md-3 float-left">
+                                                        <p className="card-text">
+                                                        <strong>Cartão com final:</strong>
+                                                        </p>
+                                                    </div>
+                                                    <div className="col-lg-4 mb-md-3 float-left">
+                                                        <p className="card-text">
+                                                        <strong>Valor pago nesse cartão:</strong> </p>
+                                                    </div>
+                                                </div>                             */}
                             
                                             </div>
 
@@ -197,11 +197,18 @@ class OrderClientDetails extends React.Component {
                                                 <h3><strong>Valor da compra: R${this.state.total} </strong> </h3>
                                             </div>                                            
                                             <div className="col-lg-2" >
-                                                <button 
+                                                
+                                            </div>
+                                            <div className="col-lg-1">{{
+                                                'PEDIDO_RECEBIDO':
+                                                <div className="col-lg-1" >
+                                                    <button 
                                                     className="btn-sm btn-warning text-center"
                                                     onClick={this.exchange}
                                                     ><strong>Solicitar troca</strong></button>
-                                            </div>
+                                                </div>,
+                                            }[this.state.status]}
+                                        </div>  
                                         </div>
                                     </div>
 
