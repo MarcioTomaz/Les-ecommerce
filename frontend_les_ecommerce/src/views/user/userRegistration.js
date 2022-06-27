@@ -15,9 +15,9 @@ class UserRegistration extends React.Component {
         password: '',
         confirmPassword: '',
         name: '',
-        gender: '',
-        birthDate: '',
-        type: '',
+        gender: null,
+        birthDate: null,
+        type: null,
         areaCode: '',
         phoneNumber: '',
         cpf: ''

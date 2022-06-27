@@ -56,6 +56,16 @@ public class ProductController {
         return ResponseEntity.ok().body(productList);
     }
 
+    @GetMapping("/produtosAdm")
+    public ResponseEntity getAllProductsAdm(){
+
+        List<Product> productList = new ArrayList<>();
+
+        productList = productRepository.findAll();
+
+        return ResponseEntity.ok().body(productList);
+    }
+
     @PutMapping("/inativar")
     public Optional<Product> disableProduct(@RequestParam("id") Long id){
         Product product = new Product();

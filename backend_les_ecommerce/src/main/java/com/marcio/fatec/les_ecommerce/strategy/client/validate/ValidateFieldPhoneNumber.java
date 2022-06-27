@@ -5,24 +5,24 @@ import com.marcio.fatec.les_ecommerce.domain.DomainEntity;
 import com.marcio.fatec.les_ecommerce.strategy.IStrategy;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-
 @Component
-public class ValidateBirthDate implements IStrategy {
-
+public class ValidateFieldPhoneNumber implements IStrategy {
     @Override
     public String process(DomainEntity domainEntity) {
 
         Client client = (Client) domainEntity;
         StringBuilder msg = new StringBuilder();
 
-        if(client.getBirthDate().isAfter(LocalDate.now())){
-            msg.append(" A data deve ser menor ou igual a data atual. ");
+
+        String phoneNumber = client.getPhoneNumber();
+
+        if(phoneNumber.isEmpty() || phoneNumber == null){
+            msg.append("O campo telefone é obrigatório");
         }
 
-        if( client.getBirthDate() == null){
-            msg.append("A data não pode ser nula");
-        }
+
+//        msg.append(".");
+
 
         return msg.toString();
     }

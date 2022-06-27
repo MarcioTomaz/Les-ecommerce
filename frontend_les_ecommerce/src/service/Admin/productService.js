@@ -33,6 +33,11 @@ class ProductService extends ApiService{
         return this.get('/produtos');
     }
 
+    getAllProductsAdm(){
+
+        return this.get('/produtosAdm');
+    }
+
     getProductDetails(id){
 
         return this.get(`/detalhesProduto?id=${id}`);

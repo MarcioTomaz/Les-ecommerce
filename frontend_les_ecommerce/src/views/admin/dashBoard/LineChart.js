@@ -26,8 +26,8 @@ ChartJS.register(
 
 const LineChart = (props) => {
 
-    console.log("PROPS LINE CHART DATA: ", props.data)
-    console.log("LABEL: ", props.labels)
+    // console.log("PROPS LINE CHART DATA: ", props.data)
+    // console.log("LABEL: ", props.labels)
     console.log("PROPS LINE CHART: ", props)
 
     const colors = ["#7FFFD4","#000000","#0000FF","#8A2BE2",
@@ -67,9 +67,7 @@ const LineChart = (props) => {
 
     //for para setar o DATA do gráfico
     for (let i = 0; i < props.lengthcards; i++) {
-
-        // console.log(props, "PROPS FOR")
-        // console.log(props.cardName, "PROPS NAME dataVenda cardsQuantity")
+     
         if (cardNames.indexOf(props.cardName[i].name) == -1) {
             // filtrar pelo nome da carta
             let vendas = props.cardName.filter(x => x.name === props.cardName[i].name)

@@ -25,7 +25,6 @@ public class Coupon extends DomainEntity {
     @Size(min = 6)
     private String code;
 
-    @Min(value = 1, message = "A quantidade deve ser maior que 0")
     private Integer amount;
 
     @Min(value = 1, message = "O Valor deve ser maior que 0")

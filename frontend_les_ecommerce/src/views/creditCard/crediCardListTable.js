@@ -31,7 +31,7 @@ export default props => {
             <thead>
                 <tr>
                     <th scope="col">ID: </th>
-                    <th scope="col">Últimos 4 digitos: </th>
+                    <th scope="col">Número cartão: </th>
                     <th scope="col">Bandeira: </th>
                 </tr>
             </thead>

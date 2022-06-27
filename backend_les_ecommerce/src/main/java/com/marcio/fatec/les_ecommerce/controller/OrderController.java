@@ -191,7 +191,7 @@ public class OrderController {
 
                 Product product = item.getProduct();
 
-                result = product.getPrice() * item.getQuantity();
+                result += product.getPrice() * item.getQuantity();
 
                 product.setStock((int) (product.getStock() + item.getQuantity()));
                 productRepository.save(product);

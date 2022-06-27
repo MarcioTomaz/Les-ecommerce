@@ -31,7 +31,7 @@ class ProductList extends React.Component{
 
     componentDidMount(){   
 
-        this.service.getAllProducts()
+        this.service.getAllProductsAdm()
             .then( response => {
                 const responseData = response.data;
 

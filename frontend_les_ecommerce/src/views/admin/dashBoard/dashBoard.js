@@ -68,7 +68,7 @@ class DashBoard extends React.Component {
             this.dashboardService.getDashboardFilterDate({dtInicio: this.state.startDate, dtFim: this.state.endDate})
             .then( response => {
  
-                console.log( 'Respostas',  response.data.length )
+                console.log( 'Respostas',  response.data )
 
                 let listaName = [];
                 let listaQuantity = [];

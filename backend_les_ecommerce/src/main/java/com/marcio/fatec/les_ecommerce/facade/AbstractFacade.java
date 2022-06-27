@@ -76,6 +76,22 @@ public abstract class AbstractFacade {
     @Autowired
     ValidateCreditCardLength validateCreditCardLength;
 
+    @Autowired
+    ValidateFieldEmail validateFieldEmail;
+
+    @Autowired
+    ValidateBirthDate validateFieldBirthDate;
+
+    @Autowired
+    ValidateFieldDDD validateFieldDDD;
+
+    @Autowired
+    ValidateFieldPhoneNumber validateFieldPhoneNumber;
+
+    @Autowired
+    ValidateFieldGender validateFieldGender;
+
+
     protected void initializeMaps(){
         daos.put(Client.class.getName(), clientDAO);
         daos.put(Address.class.getName(), addressDAO);
@@ -85,6 +101,11 @@ public abstract class AbstractFacade {
         List<IStrategy> saveClient = new ArrayList<>();
 
 //        saveClient.add(validate);
+        saveClient.add(validateFieldEmail);
+        saveClient.add(validateFieldBirthDate);
+        saveClient.add(validateFieldDDD);
+        saveClient.add(validateFieldGender);
+        saveClient.add(validateFieldPhoneNumber);
         saveClient.add(validateExistingEmail);
         saveClient.add(validateCPF);
         saveClient.add(validatePasswordNull);
